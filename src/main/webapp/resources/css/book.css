@@ -1,0 +1,369 @@
+@charset "UTF-8";
+
+
+h6 {
+  font-size: 25px;
+  text-align: center;
+  letter-spacing: 1px;
+  padding-top: 60px;
+}
+h2{
+	font-size : 26px;
+}
+
+.main input[type=radio] {
+  display: none;
+}
+
+#resort:checked ~ .tab label:nth-child(1),
+#waterpark:checked ~ .tab label:nth-child(2),
+#package:checked ~ .tab label:nth-child(3) {
+  background-color: rgba(41, 205, 255, 1); 
+  border-width: 2px 2px 2px 2px;
+  border-style: solid;
+  box-shadow: none;
+}
+
+#resort:checked ~ .content div:nth-child(1),
+#waterpark:checked ~ .content div:nth-child(2),
+#package:checked ~ .content div:nth-child(3) {
+  display: block;
+}
+
+.main {
+	padding-top:200px;
+/*   margin: 0 auto; */
+  max-width: 100%; 
+}
+
+.tab {
+  overflow: hidden;
+  display: flex; 
+}
+
+.tab label {
+  font-size: 28px;
+  cursor: pointer;
+  flex: 1; 
+  text-align: center;
+  padding: 15px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  user-select: none;
+  -webkit-user-select: none;
+  border-bottom: 2px solid black; /* 모든 Tab Label에 하단 선 추가 */
+}
+
+/* 선택된 tab에는 선을 없앰 */
+.tab label:checked {
+  border-bottom: none;
+}
+
+.content {
+  border: 2px solid black;
+  border-top: none; /* 상단 선 제거 */
+  overflow: visible;
+  height: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  align-items: stretch; 
+  margin-right: 0;
+  
+}
+
+/* 내용 영역의 각 내용에 대한 스타일 설정 */
+.content > div {
+  display:none;
+  padding: 30px;
+  line-height: 1.5;
+  font-size: 17px;
+  flex: 1;
+  flex-basis: 0;
+}
+.resort1{
+	width:20%;
+	font-size: 25px;
+}
+.resort2{
+	width:clac(40%-10px);
+	font-size: 25px;
+}
+.resort1,
+.resort2 {
+  float: left;
+  border-width: thin;
+  border-style: solid;
+  border-color: #F3F3F2;
+  height:520px;
+  cursor: pointer;
+  flex: 1;
+  flex-basis: 0;
+  margin:10px;
+  padding:10px;
+}
+.resort3{
+  float: left;
+  border-width: thin;
+  border-style: solid;
+  border-color: #F3F3F2;
+  height:520px;
+  width:30%;
+  cursor: pointer;
+  flex: 1;
+  flex-basis: 0;
+  margin:10px;
+  padding:10px;
+  font-size: 25px;
+}
+
+.resort2,
+.resort3 {
+  margin-left: 20px;
+}
+
+.waterpark1,
+.waterpark2,
+.waterpark3,
+.waterpark4 {
+  float: left;
+  border-width: thin;
+  border-style: solid;
+  border-color: #F3F3F2;
+  height:520px;
+  cursor: pointer;
+  flex: 1;
+  flex-basis: 0;
+  margin:10px;
+  padding:10px;
+  font-size: 25px;
+}
+
+.waterpark2,
+.waterpark3,
+.waterpark4 {
+  margin-left: 20px;
+}
+.waterpark4{
+	width: 25%;
+}
+.waterpark2{
+	width:12%;
+}
+.waterpark3{
+	width:42%;
+}
+.waterpark1{
+	width:10%;
+}
+
+ .content-package ul {
+            display: flex; /* Flexbox를 사용하여 항목들을 가로로 배치합니다. */
+            justify-content: center; /* 가운데 정렬 */
+            padding: 0;
+            list-style: none; /* 리스트 스타일 제거 */
+         	
+        }
+
+        /* 각 항목들이 가로로 배치되도록 설정합니다. */
+        .allpack, .waterpack, .resortpack {
+            display: flex; /* 내용과 이미지를 가로로 배치합니다. */
+            flex-direction: column; /* 내용과 이미지를 세로로 배치합니다. */
+            align-items: center; /* 가운데 정렬 */
+            margin: 30px 40px; /* 각 항목들 사이의 간격을 조정할 수 있습니다. */
+        }
+
+        /* 이미지 크기 조정 */
+        .allpack img, .waterpack img, .resortpack img {
+            width: 400px;
+        }
+.content-package li {
+    margin-top: -18px; /* Adjust this value as needed to move the elements up */
+
+  }
+}  
+h3{
+	font-size : 25px;
+}
+
+/*  */
+
+//예약 버튼 css
+
+h1 {
+  position: relative;
+  text-align: center;
+  color: #353535;
+  font-size: 50px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 18px;
+  color: #676767;
+}
+.frame {
+  width: 90%;
+  margin: 40px auto;
+  text-align: center;
+}
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+
+
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+.custom-btn span {
+  font-size: 30px; /* You can adjust the value to the desired font size */
+}
+.custom-btn span {
+   width: 150%; /* You can adjust the value to make the background wider */
+  height: 120%;
+}
+
+ .btn-12 {
+      /* Other properties... */
+      top: -50px; /* Adjust this value to move the button up or down */
+      left: 20%;
+    }
+    
+/* datepicker를 위한 사용자 정의 CSS */
+.ui-datepicker {
+    font-size: 12px;
+    display: none; /* datepicker 항상 보이도록 함 */
+    visibility: visible; /* datepicker 항상 보이도록 함 */
+    opacity: 1; /* datepicker 항상 보이도록 함 */
+    z-index: 9999; /* 다른 요소 위에 항상 표시되도록 함 */
+}
+
+/* datepicker 헤더를 위한 사용자 정의 CSS */
+.ui-datepicker-header {
+    background-color: #f2f2f2; 
+}
+
+/* 선택된 날짜 셀을 위한 사용자 정의 CSS */
+.ui-datepicker-calendar .ui-state-active {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+/* 달력을 가로로 나란히 배치하기 위한 스타일 */
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar {
+    flex: 1;
+    margin: 10px;
+}
+.ui-datepicker {
+    font-size: 16px; /* Increase the font size for better visibility */
+    width: 350px; /* Set the desired width of the datepicker */
+    /* padding: 10px; */ /* Add some padding for a better look */
+}
+           /
+/* Increase the size of the datepicker header */
+.ui-datepicker-header {
+    font-size: 16px; /* Increase the font size for the header */
+    padding: 5px; /* Add some padding for a better look */
+}
+
+/* Increase the size of the date cells */
+.ui-datepicker-calendar td a {
+    font-size: 16px; /* Increase the font size for the date cells */
+    padding: 5px; /* Add some padding for a better look */
+}

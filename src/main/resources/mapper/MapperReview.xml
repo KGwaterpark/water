@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.water.park.service.dao.ReviewDAO">
+
+<!--마이페이지  -->
+	<select id="getAllReview" resultType="ReviewVO" >
+    SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
+    FROM review
+   </select>
+   
+   <select id="getRevinfo" resultType="ReviewVO">
+	SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
+	FROM review where rev_contents=#{rev_contents}
+	</select>
+	
+	<update id="updateRevinfo">
+    UPDATE review
+    SET m_id=#{m_id},type=#{type}, rev_contents=#{rev_contents}, rev_score=#{rev_score}
+    WHERE rev_id=#{rev_id}
+	</update>
+
+	<delete id="deleteRevinfo">
+	delete from review where rev_id=#{rev_id}
+	</delete>
+	
+	<insert id="insert_review" useGeneratedKeys="true" keyProperty="rev_id">
+    INSERT INTO review (rev_id, m_id, type, rev_contents, rev_date, rev_score)
+    VALUES (rev_id_seq.nextval, #{m_id}, #{type}, #{rev_contents}, SYSDATE, #{rev_score})
+	</insert>
+	
+	<insert id="insert_review_W" useGeneratedKeys="true" keyProperty="rev_id">
+    INSERT INTO review (rev_id, m_id, type, rev_contents, rev_date, rev_score)
+    VALUES (rev_id_seq.nextval, #{m_id}, #{type}, #{rev_contents}, SYSDATE, #{rev_score})
+	</insert>
+	
+	<insert id="insert_review_R" useGeneratedKeys="true" keyProperty="rev_id">
+    INSERT INTO review (rev_id, m_id, type, rev_contents, rev_date, rev_score)
+    VALUES (rev_id_seq.nextval, #{m_id}, #{type}, #{rev_contents}, SYSDATE, #{rev_score})
+	</insert>
+	
+	<!--워터파크  -->
+	<select id="getAllReviewWater" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('in_lock', 'out_lock', 'super_lock','실내락커','실외락커','슈퍼파크인')
+	</select>
+	
+	<select id="getAllReviewResort" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('f_stand', 'f_prem','s_stand','s_prem','penthouse','팬트하우스')
+	</select>
+	
+	<select id="getAllReviewPakage" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('프리미엄패키지','워터파크패키지','리조트패키지')
+	</select>
+	
+	<!--어드민  -->
+	<select id="AllReviewWater" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('in_lock', 'out_lock', 'super_lock','실내락커','실외락커','슈퍼파크인')
+	</select>
+	
+	<select id="AllReviewResort" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('f_stand', 'f_prem','s_stand','s_prem','penthouse','팬트하우스')
+	</select>
+	
+	<select id="AllReviewPakage" resultType="ReviewVO">
+    SELECT m_id, type, rev_contents, rev_date, rev_score
+    FROM review
+    WHERE type IN ('프리미엄패키지','워터파크패키지','리조트패키지')
+	</select>
+	
+	<select id="getadminRevinfoW" resultType="ReviewVO">
+	SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
+	FROM review where rev_contents=#{rev_contents}
+	
+	</select>
+	
+	
+	<select id="getadminRevinfoR" resultType="ReviewVO">
+	SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
+	FROM review where rev_contents=#{rev_contents}
+	</select>
+	
+	<select id="getadminRevinfoP" resultType="ReviewVO">
+	SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
+	FROM review where rev_contents=#{rev_contents}
+	</select>
+	
+	<delete id="deleteRevinfoW">
+	delete from review where rev_id=#{rev_id}
+	</delete>
+	
+	<delete id="deleteRevinfoR">
+	delete from review where rev_id=#{rev_id}
+	</delete>
+	
+	<delete id="deleteRevinfoP">
+	delete from review where rev_id=#{rev_id}
+	</delete>
+	
+
+</mapper>

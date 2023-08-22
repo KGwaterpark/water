@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+/* 위에 KGHOME */
+header.he2 {
+  top: 0; /* 원하는 위치로 조정 */
+  left:0;
+  background: rgba(23, 23, 23, 1);
+  position: fixed;
+  padding-top: 1px;
+  height: 40px;
+  	display: flex;
+
+	justify-content: space-between;
+	z-index: 1000;
+	opacity: 0.8; 
+	width:100%;
+}
+
+header .he1 {
+	margin-left:120px;
+	margin-right:120px;
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+}
+
+
+header .he3 {
+font-size: 23px;
+	color: red;
+	font-weight: bold;
+	
+}
+
+/* KGHOME 회원권*/
+.headul2{
+	color: white;
+	font-size: 10px;
+ font-weight: lighter;
+
+	
+	
+}
+
+
+
+
+header .headnav2{
+  justify-content:center;
+display: flex;
+width: 100%;
+z-index: 1000;
+list-style:none;
+}
+
+header .headnav2 ul {
+display: flex;
+width: 100%;
+z-index: 1000;
+margin-right: 350px;
+}
+
+/* KGHOME 정렬 */
+header .headnav2 ul li {
+position: relative;
+
+width:200px;
+
+}
+/* KGHOME 색 글자 크기 */
+header .headnav2 ul li a{
+text-align: center;
+display: block;
+color:rgba(255, 255, 255, 1);
+font-size: 120%;
+}
+
+
+@media (max-width: 300px) {
+  body {
+    font-size: 14px;
+  }
+
+}
+
+
+
+
+
+

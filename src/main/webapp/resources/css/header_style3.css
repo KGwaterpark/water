@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* 워터파크 이용 전체보기  */
+header.he3 {
+  top: 0; /* 원하는 위치로 조정 */
+  left:0;
+  background: #3de2ff;
+  position: fixed;
+  padding-top: 1px;
+  height: 40px;
+  	display: flex;
+	justify-content: space-between;
+	z-index: 1000;
+	opacity: 0.9; 
+	width:100%;
+}
+
+header .he1 {
+	margin-left:100px;
+margin-right:50px;
+
+	font-size: 25px;
+	color: white;
+	font-weight: bold;
+	width: 100%
+}
+
+
+
+* { 
+	text-decoration: none;
+  list-style-type: none;
+}
+
+header .headnav3{
+  justify-content:center;
+display: flex;
+ width: 100%;
+z-index: 1000;
+list-style:none;
+ margin-top:-10px;
+  margin-left:-250px;
+}
+
+
+
+header .headnav3 ul {
+display: flex;
+width: 100%;
+z-index: 1000;
+}
+
+header .headnav3 ul li {
+position: relative;
+width:200px;
+
+}
+
+header .headnav3 .parkul2{
+	padding:10px;
+text-align: left;
+display: block;
+font-weight :bold;
+font-size: 20px;
+width: 100%;
+color: black;
+}
+
+header .parkLi2{
+
+text-align: left;
+display: block;
+font-weight :bold;
+font-size: 20px;
+width: 100%;
+color: black;
+
+
+}
+
+
+ul li:hover li:hover ul{
+     display:block;/*추가 드랍메뉴 활성화*/
+
+  }
+
+
+header .headnav3 ul li ul{
+display: none;
+position: absolute;
+text-align: center;
+
+ transition: 7.3s 7.2s;
+
+}
+
+ul li:hover li:hover{/* 하위 드롭다운 메뉴에 마우스 올릴시 색 반전효과*/
+    border-bottom:0px;/* 하단 보더 없앰*/
+    background-color:rgba(61, 187, 255, 0.65);/* 배경색*/
+    box-sizing:border-box;/* 박스의 크기를 보더의 크기를 포함한 크기로 변경*/
+  
+   }
+
+
+
+header .headnav3 ul li:hover>ul{
+	display: block;
+	 position:absolute;
+	
+	}
+	
+	
+/* 안내도 이용안내  */
+header .headnav3 ul li:hover>ul {
+  display: block;
+  top: 100%; /* 메뉴 항목 아래에 나오도록 설정 */
+  left: 0;
+  margin-top: 5%;
+  padding-top: 5px; /* 여백을 주기 위해 설정 */
+  background: white; /* 배경색 설정 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1); /* 그림자 효과 추가 */
+  text-align: center; /* 텍스트를 왼쪽 정렬로 설정 */
+ font-size: 20px;
+ font-weight: bold;
+ padding-left: 0px;
+
+}

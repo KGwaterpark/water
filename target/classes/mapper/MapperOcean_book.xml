@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.water.park.service.dao.Ocean_bookDAO">
+
+	<select id="getAllOceanInfo" resultType="Ocean_bookVO" >
+    SELECT ocbook_id,m_id,type,state,oc_date,adult_cnt,tot_cnt,child_cnt,ocbook_date
+    FROM OCEAN_BOOK
+   </select>
+   
+   <select id="getAllResortInfo" resultType="BookVO" >
+    SELECT rebook_id,m_id,re_type,check_in_date, check_out_date,book_date,state,price
+    FROM RE_BOOK
+   </select>
+   
+ <!--   <select id="getAllPackageInfo" resultType="Package_bookVO" >
+    SELECT pabook_id,m_id,p_type,rebook_id,book_date,book_cnt,use_date,state,price
+    FROM PA_BOOK
+   </select> -->
+   
+   
+   <select id="getBookInfo" resultType="Ocean_bookVO">
+   	SELECT  ocbook_id,m_id,type,state,oc_date,ocbook_date,adult_cnt,tot_cnt,child_cnt
+    FROM OCEAN_BOOK where  ocbook_id= #{ocbook_id}
+   </select>
+   
+   <select id="getResortInfo" resultType="BookVO">
+   	SELECT rebook_id,m_id,re_type,check_in_date, check_out_date,book_date,state,price
+    FROM RE_BOOK where rebook_id=#{rebook_id}
+   </select>
+   
+ 
+	
+	<update id="updateResortinfo">
+    	UPDATE RE_BOOK
+    	SET rebook_id=#{rebook_id}, m_id=#{m_id}, re_type=#{re_type}, check_in_date=#{check_in_date}, check_out_date=#{check_out_date}, state=#{state}, price=#{price}
+    	WHERE rebook_id=#{rebook_id}
+	</update>
+   
+   
+
+   <select id="getOceanInfo" resultType="Ocean_bookVO">
+   	SELECT ocbook_id,m_id,type,state,oc_date,ocbook_date,adult_cnt,tot_cnt,child_cnt
+    FROM OCEAN_BOOK where ocbook_id=#{ocbook_id}
+   </select>
+
+</mapper>

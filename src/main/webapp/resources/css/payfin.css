@@ -1,0 +1,94 @@
+@Charset="UTF-8";
+
+.wrap {
+    border-top: 5px dashed #1c8fb2;
+    display: flex;
+    margin: 30px auto; 
+    justify-content: space-between;
+    width: 80%;
+    position: relative; 
+}
+
+.wrap-payinfo {
+    flex: 1;
+    margin-right: 20px;
+    background-color: #fbfbfb;
+    text-align: center;
+    width: calc(100% - 410px); /* 수정된 부분: 420px 대신 410px 사용 */
+    max-width: calc(100% - 410px); /* 수정된 부분: 420px 대신 410px 사용 */
+    max-height: 1000px;
+    z-index: -1;
+}
+
+.title {
+    font-size: 50px;
+    margin: 30px;
+}
+
+.sp-title {
+    color: #29cdff;
+}
+
+.pay-info-t {	
+    border-collapse: collapse;
+    font-size: 25px;
+    padding: 10px;
+}
+
+
+
+.pay-th {
+    vertical-align: top;
+    width: 180px;
+    padding-left: 25px;
+}
+
+.pay-td {
+    width: 180px;
+    padding-right: 30px;
+    text-align: right;
+    white-space: nowrap; /* 줄넘어감x */
+}
+
+.wrap-price {
+    font-size: 30px;
+    background-color: #fff;
+    flex: 1;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.kglogo {
+    font-size: 30px;
+    color: #29cdff;
+    display: block;
+    text-align: center;
+}
+
+.poom {
+    display: block;
+    text-align: center;
+}
+
+.btn-pay {
+    display: flex; 
+    justify-content: center;
+    position: absolute;  
+    bottom: -80px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    
+}
+
+.gomain {
+    border-radius: 10px;
+    background-color: #41A2B1;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 10px 35px;
+    cursor:pointer;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.water.park.service.dao.GongjiDAO">
+
+<!-- 공지 입력 -->
+<insert id="insertGongji"  >
+    INSERT INTO Gongji (g_id, g_date, g_title, g_content)
+    VALUES (g_seq.nextVAL, sysdate, #{g_title}, #{g_content})
+</insert>
+
+
+
+	<!-- 공지 전체 조회 -->
+	<select id="getAllGongji" resultType="GongjiVO">
+	SELECT g_id, g_date, g_title, g_content
+	FROM Gongji
+	ORDER BY g_id DESC
+	</select>
+
+<select id="gongjiGet" resultType="GongjiVO">
+  SELECT g_id, g_date, g_title, g_content
+  FROM Gongji
+  WHERE g_title = #{g_title}
+ 
+</select>
+
+<!-- 공지수정 -->
+<update id="updateGongji">
+    UPDATE gongji SET g_title = #{g_title}, g_content = #{g_content} WHERE g_id = #{g_id}
+</update>
+
+
+	 <delete id="deleteGongji">
+	 	delete from Gongji where g_id= #{g_id}
+	 </delete>
+
+
+
+</mapper>

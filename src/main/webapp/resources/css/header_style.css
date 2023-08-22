@@ -1,0 +1,261 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&family=Poppins:ital,wght@0,600;1,600&display=swap');
+ 
+ /* 메인화면 사진 */
+ .mainpark{
+ width: 100%;
+ height:700px;
+ margin: 0px;
+ padding: 0px;
+ }
+ 
+ /* 메인 */
+ main section{
+ padding-top: 110px;
+ } 
+ 
+ section{
+	padding-top: 200px;
+}
+ 
+
+ 
+ 
+ 
+header {
+	top:40px;
+	left:0;
+	position:fixed;
+	background: #ffffff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, .1); 
+	 
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 1000;
+	opacity: 0.99;  /* 투명도 설정 */
+	width:100%;
+	height: 80px;
+	
+	
+} 
+
+
+
+
+/* kg park 설정 하는곳 */
+
+/* header .sp1 {
+	
+	margin-left:120px;
+	font-size: 30px;
+	color: rgba(41, 205, 255, 1);
+	font-weight: bold;
+
+}
+header .sp2{
+	margin-left:50px;
+	font-size: 28px;
+	color: rgba(16, 214, 249, 1);
+	font-weight: bolder;
+	padding-right: 100px;
+} */
+
+* { 
+	text-decoration: none;
+	color: inherit;
+}
+
+ .kgicon{
+ width: 200px;
+ height: 100px;
+
+ }
+
+
+.logo{
+	width:250px;
+	padding-left: 30px;
+}
+
+/* header ul li 설정 */
+
+header ul,li{
+	list-style: none;	
+}
+
+header ul{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+header a{
+	display: block;
+	 line-height:30px;
+}
+
+header .headnav{
+display: flex;
+ 
+width: 100%;
+z-index: 1000;
+list-style:none;
+
+}
+
+header .headnav ul {
+display: flex;
+width: 80%;
+z-index: 1000;
+}
+
+header .headnav ul li {
+position: relative;
+width:250px;
+padding: 25px;
+ font-size: 30px;
+}
+
+header .headnav ul li a{
+text-align: center;
+display: block;
+font-size: 160%;
+ font-size: 30px;
+}
+
+ul li:hover li:hover ul{
+     display:block;/*추가 드랍메뉴 활성화*/
+
+  }
+
+
+header .headnav ul li ul{
+display: none;
+position: absolute;
+text-align: center;
+ font-size: 25px;
+ transition: 1.3s 2.2s;
+
+}
+
+ul li:hover li:hover{/* 하위 드롭다운 메뉴에 마우스 올릴시 색 반전효과*/
+    border-bottom:0px;/* 하단 보더 없앰*/
+    background-color:rgba(61, 187, 255, 0.65);/* 배경색*/
+    box-sizing:border-box;/* 박스의 크기를 보더의 크기를 포함한 크기로 변경*/
+   font-size: 30px;
+   }
+
+
+
+header .headnav ul li:hover>ul{
+	display: block;
+	 position:absolute;
+
+	}
+	
+	
+/* 안내도 이용안내  */
+header .headnav ul li:hover>ul {
+  display: block;
+  top: 100%; /* 메뉴 항목 아래에 나오도록 설정 */
+  left: 0;
+  padding-top: 5px; /* 여백을 주기 위해 설정 */
+  background: #fff; /* 배경색 설정 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1); /* 그림자 효과 추가 */
+  text-align: center; /* 텍스트를 왼쪽 정렬로 설정 */
+ font-size: 25px;
+ font-weight: bold;
+ padding-left: 0px;
+}
+
+header .headnav ul li ul li ul li {
+ font-size: 20px;
+ font-weight: bolder;
+  padding-left: 0px;
+  text-align: center;
+  color: black;;
+ }
+
+/* 여백설정  */
+header .headnav ul li ul li {
+  width: 100%;
+  padding: 15px 0px; /* 여백 설정 */
+  font-size: 25px;
+ 
+ /* 여백설정  */
+}
+header .headnav ul li ul.ul_1 {
+  top: 0; /* 메뉴 항목 옆에 나오도록 설정 */
+  left: 100%; /* 메뉴 항목 옆에 나오도록 설정 */
+
+}
+
+
+
+
+/* ---로그인 --- */
+
+
+.login_btn{
+	font-weight: bold;
+	font-size: 20px;
+	padding: 10px;
+	margin: 40px;
+	 background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #89d8d3 0%, #68DAF9 74%);
+  border: none;
+  z-index: 1;
+	
+}
+
+.login_btn:after{
+  position: absolute;
+  content: "";
+  width: 120%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
+  box-shadow:
+
+  transition: all 0.5s ease;
+}
+
+.login_btn:hover {
+  color: #fff;
+}
+
+
+
+@media (max-width: 300px) {
+  body {
+    font-size: 14px;
+  }
+
+
+}
+#contentM {
+  flex: 1;
+  padding-left:12%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  height:650px;
+  widht: 100%;
+}
+
+#pageFrameM {
+  height: 600px;
+  width: 95%;
+  border: none;
+}
+
+ 
+.jm1{
+	width:700px;
+	padding: 500px;
+}

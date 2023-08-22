@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+.wrap {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.pm-a {
+	color: #335082;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.area {
+	color: #41A2B1;
+}
+
+.total {
+	font-size: 30px;
+	color: #FF6600;
+}
+
+#won {
+	color: black;
+	font-size: 25px;
+}
+
+.pm-table {
+	border-collapse: collapse;
+	width: 100%;
+	border-top: 2px solid;
+	border-top-color: #A3B3C7;
+}
+
+td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	padding: 15px 0px 15px 25px;
+	font-size: 25px;
+}
+
+.th {
+	background-color: #f2f2f2;
+	width: 180px;
+	padding-left: 25px;
+}
+
+.square {
+	list-style-type: square;
+}
+
+.product {
+	color: #666666;
+	font-weight: bold;
+}
+
+.nemo {
+	font-size: 20px;
+	padding-top: -20px
+}
+
+.accent {
+	font-weight: bold;
+}
+
+.privacy {
+	border-style: solid;
+	border-color: #f2f2f2;
+}
+
+.privacy-select {
+	text-align: center;
+}
+
+.btn-pay {
+	float: right;
+}
+
+.submit {
+	border-radius: 10px;
+	background-color: #41A2B1;
+	color: white;
+	border: none;
+	font-weight: bold;
+	font-size: 25px;
+	padding: 10px 35px;
+}
+
+.reset {
+	border-radius: 10px;
+	background-color: #FFFFFF;
+	color: black;
+	border: 1px solid black;
+	font-weight: bold;
+	font-size: 25px;
+	padding: 10px 35px;
+}

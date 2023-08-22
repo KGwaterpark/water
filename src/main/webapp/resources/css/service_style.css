@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+
+/* service css */
+/* price */
+.gd4{
+font-size: 19px;
+font-weight: 700;
+color: #3232FF;
+padding-left: 15px;
+padding-bottom: 5px;
+}
+
+
+.gd5{
+	padding-left: 15px;
+}
+header{
+position: fixed;
+top:0;left:0;
+width:90%;
+}
+section{
+padding-top: 150px;
+padding-bottom: 150px;
+}
+
+/* 입장안내 */
+.jangdiv{
+	align-content: center;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.jangdiv ul,li{
+	padding: 3px;
+}
+
+
+/* 이용시간안내 */
+.sat{
+	color: blue;
+}
+.sun{
+	color: red;
+}
+.pool1{
+	font-weight: bold;
+}
+
+.young1 .you11 td{
+border-bottom: 1px black solid;
+}
+
+/* 이미 회원가입 되어... */
+
+
+
+.al_btn{
+	font-weight: bold;
+	font-size: 20px;
+	padding: 5px;
+	margin: 40px;
+	 background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #89d8d3 0%, #68DAF9 74%);
+  border: none;
+  z-index: 1;
+	
+}
+
+.al_btn:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
+  box-shadow:
+
+  transition: all 0.5s ease;
+}
+
+.al_btn:hover {
+  color: #fff;
+}
+
+.dal_btn{
+padding-left: 60px;
+
+}
+.alname{
+font-size: 50px;
+font-weight: bold;
+padding-left: 20px;
+}
+.alname2{
+font-size: 30px;
+}
+
+
+/* 새로운 비밀번호변경 */
+
+
+.form-group{
+padding-left: 20px;
+}
+
+.btn-primary{
+margin-left : 58%;
+margin-top :-32%;
+padding: 15px;
+font-size: 20px;
+font-weight: bold;
+position: absolute;
+cursor: pointer;
+border: none;
+ background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #89d8d3 0%, #68DAF9 74%);
+  border: none;
+  z-index: 1;
+}
+
+.btn-primary:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
+  box-shadow:
+
+  transition: all 0.5s ease;
+}
+
+.btn-primary:hover {
+  color: #fff;
+}
+
+.pwFind-form{
+	font-size: 20px;
+	
+}
+.intext{
+	height: 30px;
+	width: 230px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+.pricetd{
+		padding-right: 45px;
+}
+
+
+/*  */

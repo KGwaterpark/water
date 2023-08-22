@@ -1,0 +1,511 @@
+  * {
+  text-decoration: none;
+    color: inherit; /* 링크의 색상 제거 */
+}
+
+
+/* amin 해더 및 좌측 메뉴바 */
+#header {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+#container {
+  display: flex;
+  margin-top: 40px;
+  height: 1000px; 
+}
+#sidebar {
+  background-color: #f1f1f1;
+  width: 200px;
+  padding: 30px;
+}
+
+#content {
+  flex: 1;
+  padding-left:20px;
+  padding-right:20px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  height: 1000px;
+}
+
+#sidebar h3 {
+  margin-bottom: 20px;
+}
+
+#sidebar hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+#sidebar ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+#sidebar ul li {
+  margin-bottom: 20px;
+}
+
+#sidebar ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+  color: #2B468B;
+}
+.admenu{
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.submenu{
+	font-size: 30px;
+	font-weight: 300px;
+}
+
+
+
+#submenu1, #submenu2, #submenu3, #submenu4 {
+  display: none;
+  margin-left: 40px;
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: 200px;
+}
+
+#pageFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 버튼 */
+
+#adbtn{
+	font-weight: bold;
+	font-size: 20px;
+	padding: 10px;
+	margin-right: 15px;
+
+	 background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #89d8d3 0%, #68DAF9 74%);
+  border: none;
+  z-index: 1;
+	
+}
+
+#adbtn:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 5px;
+   background-color: rgba(41, 205, 255, 1);
+background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
+  box-shadow:
+
+  transition: all 0.5s ease;
+}
+
+#adbtn:hover {
+  color: #fff;
+}
+.adsect{
+	padding-bottom: 20px;
+}
+
+/* 로고 반짝 */
+.adblink{
+	  -webkit-animation: blink 1.5s ease-in-out infinite alternate;
+  -moz-animation: blink 1.5s ease-in-out infinite alternate;
+  animation: blink 1.5s ease-in-out infinite alternate;
+  font-size: 30px;
+  font-weight: bold;
+  color: #3de2ff;
+	
+}
+@-webkit-keyframes blink{
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-moz-keyframes blink{
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes blink{
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  
+}
+
+/* 로딩중... 화면 */
+
+#link {color: #3de2ff;display:block;font: 50px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
+#link:hover {color: #CCCCCC}
+
+#link, #link:hover {-webkit-transition: color 1.5s ease-out;-moz-transition: color 1.5s ease-out;-ms-transition: color 1.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 1.5s ease-out;}
+
+* BEGIN CSS *
+        body {background: width;}
+        @keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-moz-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-webkit-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-o-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-moz-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-webkit-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-o-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-moz-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-webkit-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-o-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+        .loading-container1,
+        .loading {
+            height: 300px;
+            position: relative;
+            width: 300px;
+            border-radius: 100%;
+            left: -80px;
+         
+        }
+
+
+        .loading-container1 { margin: 40px auto }
+
+        .loading {
+            border: 4px solid transparent;
+            border-color: transparent black transparent black;
+            -moz-animation: rotate-loading 1.5s linear infinite normal;
+            -moz-transform-origin: 120% 120%;
+            -o-animation: rotate-loading 1.5s linear infinite normal;
+            -o-transform-origin: 120% 120%;
+            -webkit-animation: rotate-loading 1.5s linear infinite normal;
+            -webkit-transform-origin: 50% 50%;
+            animation: rotate-loading 1.5s linear infinite normal;
+            transform-origin: 50% 50%;
+        }
+
+        .loading-container1:hover .loading {
+            border-color: transparent #3de2ff transparent #3de2ff;
+             -webkit-transform-origin: 50% 50%;
+            animation: rotate-loading 0.4s linear infinite normal;
+            transform-origin: 50% 50%;
+            
+            
+   
+        }
+        .loading-container1:hover .loading,
+        .loading-container1 .loading {
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #loading-text {
+            -moz-animation: loading-text-opacity 2s linear 0s infinite normal;
+            -o-animation: loading-text-opacity 2s linear 0s infinite normal;
+            -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
+            animation: loading-text-opacity 2s linear infinite;
+            color: #black;
+            font-family: "Helvetica Neue, "Helvetica", ""arial";
+            font-size: 50px;
+            font-weight: bold;
+            margin-top: 110px;
+          margin-left: -40px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            text-transform: uppercase;
+            top: 0;
+            width: 100px;
+            
+        }
+        
+        
+  /* 테이블 css */
+         HTML CSSResult Skip Results Iframe
+EDIT ON
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+
+div.table{
+  
+/*    display: block;
+  margin: auto; */
+  margin-left:0px;
+  max-width: 1400px;
+  padding:5px;
+  width: 100%;
+
+}
+
+
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 100%;
+ 
+  max-width: 1400px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+.admintr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+.admintr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+.admintr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+.admintd {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:20px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+   text-align: center;
+}
+
+
+/* 해더  */
+.adminth th {
+	width:350px;
+  text-align: center;
+  background-color: #3de2ff;
+  color:black;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  align-content:center;
+  padding:24px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+
+/* 글자크기  */
+.adminth tr th{
+   font-weight: bold;
+    font-size:40px;
+    position: static;
+  
+}
+
+.admintd1{
+	font-size: 30px;
+	 text-align: center;
+}
+
+/* 수정하기 버튼 */
+.adminmit{
+	font-size: 25px;
+	padding: 10px;
+	margin-top: 20px;
+	
+}
+
+
+
+/* 회원수정 name tel */
+#admintext{
+	width:400px;
+  height:100px;
+  font-size:40px;
+  border: none;
+   text-align: center;
+ 
+}
+/* 공지 제목 */
+#admintext2{
+		width:650px;
+  height:100px;
+  font-size:40px;
+  border: none;
+   text-align: center;
+   padding: 0;
+   margin: 0;
+}
+
+
+/* 회원수 몇명인지 */
+#memp{
+	font-size: 15px;
+	font-weight: lighter;
+	color: white;
+	left: 30px;
+	
+}
+/* textarea 공지 수정  */
+#gongarea{
+	font-size: 40px;
+}
+
+/* 리스트 th */
+#admidgong{
+	width:100px;
+	
+}
+#admidgong2{
+	width:200px;
+}
+#admidgong3{
+	width:50px;
+}
+
+/* 공지삭제버튼 */
+.gongadbtn{
+	height: 100%;
+	width: 100%;
+}
+
+
+
+/* 공지작성 */
+#wirteText{
+	width:400px;
+	height: 147px;
+	padding: 0px;
+	margin-bottom: 3px;
+	font-size: 25px;
+}
+
+#wirteArea{
+	width:1000px;
+	height: 150px;
+		padding: 0px;
+	margin: 0px;
+		font-size: 25px;
+}
+
+.writebtn{
+	margin-top: 10px;
+}
+
+
+
+Resources1× 0.5× 0.25×Rerun

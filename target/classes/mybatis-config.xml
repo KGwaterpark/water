@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  <!-- 나는 mybatis-config.xml -->
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="BookVO" type="com.water.park.vo.BookVO"/>
+		<typeAlias alias="GongjiVO" type="com.water.park.vo.GongjiVO"/>
+		<typeAlias alias="MemberVO" type="com.water.park.vo.MemberVO"/>
+		<typeAlias alias="Ocean_bookVO" type="com.water.park.vo.Ocean_bookVO"/>
+		<typeAlias alias="ResortVO" type="com.water.park.vo.ResortVO"/>
+		<typeAlias alias="ReviewVO" type="com.water.park.vo.ReviewVO"/>
+	</typeAliases>        
+</configuration>
+

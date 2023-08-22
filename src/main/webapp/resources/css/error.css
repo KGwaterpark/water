@@ -1,0 +1,180 @@
+/* -------------- loader4 -------------- */
+/*로딩 설정*/
+.loader4{
+  position: relative;
+  width: 570px;
+  height: 80px;
+
+  top: 45%;
+  top: -webkit-calc(50% - 10px);
+  top: calc(50% - 10px);
+  left: 20%;
+  left: -webkit-calc(50% - 75px);
+  left: calc(50% - 175px);
+
+  background-color: rgba(255,255,255,0.2);
+}
+
+.loader4:before{
+  content: "";
+  position: absolute;
+  background-color: #3de2ff;
+  top: 0px;
+  left: -110px;
+  height: 80px;
+  width: 0px;
+  z-index: 0;
+  opacity: 1;
+  -webkit-transform-origin:  100% 0%;
+      transform-origin:  100% 0% ;
+  -webkit-animation: loader4 10s ease-in-out infinite;
+      animation: loader4 10s ease-in-out infinite;
+}
+/*로딩글씨*/
+.loader4:after{
+ 
+  content: "에러처리 후 페이지 이동중...";
+  color: white;
+  font-family:  Lato,"Helvetica Neue" ;
+  font-weight: 400;
+  font-size: 40px;
+  position: absolute;
+  width: 150%;
+  height: 80px;
+  line-height:80px;
+  left: -70px;
+  top: 0;
+  p
+  
+}
+
+/*로딩 게이지 만들기*/
+@-webkit-keyframes loader4{
+    0%{width: 0px;}
+    70%{width: 100%; opacity: 1;}
+    90%{opacity: 0; width: 100%;}
+    100%{opacity: 0;width: 0px;}
+}
+
+@keyframes loader4{
+    0%{width: 0px;}
+    70%{width: 100%; opacity: 1;}
+    90%{opacity: 0; width: 100%;}
+    100%{opacity: 0;width: 0px;}
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+
+.container{
+  text-align: center;
+  background-color: #3de2ff;
+  overflow: hidden;
+}
+/*바탕색*/
+.box:nth-child(2n-1){
+  background-color: white;
+}
+/*박스안 설정*/
+.box{
+  display: inline-block;
+  height:  150px;
+  width: 100%;
+  float:left;
+  position: relative;
+  /*margin:0 -4px -5px -2px;*/
+  transition: all .10s ease;
+   
+}
+
+
+
+/* 시계 위치 크기 (보더) */
+.clock{
+  border-radius: 60px;
+  border: 3px solid black;
+  height: 80px;
+  width: 80px;
+  position: relative;
+
+  top: 28%;
+  top: -webkit-calc(50% - 43px);
+  top: calc(50% - 43px);
+  left: 35%;
+  left: -webkit-calc(50% - 43px);
+  left: calc(50% - 43px);
+}
+
+/* 시침 */
+.clock:after{ 
+  content: "";
+  position: absolute;
+  background-color: red;
+  top:2px;
+  left: 48%;
+  height: 38px;
+  width: 4px;
+  border-radius: 5px;
+  -webkit-transform-origin: 50% 97%;
+      transform-origin: 50% 97%;
+  -webkit-animation: grdAiguille 2s linear infinite;
+      animation: grdAiguille 2s linear infinite;
+}
+
+@-webkit-keyframes grdAiguille{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes grdAiguille{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* 분침 */
+.clock:before{
+  content: "";
+  position: absolute;
+  background-color: green;
+  top:6px;
+  left: 48%;
+  height: 35px;
+  width: 4px;
+  border-radius: 5px;
+  -webkit-transform-origin: 50% 94%;
+      transform-origin: 50% 94%;
+  -webkit-animation: ptAiguille 12s linear infinite;
+      animation: ptAiguille 12s linear infinite;
+}
+
+@-webkit-keyframes ptAiguille{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes ptAiguille{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+
+/* 바탕색 */
+.box1:nth-child(2n-1){
+  background-color: white;
+}
+
+/* 박스 색 */
+.box1{
+  display: inline-block;
+  height: 200px;
+  width:100%;
+  float:left;
+  position: relative;
+  /*margin:0 -4px -5px -2px;*/
+  transition: all .2s ease;
+   padding-top :100px;
+}
+
+
+

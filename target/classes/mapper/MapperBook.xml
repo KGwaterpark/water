@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.water.park.service.dao.BookDAO">
+	<select id="getBooked" resultType="BookVO">
+			<![CDATA[
+	 SELECT RE_TYPE, RESERVATION_COUNT
+FROM (
+    SELECT RE_TYPE, 
+           COUNT(*) AS RESERVATION_COUNT,
+           RANK() OVER (PARTITION BY RE_TYPE ORDER BY COUNT(*) DESC) AS rank
+    FROM re_book
+    WHERE CHECK_IN_DATE <= DATE '${outdate}' AND CHECK_OUT_DATE >= DATE '${indate}'
+        AND STATE = 'Y'
+    GROUP BY RE_TYPE, CHECK_IN_DATE, CHECK_OUT_DATE
+) ranked_data
+WHERE rank = 1
+	]]>
+	</select>
+<insert id="insertocean_book">
+   INSERT INTO ocean_book(ocbook_id,m_id,type,state,oc_date,ocbook_date,adult_cnt,tot_cnt,child_cnt)
+   VALUES (#{ocbook_id},#{m_id},#{type},'Y',#{oc_date},sysdate,#{adult_cnt},#{tot_cnt},#{child_cnt})
+</insert>
+
+<!-- <insert id="insertresort_book">
+	INSERT INTO re_book
+	VALUES (33254,'NAVER2bTe4kISZzoVAQRDTWBzOh8Gpx1h9dQq_HtNAXVFp6A','f_stand',to_date('2023-01-02','yyyy-mm-dd'),to_date('2023-03-01','yyyy-mm-dd'),sysdate,'Y',4000)
+</insert> -->
+ <insert id="insertresort_book">
+	INSERT INTO re_book
+	VALUES (#{rebook_id},#{m_id},#{re_type2},to_date(#{check_in_date},'yyyy-mm-dd'),to_date(#{check_out_date},'yyyy-mm-dd'),sysdate,'Y',#{price})
+</insert> 
+
+<insert id="insertw_package_book">
+	INSERT INTO pa_book
+	VALUES (#{pabook_id},#{m_id},#{p_type},sysdate,#{book_cnt},#{use_date},'Y',#{price})
+</insert>
+
+
+
+</mapper>

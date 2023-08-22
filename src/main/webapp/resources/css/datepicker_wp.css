@@ -1,0 +1,49 @@
+/* datepicker를 위한 사용자 정의 CSS */
+.ui-datepicker {
+    font-size: 12px;
+    display: none; /* datepicker 항상 보이도록 함 */
+    visibility: visible; /* datepicker 항상 보이도록 함 */
+    opacity: 1; /* datepicker 항상 보이도록 함 */
+    z-index: 9999; /* 다른 요소 위에 항상 표시되도록 함 */
+}
+
+/* datepicker 헤더를 위한 사용자 정의 CSS */
+.ui-datepicker-header {
+    background-color: #f2f2f2;
+}
+
+/* 선택된 날짜 셀을 위한 사용자 정의 CSS */
+.ui-datepicker-calendar .ui-state-active {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+/* 달력을 가로로 나란히 배치하기 위한 스타일 */
+.calendar-container1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar1 {
+    flex: 1;
+    margin: 10px;
+}
+
+
+.ui-datepicker {
+    font-size: 16px; /* Increase the font size for better visibility */
+    width: 350px; /* Set the desired width of the datepicker */
+    /* padding: 10px; */ /* Add some padding for a better look */
+}
+
+/* Increase the size of the datepicker header */
+.ui-datepicker-header {
+    font-size: 16px; /* Increase the font size for the header */
+    padding: 5px; /* Add some padding for a better look */
+}
+
+/* Increase the size of the date cells */
+.ui-datepicker-calendar td a {
+    font-size: 16px; /* Increase the font size for the date cells */
+    padding: 5px; /* Add some padding for a better look */
+}
