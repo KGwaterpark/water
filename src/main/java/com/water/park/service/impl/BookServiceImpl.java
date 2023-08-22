@@ -20,7 +20,7 @@ import com.water.park.vo.Package_bookVO;
 
 @Service("bookService")		//DAO
 public class BookServiceImpl implements BookService {
-
+//깃 테스트!
 	
 	@Autowired //생성자
 	private BookDAO bookdao;
