@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // 보내야 할 정보 입력
       url = 'pay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + reTotPrice;
 
+
       console.log(url);
       location.href = url;
     }
