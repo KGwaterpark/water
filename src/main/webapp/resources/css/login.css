@@ -48,7 +48,7 @@ body {
   border-radius: var(--button-radius);
   box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
     0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
-  height: /* var(--max-height); */ 600px;
+  height: /* var(--max-height); */ 700px;
   max-width: /* var(--max-width); */ 1000px;
   overflow: hidden;
   position: relative;
@@ -238,6 +238,7 @@ body {
   height: 50px;
   margin: 0.5rem 2;
   transition: transform 80ms ease-in;
+
 }
 
 @keyframes show {
@@ -303,7 +304,11 @@ margin-right: 30px;
 
 
 
-
+.check_Gender{
+	 margin-left: -70%;
+	 margin-top: 1%;
+	
+}
 
 
 

@@ -3,8 +3,8 @@
 <mapper namespace="com.water.park.service.dao.MemberDAO">
 
 <insert id="insertMember">
-	INSERT INTO member(m_id,m_pw,m_tel,m_name,m_email)
-	VALUES (#{m_id},#{m_pw},#{m_tel},#{m_name},#{m_email})
+	INSERT INTO member(m_id,m_pw,m_tel,m_name,m_email,m_birth,m_gender)
+	VALUES (#{m_id},#{m_pw},#{m_tel},#{m_name},#{m_email},#{m_birth},#{m_gender})
 </insert>
 
 <select id="idCheck" resultType="int"> 

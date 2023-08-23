@@ -106,10 +106,11 @@ public class MemberController {
 
 	// 간편인증 후 회원가입폼 정보 가져가기 name tel
 	@RequestMapping(value = "/memberInsertForm.do")
-	public String memberInsertFormPage(@RequestParam("name") String name, @RequestParam("tel") String tel,
+	public String memberInsertFormPage(@RequestParam("name") String name, @RequestParam("tel") String tel,@RequestParam("birthday")String birth,
 			Model model) {
 		model.addAttribute("name", name);
 		model.addAttribute("tel", tel);
+		model.addAttribute("birth",birth);
 		return "/member/memberInsertForm";
 	}
 
@@ -122,12 +123,13 @@ public class MemberController {
 
 	// 이미회원가입되어있..네요?
 	@RequestMapping("/alReady.do")
-	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel, Model model)
+	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel,@RequestParam("birthday") String birthday, Model model)
 			throws Exception {
 		// 아이디찾기
-		String m_id = memberService.getMId(name, tel);
+		String m_id = memberService.getMId(name, tel,birthday);
 		model.addAttribute("m_id", m_id);
 		model.addAttribute("m_name", name);
+		model.addAttribute("m_birthday", birthday);
 		return "/member/alReady";
 	}
 
