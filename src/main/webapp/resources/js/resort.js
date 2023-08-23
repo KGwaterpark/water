@@ -165,7 +165,6 @@ $(function () {
       console.log(indate);
       const formattedDate = year + "년 " + month + "월 " + day + "일";
       updateSelectedDates1(formattedDate); 
-
     }
   });
 
