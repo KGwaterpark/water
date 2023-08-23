@@ -112,16 +112,18 @@ z-index: 1000;
 
 header .headnav ul li {
 position: relative;
-width:250px;
+width:200px;
 padding: 25px;
- font-size: 30px;
+ font-size: 25px;
 }
+
+
 
 header .headnav ul li a{
 text-align: center;
 display: block;
-font-size: 120%;
- font-size: 25px;
+font-size: 100%;
+
  width: 100%;
 }
 
@@ -135,7 +137,7 @@ header .headnav ul li ul{
 display: none;
 position: absolute;
 text-align: center;
- font-size: 25px;
+ font-size: 15px;
  transition: 1.3s 2.2s;
 
 }
@@ -144,7 +146,7 @@ ul li:hover li:hover{/* 하위 드롭다운 메뉴에 마우스 올릴시 색 �
     border-bottom:0px;/* 하단 보더 없앰*/
     background-color:rgba(61, 187, 255, 0.65);/* 배경색*/
     box-sizing:border-box;/* 박스의 크기를 보더의 크기를 포함한 크기로 변경*/
-   font-size: 30px;
+   font-size: 20px;
    }
 
 
@@ -165,13 +167,13 @@ header .headnav ul li:hover>ul {
   background: #fff; /* 배경색 설정 */
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1); /* 그림자 효과 추가 */
   text-align: center; /* 텍스트를 왼쪽 정렬로 설정 */
- font-size: 25px;
+ font-size: 20px;
  font-weight: bold;
  padding-left: 0px;
 }
 
 header .headnav ul li ul li ul li {
- font-size: 20px;
+ font-size: 15px;
  font-weight: bolder;
   padding-left: 0px;
   text-align: center;
@@ -182,7 +184,7 @@ header .headnav ul li ul li ul li {
 header .headnav ul li ul li {
   width: 100%;
   padding: 15px 0px; /* 여백 설정 */
-  font-size: 25px;
+  font-size: 20px;
  
  /* 여백설정  */
 }
@@ -241,7 +243,7 @@ background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
 }
 #contentM {
   flex: 1;
-  padding-left:12%;
+  margin-left:4%;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -253,6 +255,7 @@ background-image: linear-gradient(315deg, #68DAF9 0%, #96e4df 74%);
   height: 600px;
   width: 95%;
   border: none;
+  margin:auto;
 }
 
  
