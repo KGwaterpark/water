@@ -6,24 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자(회원정보)</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 
 </head>
-<style>
-#memp{
-color:blue;
 
-}
-</style>
 <body>
 
 
 
-<h1>회원명단(수정)</h1>
+<h1>회원명단</h1>
 <table border="2" class="table-fill">
-<thead class="adminth"><tr><th>회원번호 </th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:set var="totalMembers" value="${fn:length(alist)}" />
-	<span id="memp">회원수: ${totalMembers} 명</span></th><th>이름</th><th>전화</th><th>이메일</th></tr></thead>
+<thead class="adminth"><tr><th>CODE</th><th>&nbsp;&nbsp; ID<c:set var="totalMembers" value="${fn:length(alist)}" />
+	<span id="memp">(${totalMembers}명)</span></th>
+<th>이름</th><th>전화</th><th>이메일</th><th>&nbsp;생일<span id="m_age">&nbsp;(나이)&nbsp;</span></th><th>성별</th></tr></thead>
 <tbody class="table-hover">
 
 	<c:forEach var="mem" items="${alist}" varStatus="loop">
@@ -50,6 +46,8 @@ color:blue;
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_name}</a></td>
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_tel}</a></td>
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_email}</a></td>
+		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}" >${mem.m_birth} &nbsp;<span id="memp">(${mem.m_age}살)</span></a></td>
+		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_gender}</a></td>
 	</tr>
 	</c:forEach>
 </tbody>

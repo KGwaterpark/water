@@ -323,7 +323,7 @@ div.table{
   border-collapse: collapse;
   height: 100%;
  
-  max-width: 1400px;
+  max-width: 1450px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -411,7 +411,7 @@ tr:last-child td:last-child {
 /* 글자크기  */
 .adminth tr th{
    font-weight: bold;
-    font-size:40px;
+    font-size:30px;
     position: static;
   
 }
@@ -435,11 +435,16 @@ tr:last-child td:last-child {
 #admintext{
 	width:400px;
   height:100px;
-  font-size:40px;
+  font-size:30px;
   border: none;
    text-align: center;
  
 }
+#m_age{
+	font-size: 20px;
+}
+
+
 /* 공지 제목 */
 #admintext2{
 		width:650px;
@@ -456,8 +461,9 @@ tr:last-child td:last-child {
 #memp{
 	font-size: 15px;
 	font-weight: lighter;
-	color: white;
+	color: #5c5c5c;
 	left: 30px;
+	
 	
 }
 /* textarea 공지 수정  */

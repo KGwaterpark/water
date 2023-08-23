@@ -8,6 +8,15 @@ public class MemberVO {
 	private String m_email;
 	private String m_birth;
 	private String m_gender;
+	private int m_age;
+	
+	
+	public int getM_age() {
+		return m_age;
+	}
+	public void setM_age(int m_age) {
+		this.m_age = m_age;
+	}
 	/*
 	 	mail_key는 TempKey.java에서 생성한 난수를 저장하는 데에 사용되며,
 
@@ -59,9 +68,9 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [m_id=" + m_id + ", m_pw=" + m_pw + ", m_tel=" + m_tel + ", m_name=" + m_name + ", m_email="
-				+ m_email + ", m_birth=" + m_birth + ", m_gender=" + m_gender + "]";
+				+ m_email + ", m_birth=" + m_birth + ", m_gender=" + m_gender + ", m_age=" + m_age + "]";
 	}
-	
+
 	
 	
 	
