@@ -51,7 +51,7 @@
     FROM MEMBER
 </select>
  	
- 	
+ 	  
  	
     <!-- 회원 업데이트 -->
    <update id="updateMember">

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 
 </head>
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/favicon.ico">
 <body>
 
 

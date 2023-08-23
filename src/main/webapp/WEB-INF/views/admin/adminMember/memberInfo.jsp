@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 
 <title>관리자(회원정보수정)</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
