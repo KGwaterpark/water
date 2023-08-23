@@ -106,7 +106,7 @@ list-style:none;
 
 header .headnav ul {
 display: flex;
-width: 80%;
+width: 90%;
 z-index: 1000;
 }
 
@@ -120,8 +120,9 @@ padding: 25px;
 header .headnav ul li a{
 text-align: center;
 display: block;
-font-size: 160%;
- font-size: 30px;
+font-size: 120%;
+ font-size: 25px;
+ width: 100%;
 }
 
 ul li:hover li:hover ul{
