@@ -103,6 +103,21 @@ public class GongjiController {
 	        return "/main/MgetAllGongji";
 	    }
 	  
+	    // Main공지사항 슬라이드
+	    @RequestMapping("/MgonggiS.do")
+	    public String MgonggiSPage(Model model) {
+	        try {
+	            ArrayList<GongjiVO> getAllGongji = gongjiService.getAllGongji();
+	            model.addAttribute("getAllGongji", getAllGongji);
+	        } catch (Exception e) {
+	            // Handle exceptions here
+	            e.printStackTrace();
+	        }
+	        return "/main/MgonggiS";
+	    }
+	    
+	    
+	    
 	    //Main 공지 하나 클릭해서 상세보기
 		 @RequestMapping(value="/MgongjiGet.do") //@ModelAttribute
 		 public String MmemberGet(@RequestParam("g_title") String g_title , Model model) throws Exception{

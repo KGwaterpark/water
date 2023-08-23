@@ -9,9 +9,10 @@
 
  <script src="${pageContext.request.contextPath }/resources/js/slide.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/slide.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css" />
 </head>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/favicon.ico">
-<body onload="loadPage('MgetAllGongji.do')">
+<body onload="loadPage('MgonggiS.do')">
 <script>
 function loadPage(url) {
     document.getElementById("pageFrameM").src = url;

@@ -323,7 +323,7 @@ div.table{
   border-collapse: collapse;
   height: 100%;
  
-  max-width: 1450px;
+  max-width: 1380px;
   padding:5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -488,8 +488,6 @@ tr:last-child td:last-child {
 	height: 100%;
 	width: 100%;
 }
-
-
 
 /* 공지작성 */
 #wirteText{
