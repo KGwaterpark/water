@@ -16,7 +16,7 @@ public interface MemberDAO {
 	void insertMember(MemberVO memberVO);
 	int idCheck(String m_id);
 	int telCheck(String tel);
-	String getMId(@Param("name") String name, @Param("tel") String tel);
+	String getMId(@Param("name") String name, @Param("tel") String tel, @Param("birthday") String birthday);
 	// 마이페이지
 	ArrayList<MemberVO> getmyinfo();
 

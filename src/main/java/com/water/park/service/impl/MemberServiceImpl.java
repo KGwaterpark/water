@@ -122,12 +122,14 @@ public class MemberServiceImpl implements MemberService {
 			JSONObject responseObj2 = jsonResponse2.getJSONObject("response");
 			String name = responseObj2.getString("name");
 			String phone = responseObj2.getString("phone");
+			String birthday = responseObj2.getString("birthday");
 			String formattedTel = phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7);
 			nametel.add(name);
 			nametel.add(formattedTel);
+			nametel.add(birthday);
 			int telch = memberdao.telCheck(formattedTel);
 			if (telch > 0) {
-				String m_id= getMId(name,formattedTel);
+				String m_id= getMId(name,formattedTel,birthday);
 				nametel.add(m_id);
 			} 
 			return nametel;
@@ -219,10 +221,12 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	@Override
-	public String getMId(String name, String tel) throws Exception {
-		String m_id = memberdao.getMId(name,tel);
+	public String getMId(String name, String tel ,String birthday) throws Exception {
+		String m_id = memberdao.getMId(name,tel,birthday);
 		return m_id;
 	}
+	
+	
 	@Override
 	public void deleteMypageinfo(String m_id) {
 		memberdao.deleteMember(m_id);
