@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나는 관리자 매인</title>
+<title>관리자 메인</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 
 </head>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/favicon.ico">
 <body onload="loadPage('adminLoding.do')"> 
 
 <section class="adsect">
@@ -20,7 +21,7 @@
       <button id="adbtn" class="logout-button" onclick="logout()">로그아웃</button>
     </div>
   </div>
-    
+      
 
   
   <div id="container">

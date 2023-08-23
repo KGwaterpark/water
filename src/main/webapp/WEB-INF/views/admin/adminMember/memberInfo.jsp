@@ -6,14 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 
-<title>Insert title here</title>
+<title>관리자(회원정보수정)</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 
 </head>
 <body>
-
+<h1>회원명단(이름, 번호만 수정가능)</h1>
 	<form action="updateMember.do?m_id=${memberVO.m_id }" method="post">
 	<table border="2" class="table-fill">
 <thead class="adminth"><tr><th>ID</th><th>이름</th><th>전화</th><th>이메일</th></tr></thead>
