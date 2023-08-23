@@ -25,7 +25,7 @@ import com.water.park.vo.Package_bookVO;
 @Controller
 public class BookController {
    
-   
+   //테스트중
    
    @Resource(name = "bookService") 
       private BookService bookService; 
