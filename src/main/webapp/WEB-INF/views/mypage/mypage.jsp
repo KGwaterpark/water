@@ -89,7 +89,7 @@ function loadPage(url) {
 .navside  ul ul{
 position:absolute;
 left:210px;
-width:200px;
+width:220px;
 top:0;
 display:none;
 background: rgba(155,39,176, .4);
