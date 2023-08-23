@@ -18,16 +18,27 @@
     <h1>공지사항 리스트</h1>
 
 
-<!-- <div class="g-Filter">
-<form>
-  <select name="language" >
-    <option value="none">=== 선택 ===</option>
-    <option value="korean">한국어</option>
-    <option value="english">영어</option>
-    <option value="chinese">중국어</option>
-    <option value="spanish">스페인어</option>
-  </select>
-</form>
+<!-- 여기에 검색 넣을거임
+
+	<table class="g-table">
+		<tr></tr>
+		<tr class="gt-td">
+			<td width="945" class="gt-td"></td>
+			<td class="gt-td">
+				<div class="g-Filter">
+					<form
+						action="${pageContext.request.contextPath}/gongjiPageFilter.do"
+						method="get">
+						<select name="gongjiFilter">
+							<option value="g_title">제목</option>
+							<option value="g_content">내용</option>
+						</select> <input type="text" name="gongjiSearch" placeholder="검색어를 입력해주세요.">
+						<input type="submit" value="검색">
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
 
  -->
