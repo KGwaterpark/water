@@ -8,17 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const sPremElement = getElement('.s_prem');
 
   const rePackBookBtn = getElement('#repackbtn');
-
   const selectedResortElement = getElement('.selected-resortdata');
-
-  function rePackbookbtn() {
+	rePackBookBtn.addEventListener('click', () => repackbtn());
+  function repackbtn() {
     if (indate === null) {
       alert("날짜 정보를  선택해주세요");
     } else if (selectedResort === null) {
       alert("리조트를 선택해주세요");
-    } else {
+   	} else {
       // 보내야 할 정보 입력
-      url = 'pay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + reTotPrice;
+      url = 'pay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + totalPrice;
 
       console.log(url);
       location.href = url;
@@ -34,11 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
   sStandElement.addEventListener('click', () => showSelectedResortData('스위트 스탠다드', sStandElement));
   sPremElement.addEventListener('click', () => showSelectedResortData('스위트 프리미엄', sPremElement));
 
-  rePackBookBtn.addEventListener('click', () => rePackbookbtn());
+  
   // 리조트 선택을 보여주는 함수
   function showSelectedResortData(data, element) {
-    selectedResort = data;
-    updateSelectedResortData();
+  	  selectedResort = data;
+  	  adultsCount = 0;
+      updateCounter('adultsCount', adultsCount);
+      updatePrice();	
+      updateSelectedResortData();
 
     // 선택한 요소의 배경색을 변경합니다.
     resetResortBackgroundColors();
@@ -101,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-  let indate = null;
+
 let outdate = null;
  $("#rePackdate").datepicker({
     dateFormat: 'yy-mm-dd',
@@ -124,8 +126,16 @@ let outdate = null;
 
 //////가격//////////
 function updatePrice() {
-
-  const totalPrice = adultsCount * 250000;
+if ( selectedResort === '패밀리 스탠다드'){
+	totalPrice = adultsCount * 20000 + 200000;
+}else if( selectedResort === '패밀리 프리미엄'){
+	totalPrice = adultsCount * 20000 + 250000;
+}else if( selectedResort === '스위트 스탠다드'){
+	totalPrice = adultsCount * 20000 + 400000;
+}else if( selectedResort === '스위트 프리미엄'){
+	totalPrice = adultsCount * 20000 + 450000;
+}
+ 
   document.getElementById('totalPrice').textContent = totalPrice + "원";
 }
 
@@ -135,14 +145,27 @@ let adultsCount = 0;
 
 ////////////////////////////////////////////////////////////////////
 });
+  let indate = null;
 $(function () {
   $("#checkInDate1").datepicker({
-    dateFormat: 'yy-mm-dd', 
-    minDate: 0, 
+    dateFormat: 'yy-mm-dd',
+    minDate: 0,
     onSelect: function (selectedDate) {
-      updateSelectedDates1(selectedDate);
-     indate2=selectedDate;
-      $("#selectedDatesInfo").text(selectedDate);
+      indate = selectedDate;
+      outdate=new Date(selectedDate).getDate()+1;
+     const dateArray = selectedDate.split('-');
+
+      // 년, 월, 일 정보 추출
+      const year = dateArray[0];
+      const month = dateArray[1];
+      const day = dateArray[2];
+      console.log(indate);
+      console.log(indate);
+      console.log(indate);
+      console.log(indate);
+      const formattedDate = year + "년 " + month + "월 " + day + "일";
+      updateSelectedDates1(formattedDate); 
+
     }
   });
 
@@ -152,7 +175,6 @@ $(function () {
   }
   $("#checkInDate1").datepicker("show");
 });
-
 
 
 
