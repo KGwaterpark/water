@@ -46,7 +46,18 @@ public class GongjiServiceImpl implements GongjiService{
 			 gongjidao.updateGongji(gongjiVO);
 		 }
 		 
-
+		 @Override
+		 public int getTotalCount() {
+		      return gongjidao.getTotalCount();
+		 }
+		 
+		 @Override
+		   @Transactional
+		   public ArrayList<GongjiVO> getList(int page,int page2) throws Exception {
+		      // TODO Auto-generated method stub
+		      return gongjidao.getList(page,page2);
+		   }
+		 
 		/*
 		 * @Override public void updateGongji(int g_id, String g_title1, String
 		 * g_content1) { // 기존 내용이 있는지 확인하고, 있으면 해당 공지를 삭제 GongjiVO existingGongji =
@@ -67,11 +78,5 @@ public class GongjiServiceImpl implements GongjiService{
 		 * 
 		 * }
 		 */
-	
 
-
-
-
-
-	
 }

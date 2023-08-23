@@ -19,4 +19,22 @@ public interface GongjiService {
 	GongjiVO gongjiGet(String g_title);
 
 	
+	
+	
+	
+	//공지 전체보기
+	int getTotalCount();
+
+	ArrayList<GongjiVO> getList(int page,int page2) throws Exception;
+	
+	//공지 전체검색
+	static int getFilterTotal(String gongjiFilter, String gongjiSearch2) {
+		return 0;
+	}
+
+	static ArrayList<GongjiVO> getFilterList(String gongjiFilter, String gongjiSearch2, int page, int page2) {
+		return null;
+	}
+
+	
 }
