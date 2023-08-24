@@ -81,11 +81,11 @@ font-weight: bold;
    
   <hr class="go_hr">
 <table class="maintable_5">
-  <tr><td width="1300"><span class="go_span">공지사항</span></td><td><h6><a href="">+more</a></h6></td></tr>
+  <tr><td width="1300"><span class="go_span">공지사항</span></td><td><h6><a href="MgetAllGongji.do" target="_top">+more</a></h6></td></tr>
   </table>
        <div class="slider-container">
       <table class="maintable4" >
-            <tr><td width="200"> <c:forEach var="gongji" items="${getAllGongji}"></td></tr>
+            <tr><td width="200"> <c:forEach var="gongji" items="${getAllGongji2}"></td></tr>
                 <tr>
                     <form method="post" >
                         <td class="admintd"><a href="MgongjiGet.do?g_title=${gongji.g_title}">${gongji.g_date}</a></td>

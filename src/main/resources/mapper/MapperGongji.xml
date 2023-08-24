@@ -2,38 +2,89 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.water.park.service.dao.GongjiDAO">
 
-<!-- 공지 입력 -->
-<insert id="insertGongji"  >
-    INSERT INTO Gongji (g_id, g_date, g_title, g_content)
-    VALUES (g_seq.nextVAL, sysdate, #{g_title}, #{g_content})
-</insert>
 
 
+	<!-- 공지 입력 -->
+	<insert id="insertGongji">
+		INSERT INTO Gongji (g_id, g_date, g_title, g_content)
+		VALUES (g_seq.nextVAL, sysdate, #{g_title}, #{g_content})
+	</insert>
 
-	<!-- 공지 전체 조회 -->
+	<!-- 공지 수정 -->
+	<update id="updateGongji">
+		UPDATE gongji
+		SET g_title = #{g_title}, g_content =
+		#{g_content}
+		WHERE g_id = #{g_id}
+	</update>
+
+	<!-- 공지 삭제 -->
+	<delete id="deleteGongji">
+		delete from Gongji
+		where g_id= #{g_id}
+	</delete>
+	
+	<!-- 메인 - 공지 조회 -->
 	<select id="getAllGongji" resultType="GongjiVO">
-	SELECT g_id, g_date, g_title, g_content
-	FROM Gongji
-	ORDER BY g_id DESC
+		SELECT g_id, g_date, g_title, g_content
+		FROM Gongji
+		ORDER BY g_id DESC
+	</select>	
+	
+	<!-- 공지1개 가져오기 -->
+	<select id="gongjiGet" resultType="GongjiVO">
+		SELECT g_id, g_date, g_title,
+		g_content
+		FROM Gongji
+		WHERE g_id = #{g_id}
 	</select>
 
-<select id="gongjiGet" resultType="GongjiVO">
-  SELECT g_id, g_date, g_title, g_content
-  FROM Gongji
-  WHERE g_title = #{g_title}
- 
-</select>
-
-<!-- 공지수정 -->
-<update id="updateGongji">
-    UPDATE gongji SET g_title = #{g_title}, g_content = #{g_content} WHERE g_id = #{g_id}
-</update>
+	<!-- 공지 총 갯수 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM gongji
+	</select>
 
 
-	 <delete id="deleteGongji">
-	 	delete from Gongji where g_id= #{g_id}
-	 </delete>
 
+	
+	<!-- 공지 리스트 (페이징)-->
+	<select id="getList" resultType="GongjiVO">
+		SELECT *
+		FROM (SELECT t.*,ROWNUM AS rnum
+		FROM (SELECT g_id, g_date,g_title, g_content
+		FROM Gongji
+		ORDER BY g_id DESC)t
+		WHERE <![CDATA[ROWNUM <= #{page2}]]>)
+		WHERE <![CDATA[rnum >= #{page}]]>
+	</select>
 
+<!-- 	공지 전체검색 -->
+	<select id="getFilterTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM gongji
+		<where>
+			<if test="gongjiFilter == 'g_title'">
+				AND UPPER(g_title) like #{gongjiSearch}
+			</if>
+			<if test="gongjiFilter == 'g_content'">
+				AND UPPER(g_content) like #{gongjiSearch}
+			</if>
+		</where>
+	</select>
+
+	 <!-- 공지 검색한내용  -->
+	<select id="getFilterList" resultType="GongjiVO">
+		SELECT *
+		FROM (SELECT t.*, ROWNUM AS rnum FROM ( SELECT * FROM gongji
+		<where>
+			<if test="gongjiFilter == 'g_title'"> AND UPPER(g_title) LIKE #{gongjiSearch}
+			</if>
+			<if test="gongjiFilter == 'g_content'"> AND UPPER(g_content) LIKE #{gongjiSearch}
+			</if>
+		</where>
+		ORDER BY g_id ASC)t WHERE <![CDATA[ROWNUM <= #{page2}]]>)
+		WHERE <![CDATA[rnum >= #{page}]]>
+	</select> 
 
 </mapper>
