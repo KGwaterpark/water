@@ -1,6 +1,7 @@
 package com.water.park;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.water.park.service.BookService;
+import com.water.park.service.MemberService;
 import com.water.park.vo.BookVO;
 import com.water.park.vo.Ocean_bookVO;
 import com.water.park.vo.Package_bookVO;
@@ -25,11 +27,12 @@ import com.water.park.vo.Package_bookVO;
 @Controller
 public class BookController {
    
-   //테스트중
+   
    
    @Resource(name = "bookService") 
       private BookService bookService; 
-   
+   @Resource(name = "memberService")
+	private MemberService memberService;
    
    @RequestMapping("/oceanpay.do")
 	 public String oceanpay(HttpServletRequest rq,
@@ -170,6 +173,23 @@ public class BookController {
  		
  		return "book/pay";
  	}
+ 	
+ // 결제 정보 가져오기
+ 	@RequestMapping("/paymentAll.do")
+ 	public  String paymentAll( Model model,
+ 			 @RequestParam(name = "state", required = false) String state,
+             @RequestParam(name = "search", required = false) String search,
+             @RequestParam(name = "query", required = false) String query) throws Exception {
+ 		
+ 		state = (state == null) ? "all" : state;
+ 	    search = (search == null) ? "" : search;
+ 	    query = (query == null) ? "" : query;
+ 		String token = memberService.getToken();
+ 		List<BookVO> paymentAll = bookService.paymentAll(token,state,search,query);
+ 		model.addAttribute("paymentAll", paymentAll);
+ 		return "admin/adminBook/payall";
+ 	}
+ 	
  	
  	
  	
