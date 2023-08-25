@@ -22,10 +22,11 @@ public interface GongjiDAO {
 	int getTotalCount();
 
 	ArrayList<GongjiVO> getList(@Param("page") int page, @Param("page2") int page2);
-	
-	// 공지검색 (페이징)
-	int getFilterTotal(@Param("") String gongjiFilter,@Param("") String gongjiSearch2);
 
-	ArrayList<GongjiVO> getFilterList(@Param("gongjiFilter") String gongjiFilter, @Param("gongjiSearch2") String gongjiSearch2, 
-			@Param("page") int page, @Param("page2") int page2);
+	// 공지검색 (페이징)
+	int getFilterTotal(@Param("") String gongjiFilter, @Param("") String gongjiSearch2);
+
+	ArrayList<GongjiVO> getFilterList_t(@Param("gongjiSearch2") String gongjiSearch2, @Param("page") int page, @Param("page2") int page2);
+
+	ArrayList<GongjiVO> getFilterList_c(@Param("gongjiSearch2") String gongjiSearch2, @Param("page") int page, @Param("page2") int page2);
 }
