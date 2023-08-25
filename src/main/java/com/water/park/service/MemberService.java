@@ -33,4 +33,6 @@ public interface MemberService {
 	   //회원 한명 불러오기
 	   MemberVO memberGet(String m_id);
 
+	public String getMId1(String name, String tel);
+
 }

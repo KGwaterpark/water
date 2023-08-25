@@ -240,6 +240,12 @@ public class MemberServiceImpl implements MemberService {
 	      public void updateMember(MemberVO memberVO) {
 	           memberdao.updateMember(memberVO);
 	       }
+
+		@Override
+		public String getMId1(String name, String tel) {
+			String m_id = memberdao.getMId(name,tel);
+			return m_id;
+		}
 	
 	
 }

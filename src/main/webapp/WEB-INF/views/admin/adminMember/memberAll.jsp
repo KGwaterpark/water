@@ -8,18 +8,26 @@
 <meta charset="UTF-8">
 <title>관리자(회원정보)</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
+<style>
+#birth-td{
+width: 400px;
+}
+
+#gender-td{
+width:200px;
+}
+</style>
 
 </head>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/favicon.ico">
 <body>
 
 
-
 <h1>회원명단</h1>
 <table border="2" class="table-fill">
 <thead class="adminth"><tr><th>CODE</th><th>&nbsp;&nbsp; ID<c:set var="totalMembers" value="${fn:length(alist)}" />
 	<span id="memp">(${totalMembers}명)</span></th>
-<th>이름</th><th>전화</th><th>이메일</th><th>&nbsp;생일<span id="m_age">&nbsp;(나이)&nbsp;</span></th><th>성별</th></tr></thead>
+<th>이름</th><th>전화</th><th>이메일</th><th id="birth-td">&nbsp;생일<span id="m_age">&nbsp;(나이)&nbsp;</span></th><th id="gender-td">성별</th></tr></thead>
 <tbody class="table-hover">
 
 	<c:forEach var="mem" items="${alist}" varStatus="loop">
@@ -46,7 +54,7 @@
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_name}</a></td>
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_tel}</a></td>
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_email}</a></td>
-		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}" >${mem.m_birth} &nbsp;<span id="memp">(${mem.m_age}살)</span></a></td>
+		<td class="admintd" > <a href="memberGet.do?m_id=${mem.m_id}" >${mem.m_birth} &nbsp;<span id="memp">(${mem.m_age}살)</span></a></td>
 		<td class="admintd"> <a href="memberGet.do?m_id=${mem.m_id}">${mem.m_gender}</a></td>
 	</tr>
 	</c:forEach>
