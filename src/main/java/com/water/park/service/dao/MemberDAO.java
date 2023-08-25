@@ -23,4 +23,8 @@ public interface MemberDAO {
 	void deleteMypageinfo(MemberVO memberVO);
 
 	MemberVO memberGet(String m_id);
+	
+	String getMId(@Param("name") String name, @Param("tel") String tel);
+
+	
 }

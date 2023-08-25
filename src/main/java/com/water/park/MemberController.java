@@ -123,13 +123,12 @@ public class MemberController {
 
 	// 이미회원가입되어있..네요?
 	@RequestMapping("/alReady.do")
-	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel,@RequestParam("birthday") String birthday, Model model)
+	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel, Model model)
 			throws Exception {
 		// 아이디찾기
-		String m_id = memberService.getMId(name, tel,birthday);
+		String m_id = memberService.getMId1(name, tel);
 		model.addAttribute("m_id", m_id);
 		model.addAttribute("m_name", name);
-		model.addAttribute("m_birthday", birthday);
 		return "/member/alReady";
 	}
 
