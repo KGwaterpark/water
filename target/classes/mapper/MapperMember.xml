@@ -3,8 +3,8 @@
 <mapper namespace="com.water.park.service.dao.MemberDAO">
 
 <insert id="insertMember">
-	INSERT INTO member(m_id,m_pw,m_tel,m_name,m_email)
-	VALUES (#{m_id},#{m_pw},#{m_tel},#{m_name},#{m_email})
+	INSERT INTO member(m_id,m_pw,m_tel,m_name,m_email,m_birth,m_gender)
+	VALUES (#{m_id},#{m_pw},#{m_tel},#{m_name},#{m_email},#{m_birth},#{m_gender})
 </insert>
 
 <select id="idCheck" resultType="int"> 
@@ -38,20 +38,30 @@
  <delete id="deleteMember">
     DELETE FROM member WHERE m_id=#{m_id}
 </delete>
-
    <!-- 회원조회 -->
-   <select id="getAllMember" resultType="MemberVO">
-   SELECT m_id,m_name,m_tel,m_email
+  <!--  <select id="getAllMember" resultType="MemberVO">
+   SELECT m_id,m_name,m_tel,m_email,m_birth,m_gender
    FROM MEMBER
-   </select>
-
-      <!-- 회원 업데이트 -->
+   </select> -->
+   
+<select id="getAllMember" resultType="MemberVO">
+    SELECT
+        m_id, m_name, m_tel, m_email, m_birth, m_gender,
+        FLOOR(MONTHS_BETWEEN(SYSDATE, m_birth) / 12) AS m_age
+    FROM MEMBER
+</select>
+ 	
+ 	  
+ 	
+    <!-- 회원 업데이트 -->
    <update id="updateMember">
    UPDATE member SET m_name = #{m_name}, m_tel = #{m_tel} WHERE m_id = #{m_id}
    </update>
-<!-- 회원 한명 불러오기 -->
- <select id ="memberGet" resultType="MemberVO">
-    SELECT m_id,m_name,m_tel,m_email 
+   
+   
+	<!-- 회원 한명 불러오기 -->
+ 	<select id ="memberGet" resultType="MemberVO">
+    SELECT m_id,m_name,m_tel,m_email,m_birth,m_gender
      FROM member where m_id = #{m_id}
     </select>
 
