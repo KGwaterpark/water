@@ -67,7 +67,15 @@ public class GongjiServiceImpl implements GongjiService {
 
 	@Override
 	public ArrayList<GongjiVO> getFilterList(String gongjiFilter, String gongjiSearch2, int page, int page2) {
-		return gongjidao.getFilterList(gongjiFilter, gongjiSearch2, page, page2);
+		ArrayList<GongjiVO> gvo = new ArrayList<GongjiVO>();
+		if(gongjiFilter.equals("g_content")) {
+			// 내용검색 매퍼
+			gvo=gongjidao.getFilterList_c(gongjiSearch2, page, page2);
+		}else {
+			// 디폴트 . 타이플 검색 매퍼
+			gvo=gongjidao.getFilterList_t(gongjiSearch2, page, page2);
+		}
+		return gvo;
 	}
 
 }

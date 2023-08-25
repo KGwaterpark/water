@@ -1,6 +1,10 @@
 @Charset= "UTF-8";
  
 
+.mgongji-body{
+	display:grid;
+	place-content:center;
+}
 
 /* 검색 컨테이너에 대한 스타일 */
 .g-Filter {
@@ -40,3 +44,15 @@
 .pagination{
 	font-size:40px;
 }
+
+  /* 선택하지 않은 페이지 번호의 기본 색상을 회색으로 지정합니다. */
+  .pagination li a {
+    text-decoration: none;
+    color: gray; /* 선택하지 않은 페이지 번호의 색상 */
+  }
+
+  /* 선택된 페이지 번호의 스타일을 설정합니다. */
+  .pagination li.active a {
+    color: black; /* 선택된 페이지 번호의 색상 */
+    font-weight: bold; /* 선택된 페이지 번호의 글꼴을 굵게 설정 */
+  }

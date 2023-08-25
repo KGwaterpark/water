@@ -24,6 +24,7 @@
 
 </head>
 <body>
+
 	<form action="updateGongji.do?g_id=${gongjiVO.g_id}" method="POST">
 		<table border="2" class="table-fill">
 			<thead class="adminth">

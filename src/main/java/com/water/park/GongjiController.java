@@ -82,8 +82,8 @@ public class GongjiController {
 
 		return "redirect:/AgetAllGongji.do";
 	}
-
-	// Main공지사항 슬라이드
+/*
+ Main공지사항 슬라이드
 	@RequestMapping("/MgonggiS.do")
 	public String MgonggiSPage(Model model) {
 		try {
@@ -95,7 +95,7 @@ public class GongjiController {
 		}
 		return "/main/MgonggiS";
 	}
-
+*/
 	// Main 공지 하나 클릭해서 상세보기
 	@RequestMapping(value = "/MgongjiGet.do") // @ModelAttribute
 	public String MmemberGet(@RequestParam("g_id") int g_id, Model model) throws Exception {
@@ -168,7 +168,7 @@ public class GongjiController {
 
 	 //공지 검색 (페이징)
 	@RequestMapping(value = "/gongjiPageFilter.do")
-	public String gongjiPageFilter(@Param("gongjiFilter") String gongjiFilter,
+	public String gongjiPageFilter(@Param( "gongjiFilter") String gongjiFilter,
 			@Param("gongjiSearch") String gongjiSearch, HttpServletRequest request, PageVO paging, Model model)
 			throws Exception {
 
@@ -194,5 +194,36 @@ public class GongjiController {
 
 		return "/main/MgetAllGongji";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/MgonggiS.do")
+	public String MgetAllGongjiSPage(HttpServletRequest request, PageVO paging, Model model) throws Exception {
+		int totalcount = gongjiService.getTotalCount();
+		int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+
+		if (totalcount == 0)
+			totalcount = 1;
+
+		paging.setPageNo(page); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+		paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(totalcount);
+
+		page = (page - 1) * 10 + 1; // select해오는 기준을 구한다.
+		int page2 = page + 9;
+
+		ArrayList<GongjiVO> getAllGongji2 = gongjiService.getList(page, page2);
+		model.addAttribute("getAllGongji2", getAllGongji2);
+		model.addAttribute("paging", paging);
+		return "/main/MgonggiS";
+	}
+	
+	
+
 
 }// end
