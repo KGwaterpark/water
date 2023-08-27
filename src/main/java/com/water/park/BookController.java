@@ -190,6 +190,19 @@ public class BookController {
  		return "admin/adminBook/payall";
  	}
  	
+ 	// 결제 취소
+ 	@RequestMapping("/payCancle.do")
+ 	public  String payCancle( Model model,
+ 			 @RequestParam("merchant_uid") String merchant_uid,
+ 			 @RequestParam("reason") String reason, 
+ 			 @RequestParam("type") String type, 
+ 			 @RequestParam(name = "amount", required = false) String amount) throws Exception {
+ 		
+ 		amount = (amount == null) ? "" : amount;
+ 		String token = memberService.getToken();
+ 		bookService.payCancle(token,merchant_uid,reason,type,amount);
+ 		return "redirect:paymentAll.do";
+ 	}
  	
  	
  	
