@@ -21,9 +21,18 @@ li {
 	padding: 6px;
 }
 
-.
-pagination {
-	font-size: 25px;
+.pagination {
+	font-size: 40px;
+}
+
+.pagination li a {
+	text-decoration: none;
+	color: gray;
+}
+
+.pagination li.active a {
+	color: black;
+	font-weight: bold;
 }
 </style>
 <body>
@@ -31,31 +40,6 @@ pagination {
 
 	<h1>공지사항 리스트</h1>
 
-
-	<!-- 여기에 검색 넣을거임
-
-	<table class="g-table">
-		<tr></tr>
-		<tr class="gt-td">
-			<td width="945" class="gt-td"></td>
-			<td class="gt-td">
-				<div class="g-Filter">
-					<form
-						action="${pageContext.request.contextPath}/gongjiPageFilter.do"
-						method="get">
-						<select name="gongjiFilter">
-							<option value="g_title">제목</option>
-							<option value="g_content">내용</option>
-						</select> <input type="text" name="gongjiSearch" placeholder="검색어를 입력해주세요.">
-						<input type="submit" value="검색">
-					</form>
-				</div>
-			</td>
-		</tr>
-	</table>
-</div>
-
- -->
 
 	<table class="table-fill">
 		<thead class="adminth">
@@ -68,7 +52,6 @@ pagination {
 		</thead>
 		<tbody class="table-hover">
 			<c:forEach var="gongji" items="${getAllGongji2}">
-
 				<tr class="admintr">
 					<form action="deleteGongji.do?g_id=${gongji.g_id}" method="post">
 						<td class="admintd"><a
@@ -81,9 +64,10 @@ pagination {
 							href="gongjiGet.do?g_id=${gongji.g_id}">${gongji.g_content}</a></td>
 						<td id="admidgong3"><input type="submit" value="삭제"
 							id="adbtn" class="gongadbtn"></td>
+						<input type="hidden" value="${gongji.g_id}" name="g_id">
+					</form>
 				</tr>
-				<input type="hidden" value="${gongji.g_id}" name="g_id">
-				</form>
+
 			</c:forEach>
 		</tbody>
 	</table>
@@ -98,8 +82,8 @@ pagination {
 		<tr></tr>
 		<tr>
 			<td width=500></td>
-			<td style="font-size:40px;">
-				<ul class="pagination" >
+			<td style="font-size: 40px;">
+				<ul class="pagination">
 					<li><a href="javascript:PageMove(${paging.firstPageNo})">≪</a></li>
 					<li><a href="javascript:PageMove(${paging.prevPageNo})">＜</a></li>
 					<c:forEach var="i" begin="${paging.startPageNo}"
