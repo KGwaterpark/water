@@ -41,7 +41,7 @@
             border: 1px solid #ccc;
             text-decoration: none;
             color: #333;
-        } 
+        }  
 
         .pagination .current-page {
             background-color: #333;
