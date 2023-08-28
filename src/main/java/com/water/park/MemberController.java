@@ -186,6 +186,13 @@ public class MemberController {
 
 	}
 
+
+		@RequestMapping("/memberImg.do")
+		public String memberImg() {
+			return "/admin/adminMember/memberImg";
+		}
+	
+
 	
 	//-------------------------------------------------------------------------
 	@RequestMapping(value = "/memberAll.do") // 회원조회 (페이징)
@@ -210,4 +217,5 @@ public class MemberController {
 
 		return "/admin/adminMember/memberAll";
 	}
+
 }

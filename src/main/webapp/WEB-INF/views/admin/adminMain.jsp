@@ -64,7 +64,7 @@
           <a href="#" onclick="toggleSubMenu('submenu4')">회원관리</a>
           <ul id="submenu4">
             <li><a href="#" onclick="loadPage('memberAll.do')">회원조회 및 수정</a></li>
-            
+             <li><a href="#" onclick="loadPage('memberImg.do')">회원연령조회</a></li>
 
           </ul>
         </li>
