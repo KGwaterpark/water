@@ -46,14 +46,16 @@ $(function(){
         	  var name_tel = data; 
               var name = name_tel[0];
               var tel = name_tel[1];
-
-              if (name_tel[2]===undefined || name_tel[2]===null) { // name과 tel 데이터가 정상적으로 존재하는지 확인
-             	 console.log(name_tel[2]);
-             	 location.href = "memberInsertForm.do?name=" + name + "&tel=" + tel;
+              var birthday = name_tel[2]; // 생년월일 추가
+			console.log(name,tel,birthday)
+			
+              if (name_tel[3]===undefined || name_tel[3]===null) { // name과 tel 데이터가 정상적으로 존재하는지 확인
+             	 console.log(name_tel[3]);
+             	 location.href = "memberInsertForm.do?name=" + name + "&tel=" + tel +"&birthday=" + birthday ;
               } else {
              	 // 이미 가입된 회원일 때
-             	 console.log(name_tel[2]);
-             	 if(name_tel[2].includes('NAVER')){
+             	 console.log(name_tel[3]);
+             	 if(name_tel[3].includes('NAVER')){
              		 alert("SNS로 가입된 계정입니다. SNS로그인 기능을 이용해주세요!");
              		location.href = "main.do";
              	 }else{
@@ -70,6 +72,7 @@ $(function(){
  }); 
 });
 </script>
+ 
 <h1> </h1>
 <div class="loading-container">
     <div class="loading"></div>

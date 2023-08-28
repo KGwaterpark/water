@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나는 관리자 매인</title>
+<title>관리자 메인</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 
 </head>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/favicon.ico">
 <body onload="loadPage('adminLoding.do')"> 
 
 <section class="adsect">
@@ -20,7 +21,7 @@
       <button id="adbtn" class="logout-button" onclick="logout()">로그아웃</button>
     </div>
   </div>
-    
+      
 
   
   <div id="container">
@@ -36,7 +37,7 @@
             <li><a href="#" onclick="loadPage('login.do')">리조트관리</a></li>
             <li><a href="#" onclick="loadPage('')">패키지관리</a></li>
             <li><a href="#" onclick="loadPage('gongjiWrite.do')">공지사항등록</a></li>
-            <li><a href="#" onclick="loadPage('getAllGongji.do')">공지사항목록</a></li>
+            <li><a href="#" onclick="loadPage('AgetAllGongji.do')">공지사항목록</a></li>
           </ul>
         </li>
        
@@ -44,9 +45,9 @@
 		<li class="submenu">
           <a href="#" onclick="toggleSubMenu('submenu2')">예약관리</a>
           <ul id="submenu2">
-            <li><a href="#" onclick="loadPage('AdBookInfo.do')">워터파크예약내역</a></li>
-            <li><a href="#" onclick="loadPage('AdBookInfo1.do')">리조트예약내역</a></li>
-            <li><a href="#" onclick="loadPage('')">패키지예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoW.do')">워터파크예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoR.do')">리조트예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoP.do')">패키지예약내역</a></li>
           </ul>
         </li>
         
@@ -63,7 +64,7 @@
           <a href="#" onclick="toggleSubMenu('submenu4')">회원관리</a>
           <ul id="submenu4">
             <li><a href="#" onclick="loadPage('memberAll.do')">회원조회 및 수정</a></li>
-            
+             <li><a href="#" onclick="loadPage('memberImg.do')">회원연령조회</a></li>
 
           </ul>
         </li>

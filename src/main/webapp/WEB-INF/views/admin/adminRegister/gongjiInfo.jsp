@@ -31,6 +31,7 @@
 <input type="submit" value="수정" class="adminmit" id="adbtn">
 <input type="button" value="뒤로가기" onclick="history.back()" class="adminmit" id="adbtn">
 
+
 <%-- 
 <input type="hidden" name="g_date" value="${gongjiVO.g_date}">
 <input type="hidden" name="g_content1" value="${gongjiVO.g_content}">

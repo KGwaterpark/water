@@ -27,7 +27,7 @@
     		<li><a href="#" onclick="alert('회원권 준비 중입니다.')" >회원권</a>
    
         </ul>
-    </nav>7
+    </nav>
 
 
 </header>

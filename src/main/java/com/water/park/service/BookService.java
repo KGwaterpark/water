@@ -11,6 +11,7 @@ import com.water.park.vo.Package_bookVO;
 
 public interface BookService {
 	ArrayList<BookVO> getAllBook()     throws Exception;
+	ArrayList<BookVO> paymentAll(String token,String state,String search,String query)     throws Exception;
 	ArrayList<BookVO> Booked_date(String indate, String outdate) throws Exception;
 	BookVO rebook(HttpServletRequest rq,String indate, String outdate,String reType, int price) throws Exception;
 

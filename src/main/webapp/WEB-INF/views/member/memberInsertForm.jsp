@@ -42,6 +42,23 @@ window.onload = function() {
       <input type="email" placeholder="이메일" class="input"name="m_email" id="email" required/>
       <input type="text" placeholder="이름" class="input" name="m_name" id="name" value="${name}" readonly required/>
       <input type="text" placeholder="전화번호" class="input" name="m_tel" id="tel" value="${tel}" readonly required />
+      <input type="text" placeholder="생년월일" class="input" name="m_birth" id="tel" value="${birth}" readonly required />
+
+   
+		
+<br>
+	<div class="check_Gender">
+	<span class="Gender">
+	  <input type="radio" name="m_gender" id="check_btn_m" value="남자" checked/>
+	  <label for="check_btn_m"><span>남성</span></label>
+	</span>
+	
+	<span class="Gender">
+	  <input type="radio" name="m_gender" id="check_btn_f" value="여자"/>
+	  <label for="check_btn_f"><span>여성</span></label>
+	          </span>
+	     </div>
+
 
 
       <input type="submit" value="회원가입" class="btn">

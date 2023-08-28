@@ -13,65 +13,68 @@ import org.springframework.transaction.annotation.Transactional;
 import com.water.park.service.GongjiService;
 import com.water.park.service.dao.GongjiDAO;
 import com.water.park.vo.GongjiVO;
-@Service("gongjiService")		//DAO
-public class GongjiServiceImpl implements GongjiService{
 
-	
-	@Autowired //생성자
+@Service("gongjiService") // DAO
+public class GongjiServiceImpl implements GongjiService {
+
+	@Autowired // 생성자
 	private GongjiDAO gongjidao;
-	
+
 	@Transactional
-	public ArrayList<GongjiVO> getAllGongji(){
+	public ArrayList<GongjiVO> getAllGongji() {
 		return gongjidao.getAllGongji();
 	}
 
-		@Override
-		public void insertGongji(GongjiVO gongjiVO ) {
-			gongjidao.insertGongji(gongjiVO);
-			
+	@Override
+	public void insertGongji(GongjiVO gongjiVO) {
+		gongjidao.insertGongji(gongjiVO);
+
+	}
+
+	@Override
+	public GongjiVO gongjiGet(int g_id) {
+		return gongjidao.gongjiGet(g_id);
+	}
+
+	@Override
+	public void deleteGongji(int g_id) {
+		gongjidao.deleteGongji(g_id);
+	}
+
+	@Override
+	public void updateGongji(GongjiVO gongjiVO) {
+		gongjidao.updateGongji(gongjiVO);
+	}
+
+	// 전체공지 (페이징)
+	@Override
+	public int getTotalCount() {
+		return gongjidao.getTotalCount();
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<GongjiVO> getList(int page, int page2) throws Exception {
+		return gongjidao.getList(page, page2);
+	}
+
+	//공지 검색
+	@Override
+	public int getFilterTotal(String gongjiFilter, String gongjiSearch2) {
+		return gongjidao.getFilterTotal(gongjiFilter, gongjiSearch2);
+	}
+
+	@Override
+	public ArrayList<GongjiVO> getFilterList(String gongjiFilter, String gongjiSearch2, int page, int page2) {
+		ArrayList<GongjiVO> gvo = new ArrayList<GongjiVO>();
+		if(gongjiFilter.equals("g_content")) {
+			// 내용검색 매퍼
+			gvo=gongjidao.getFilterList_c(gongjiSearch2, page, page2);
+		}else {
+			// 디폴트 . 타이플 검색 매퍼
+			gvo=gongjidao.getFilterList_t(gongjiSearch2, page, page2);
 		}
+		return gvo;
+	}
 
-		@Override
-		public GongjiVO gongjiGet(String g_title) {
-			return gongjidao.gongjiGet(g_title);
-		}
-
-		@Override
-		public void deleteGongji(int g_id) {
-			gongjidao.deleteGongji(g_id);
-		}
-
-		 @Override 
-		 public void updateGongji(GongjiVO gongjiVO) {
-			 gongjidao.updateGongji(gongjiVO);
-		 }
-		 
-
-		/*
-		 * @Override public void updateGongji(int g_id, String g_title1, String
-		 * g_content1) { // 기존 내용이 있는지 확인하고, 있으면 해당 공지를 삭제 GongjiVO existingGongji =
-		 * gongjidao.gongjiGet(g_title1); if (existingGongji != null) {
-		 * gongjidao.deleteGongji(existingGongji.getG_id()); }
-		 * 
-		 * // 새로운 내용으로 공지를 추가 GongjiVO newGongji = new GongjiVO();
-		 * newGongji.setG_title(g_title1); newGongji.setG_content(g_content1);
-		 * gongjidao.insertGongji(newGongji); }
-		 */
-
-		
-
-		/*
-		 * public void updateGongji(@Param("g_id") int g_id ,@Param("g_title") String
-		 * g_title,@Param("g_content") String g_content) {
-		 * gongjidao.updateGongji(g_id,g_title, g_content);
-		 * 
-		 * }
-		 */
-	
-
-
-
-
-
-	
 }
