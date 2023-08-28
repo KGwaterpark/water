@@ -47,6 +47,48 @@
         height: 200px;
         box-sizing: border-box;
     }
+    
+       
+ .review{
+ text-align:left;
+    }
+    
+#span_review{
+font-size: 40px;
+font-weight: bold;
+}    
+    
+.star {
+  display: inline-block;
+  width: 40px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.star:before {
+  content: "\2606"; /* 빈 별 모양 유니코드 문자 */
+  display: block;
+  width: 40px;
+  height: 50px;
+  line-height: 1;
+  color: gray; /* 회색으로 초기화 */
+  transition: color 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.star.highlight:before {
+  content: "\2605"; /* 채워진 별 모양 유니코드 문자 */
+  color: gold;
+  z-index: 1;
+}
+    
 
 </style>
 <script>
@@ -64,6 +106,54 @@
   window.onload = function() {
     document.getElementById('currentDate').value = getCurrentDate();
   };
+  
+
+  document.addEventListener("DOMContentLoaded", function () {
+	  const stars = document.querySelectorAll(".star");
+	  const rating = document.getElementById("rating");
+	  const revScoreInput = document.getElementById("rev_score");
+	  
+	  
+	  let selectedValue = 1;
+	  
+	  highlightStars(selectedValue);
+	  
+	  
+	  stars.forEach((star) => {
+	    star.addEventListener("mouseover", () => {
+	      resetStars();
+	      const value = parseInt(star.getAttribute("data-value"));
+	      highlightStars(value);
+	    });
+
+	    star.addEventListener("mouseout", () => {
+	      resetStars();
+	      highlightStars(selectedValue);
+	    });
+
+	    star.addEventListener("click", () => {
+	      selectedValue = parseInt(star.getAttribute("data-value"));
+	      revScoreInput.value = selectedValue;
+	      resetStars();
+	      highlightStars(selectedValue);
+	    });
+	  });
+
+	  function highlightStars(value) {
+	    for (let i = 0; i < value; i++) {
+	      stars[i].classList.add("highlight");
+	    }
+	  }
+
+	  function resetStars() {
+	    stars.forEach((star) => {
+	      star.classList.remove("highlight");
+	    });
+	  }
+
+	 
+	  
+	});
 </script>
 </head>
 <body>
@@ -77,18 +167,19 @@
 <form id="reviewinsert" action="rev_insertR.do" method="post">
 <div class="info">
 
-					<div class="reviewView-line">
-						<div class="rev_top">
-							
-								
-									<select name="rev_score">
-          								<option value="1" ${reviewVO.rev_score == '1' ? 'selected' : ''}>1점</option>
-         								<option value="2" ${reviewVO.rev_score == '2' ? 'selected' : ''}>2점</option>
-          								<option value="3" ${reviewVO.rev_score == '3' ? 'selected' : ''}>3점</option>
-          								<option value="4" ${reviewVO.rev_score == '4' ? 'selected' : ''}>4점</option>
-          								<option value="5" ${reviewVO.rev_score == '5' ? 'selected' : ''}>5점</option>
-        							</select>
-						</div>
+<div class="reviewView-line">
+  <div class="review">
+    <div class="rating" id="rating"><span id="span_review">별점</span>
+      <span class="star" data-value="1"></span>
+      <span class="star" data-value="2"></span>
+      <span class="star" data-value="3"></span>
+      <span class="star" data-value="4"></span>
+      <span class="star" data-value="5"></span>
+    </div>
+    <input type="hidden" name="rev_score" id="rev_score">
+  </div>
+</div>
+<br>
 
 						
 						<div class="rev_cont">
@@ -107,7 +198,6 @@
 							<button onclick="formSubmit();" class="btn-tazone">리뷰작성</button><br>
 						</div>	
 					</div>
-			</div> 
 			
   
 </form>

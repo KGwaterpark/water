@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 <style>
 #birth-td{
-width: 400px;
+width: 500px;
 }
 
 #gender-td{

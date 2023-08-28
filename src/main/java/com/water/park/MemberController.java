@@ -191,4 +191,9 @@ public class MemberController {
 
 	}
 
+		@RequestMapping("/memberImg.do")
+		public String memberImg() {
+			return "/admin/adminMember/memberImg";
+		}
+	
 }
