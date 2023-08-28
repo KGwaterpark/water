@@ -69,8 +69,8 @@ li {
 
 			<c:forEach var="mem" items="${getAllMember}" varStatus="loop">
 				<tr class="admintr">
-					<td align="center" class="admintd">${loop.index + 1}</td>
-
+				 
+        <td align="center" class="admintd">${paging.startIndex + loop.index + 1}</td>
 
 					<td class="admintd"><c:set var="naverid"
 							value="${fn:split(mem.m_id, ',')}" /> <c:forEach var="str"

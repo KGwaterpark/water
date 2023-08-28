@@ -11,6 +11,19 @@ public class PageVO {
 	private int finalPageNo; // 마지막 페이지 번호
 	private int totalCount; // 게시 글 전체 수
 
+	
+	
+	private int startIndex; // 추가된 속성
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+
 	/**
 	 * @return the pageSize
 	 */
@@ -184,6 +197,9 @@ public class PageVO {
 		}
 
 		this.setFinalPageNo(finalPage); // 마지막 페이지 번호
+		
+        this.setStartIndex((pageNo - 1) * pageSize); // startIndex 계산 추가
+
 	}
 
 	/*
