@@ -125,11 +125,12 @@ const paymentStatus = document.getElementById("paymentStatus"); */
   <div class="paymentinfo">
    <form action="paymentAll.do">
    결제 상태 : <br>
-      <input type="checkbox" name="state" value="all" checked="checked"> 전체
-      <input type="checkbox" name="state" value="ready"> 미결제
-      <input type="checkbox" name="state" value="paid"> 결제완료
-      <input type="checkbox" name="state" value="cancelled"> 결제취소
-      <input type="checkbox" name="state" value="failed"> 결제실패
+	<input type="checkbox" name="state" value="all" id="allCheckbox" checked="checked"> 전체
+	<input type="checkbox" name="state" value="ready"> 미결제
+	<input type="checkbox" name="state" value="paid"> 결제완료
+	<input type="checkbox" name="state" value="cancelled"> 결제취소
+	<input type="checkbox" name="state" value="failed"> 결제실패
+
       
       <br><br>
       <select class="paysel" name="search">
@@ -248,7 +249,35 @@ const paymentStatus = document.getElementById("paymentStatus"); */
  // 모달 닫기 버튼에 클릭 이벤트 추가
  document.querySelector(".close").addEventListener("click", closeModal);
  
- 
+///////////////////////////////////////
+// "전체" 체크박스 요소 가져오기
+var allCheckbox = document.getElementById("allCheckbox");
+
+// 다른 옵션 체크박스 요소 가져오기
+var otherCheckboxes = document.querySelectorAll('input[name="state"]:not(#allCheckbox)');
+
+// "전체" 체크박스의 이벤트 리스너 추가
+allCheckbox.addEventListener("change", function () {
+    // "전체" 체크박스가 선택되었을 때
+    if (allCheckbox.checked) {
+        // 다른 옵션 체크박스들을 해제
+        otherCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+    }
+});
+
+// 다른 옵션 체크박스들의 이벤트 리스너 추가
+otherCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+        // 다른 옵션 체크박스 중 하나가 선택되었을 때
+        if (checkbox.checked) {
+            // "전체" 체크박스를 해제
+            allCheckbox.checked = false;
+        }
+    });
+});
+
 
 </script>
 </html>

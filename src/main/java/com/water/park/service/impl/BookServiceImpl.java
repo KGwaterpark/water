@@ -2,10 +2,12 @@ package com.water.park.service.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -246,8 +248,8 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void payCancle(String token, String merchant_uid, String reason, String type, String amount) throws Exception {
-		System.out.println(merchant_uid);
 		String baseUrl = "https://api.iamport.kr/payments/cancel";
+		String msg = "";
 		URL url2 = new URL(baseUrl);
 		HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
 		
@@ -261,8 +263,9 @@ public class BookServiceImpl implements BookService {
 		json.addProperty("merchant_uid",merchant_uid);
 		json.addProperty("reason",reason);
 		if(type.equals("part")) {
-			json.addProperty("amount",amount);
+			json.addProperty("amount",Integer.parseInt(amount));
 		}
+		  
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		System.out.println(json.toString());
 		bw.write(json.toString());
@@ -286,29 +289,5 @@ public class BookServiceImpl implements BookService {
 		String responseBody = response.toString();
 		System.out.println("결제 취소 응답: " + StringEscapeUtils.unescapeJava(responseBody));
 	}
-//	@Override
-//	public void payCancle(String token, String merchant_uid, String reason, String type, String amount)
-//			throws Exception {
-//		HttpClient client = (HttpClient) HttpClientBuilder.create().build();
-//		String baseUrl = "https://api.iamport.kr/payments/cancel";
-//		HttpPost post = new HttpPost(baseUrl);
-//		Map<String, String> map = new HashMap<String, String>();
-//		post.setHeader("Authorization", token);
-//		map.put("merchant_uid", merchant_uid);
-//		map.put("reason", reason);
-//		if(type.equals("part")) {
-//			map.put("amount",amount);
-//		}
-//		String asd = "";
-//		try {
-//			post.setEntity(new UrlEncodedFormEntity(null));
-//			HttpResponse res = client.execute(post);
-//			ObjectMapper mapper = new ObjectMapper();
-//			String enty = EntityUtils.toString(res.getEntity());
-//			JsonNode rootNode = mapper.readTree(enty);
-//			asd = rootNode.get("response").asText();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+
 }
