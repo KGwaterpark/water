@@ -50,13 +50,13 @@
 	</delete>
 
 	<select id="getAllMember" resultType="MemberVO">
-		SELECT
-		m_id, m_name, m_tel,
-		m_email, m_birth, m_gender,
-		FLOOR(MONTHS_BETWEEN(SYSDATE, m_birth) /
-		12) AS m_age
-		FROM MEMBER
-	</select>
+    SELECT
+    m_id, m_name, m_tel,
+    m_email, m_birth, m_gender,
+    FLOOR(MONTHS_BETWEEN(SYSDATE, m_birth) / 12) AS m_age,
+    (SELECT COUNT(*) FROM MEMBER) AS total_count
+    FROM MEMBER
+</select>
 
 
 
@@ -86,7 +86,8 @@
 	<select id="getList2" resultType="MemberVO">
 		SELECT *
 		FROM (SELECT t.*,ROWNUM AS rnum
-		FROM (SELECT M_id,M_pw,M_tel,M_name,M_email,M_birth,M_gender
+		FROM (SELECT M_id,M_pw,M_tel,M_name,M_email,M_birth,M_gender,
+		FLOOR(MONTHS_BETWEEN(SYSDATE, m_birth) / 12) AS m_age
 		FROM member
 		ORDER BY m_id DESC)t
 		WHERE <![CDATA[ROWNUM <= #{page4}]]>)

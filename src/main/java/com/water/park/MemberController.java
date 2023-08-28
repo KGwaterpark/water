@@ -215,6 +215,8 @@ public class MemberController {
 		model.addAttribute("getAllMember", getAllMember);
 		model.addAttribute("paging", paging);
 
+		model.addAttribute("totalcount2", totalcount2);
+		
 		return "/admin/adminMember/memberAll";
 	}
 
