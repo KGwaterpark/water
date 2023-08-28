@@ -12,10 +12,16 @@
     FROM RE_BOOK
    </select>
    
- <!--   <select id="getAllPackageInfo" resultType="Package_bookVO" >
+    <select id="getAllPackageInfo" resultType="Package_bookVO" >
     SELECT pabook_id,m_id,p_type,rebook_id,book_date,book_cnt,use_date,state,price
     FROM PA_BOOK
-   </select> -->
+   </select> 
+   
+   
+ <select id="getPackageInfo" resultType="Package_bookVO">
+SELECT pabook_id,m_id,p_type,rebook_id,book_date,book_cnt,use_date,state,price
+FROM PA_BOOK where pabook_id=#{pabook_id}
+</select>
    
    
    <select id="getBookInfo" resultType="Ocean_bookVO">
@@ -35,6 +41,28 @@
     	SET rebook_id=#{rebook_id}, m_id=#{m_id}, re_type=#{re_type}, check_in_date=#{check_in_date}, check_out_date=#{check_out_date}, state=#{state}, price=#{price}
     	WHERE rebook_id=#{rebook_id}
 	</update>
+	
+	<!--예약취소 -->
+
+<update id="updateinfoW">
+UPDATE OCEAN_BOOK
+SET state = #{state}
+WHERE ocbook_id=#{ocbook_id}
+</update>
+
+
+<update id="updateinfoR">
+UPDATE RE_BOOK
+SET state = #{state}
+WHERE rebook_id = #{rebook_id}
+</update>
+
+<update id="updateinfoP">
+UPDATE PA_BOOK
+SET state = #{state}
+WHERE pabook_id = #{pabook_id}
+</update>
+	
    
    
 
