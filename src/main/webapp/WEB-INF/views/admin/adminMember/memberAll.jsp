@@ -16,6 +16,10 @@ width: 500px;
 
 }
 
+#tel-td{
+width: 450px;
+}
+
 #gender-td {
 	width: 200px;
 }
@@ -53,9 +57,9 @@ li {
 			<tr>
 				<th>CODE</th>
 				<th>&nbsp;&nbsp; ID<c:set var="totalMembers"
-						value="${fn:length(alist)}" /> <span id="memp">(${totalMembers}명)</span></th>
+                  value="${fn:length(getAllMember)}" /> <span id="memp">(${totalcount2}명)</span></th>
 				<th>이름</th>
-				<th>전화</th>
+				<th id="tel-td">전화</th>
 				<th>이메일</th>
 				<th id="birth-td">&nbsp;생일<span id="m_age">&nbsp;(나이)&nbsp;</span></th>
 				<th id="gender-td">성별</th>
