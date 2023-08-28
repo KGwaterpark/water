@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
             border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png") round;
             border-image-slice: 30;
             overflow: hidden;
-        }
+        } 
 
         .bababa span {
             color: green;
