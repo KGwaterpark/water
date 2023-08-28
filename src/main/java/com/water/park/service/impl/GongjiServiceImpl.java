@@ -55,7 +55,6 @@ public class GongjiServiceImpl implements GongjiService {
 	@Override
 	@Transactional
 	public ArrayList<GongjiVO> getList(int page, int page2) throws Exception {
-		// TODO Auto-generated method stub
 		return gongjidao.getList(page, page2);
 	}
 
