@@ -23,4 +23,10 @@ ArrayList<Ocean_bookVO> getAllOcean_book()     throws Exception;
 	void updateResortinfo(BookVO resort_bookVO);
 	Ocean_bookVO getBookInfo(int ocbook_id);
 	BookVO getResortInfo(int rebook_id);
+	Package_bookVO getPackageInfo(int pabook_id);
+	
+	void updateinfoW(Ocean_bookVO ocean_bookVO);
+	void updateinfoR(BookVO bookVO);
+	void updateinfoP(Package_bookVO package_bookVO);
+	
 }

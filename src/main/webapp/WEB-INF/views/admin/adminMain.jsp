@@ -45,9 +45,9 @@
 		<li class="submenu">
           <a href="#" onclick="toggleSubMenu('submenu2')">예약관리</a>
           <ul id="submenu2">
-            <li><a href="#" onclick="loadPage('AdBookInfo.do')">워터파크예약내역</a></li>
-            <li><a href="#" onclick="loadPage('AdBookInfo1.do')">리조트예약내역</a></li>
-            <li><a href="#" onclick="loadPage('')">패키지예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoW.do')">워터파크예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoR.do')">리조트예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoP.do')">패키지예약내역</a></li>
           </ul>
         </li>
         

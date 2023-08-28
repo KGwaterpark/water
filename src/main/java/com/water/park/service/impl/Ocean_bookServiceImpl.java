@@ -65,6 +65,31 @@ public class Ocean_bookServiceImpl implements Ocean_bookService{
 		public BookVO getResortInfo(int rebook_id) {
 			return ocean_bookimsi.getResortInfo(rebook_id);
 		}
+		
+		@Override
+		public Package_bookVO getPackageInfo(int pabook_id) {
+		// TODO Auto-generated method stub
+		return ocean_bookimsi.getPackageInfo(pabook_id);
+		}
+
+		@Override
+		public void updateinfoW(Ocean_bookVO ocean_bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.updateinfoW(ocean_bookVO);
+		}
+
+		@Override
+		public void updateinfoR(BookVO bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.updateinfoR(bookVO);
+		}
+
+		@Override
+		public void updateinfoP(Package_bookVO package_bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.updateinfoP(package_bookVO);
+
+		}
 
 		
 		
