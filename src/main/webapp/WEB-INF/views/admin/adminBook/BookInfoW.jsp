@@ -151,5 +151,42 @@
     }
 </script>
 
+<!-- 예약 상태 선택에 따른 필터링 -->
+<script type="text/javascript">
+    var reservationStatusSelect = document.getElementById('reservationStatus');
+    var memberIdInput = document.getElementById('memberId');
+
+    // 페이지 로드 시 예약 상태 필터 적용
+    filterByStatusAndId();
+
+    // 예약 상태 변경 이벤트 처리
+    reservationStatusSelect.addEventListener('change', filterByStatusAndId);
+
+    // 검색 버튼 클릭 이벤트 처리
+    var searchIdButton = document.getElementById('searchIdButton');
+    searchIdButton.addEventListener('click', filterByStatusAndId);
+
+    function filterByStatusAndId() {
+        var selectedStatus = reservationStatusSelect.value.toLowerCase();
+        var memberId = memberIdInput.value.toLowerCase();
+
+        var tableRows = document.querySelectorAll('table tbody tr');
+
+        tableRows.forEach(function (row) {
+            var statusCell = row.querySelector('td:first-child');
+            var status = statusCell.textContent.trim().toLowerCase();
+            var memberIdCell = row.querySelector('td:last-child');
+            var memberIdText = memberIdCell.textContent.trim().toLowerCase();
+
+            if ((selectedStatus === 'all' || (selectedStatus === 'reservation' && status === '예약') || (selectedStatus === 'cancellation' && status === '예약취소')) &&
+                (memberId === '' || memberIdText.includes(memberId))) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
