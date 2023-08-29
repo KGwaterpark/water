@@ -38,6 +38,11 @@
     VALUES (rev_id_seq.nextval, #{m_id}, #{type}, #{rev_contents}, SYSDATE, #{rev_score})
 	</insert>
 	
+	<insert id="insert_review_P" useGeneratedKeys="true" keyProperty="rev_id">
+    INSERT INTO review (rev_id, m_id, type, rev_contents, rev_date, rev_score)
+    VALUES (rev_id_seq.nextval, #{m_id}, #{type}, #{rev_contents}, SYSDATE, #{rev_score})
+	</insert>
+	
 	<!--워터파크  -->
 	<select id="getAllReviewWater" resultType="ReviewVO">
     SELECT m_id, type, rev_contents, rev_date, rev_score
@@ -54,7 +59,7 @@
 	<select id="getAllReviewPakage" resultType="ReviewVO">
     SELECT m_id, type, rev_contents, rev_date, rev_score
     FROM review
-    WHERE type IN ('프리미엄패키지','워터파크패키지','리조트패키지')
+    WHERE type IN ('프리미엄 패키지','워터파크 패키지','리조트 패키지')
 	</select>
 	
 	<!--어드민  -->
@@ -73,13 +78,12 @@
 	<select id="AllReviewPakage" resultType="ReviewVO">
     SELECT m_id, type, rev_contents, rev_date, rev_score
     FROM review
-    WHERE type IN ('프리미엄패키지','워터파크패키지','리조트패키지')
+    WHERE type IN ('프리미엄 패키지','워터파크 패키지','리조트 패키지')
 	</select>
 	
 	<select id="getadminRevinfoW" resultType="ReviewVO">
 	SELECT rev_id,m_id,type,rev_contents,rev_date,rev_score
 	FROM review where rev_contents=#{rev_contents}
-	
 	</select>
 	
 	

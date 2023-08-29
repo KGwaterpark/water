@@ -19,6 +19,7 @@ String redirectmain= "http://localhost:8080" + contextPath12 + "/index.jsp";
 String redirectjquery = "http://localhost:8080" + contextPath12 + "/js/jquery-3.7.0.min.js";
 
 String infodo = "http://localhost:8080" + contextPath12 + "/BookInfo.do";
+String cancelinfodo = "http://localhost:8080" + contextPath12 + "/BookcancelInfo.do";
 String reviewinfodo = "http://localhost:8080" + contextPath12 + "/review.do";
 String mypagetinfodo = "http://localhost:8080" + contextPath12 + "/mypagetinfo.do";
 
@@ -139,7 +140,7 @@ box-shadow:1px 2px 10px rgba(0,0,0, .1);
         <li class="sidropdown"><a href="#" >결제 내역<span>&rsaquo;</span></a>
           	<ul> 
           		 <li><a href="#" onclick="loadPage('<%=infodo%>')">예매내역</a></li>
-           		 <li><a href="#" onclick="loadPage('')">취소</a></li>
+           		 <li><a href="#" onclick="loadPage('<%=cancelinfodo%>')">취소</a></li>
         	</ul>
         </li>	
         <li class="sidropdown"><a href="#">작성글<span>&rsaquo;</span></a>

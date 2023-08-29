@@ -72,6 +72,8 @@ public class Ocean_bookServiceImpl implements Ocean_bookService{
 		return ocean_bookimsi.getPackageInfo(pabook_id);
 		}
 
+		
+		//어드민 예약취소
 		@Override
 		public void updateinfoW(Ocean_bookVO ocean_bookVO) {
 		// TODO Auto-generated method stub
@@ -88,6 +90,27 @@ public class Ocean_bookServiceImpl implements Ocean_bookService{
 		public void updateinfoP(Package_bookVO package_bookVO) {
 		// TODO Auto-generated method stub
 		ocean_bookimsi.updateinfoP(package_bookVO);
+
+		}
+		
+		//마이페이지 예약취소
+		
+		@Override
+		public void myupdateinfoW(Ocean_bookVO ocean_bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.myupdateinfoW(ocean_bookVO);
+		}
+
+		@Override
+		public void myupdateinfoR(BookVO bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.myupdateinfoR(bookVO);
+		}
+
+		@Override
+		public void myupdateinfoP(Package_bookVO package_bookVO) {
+		// TODO Auto-generated method stub
+		ocean_bookimsi.myupdateinfoP(package_bookVO);
 
 		}
 
