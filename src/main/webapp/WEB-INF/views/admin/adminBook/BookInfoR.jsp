@@ -89,118 +89,135 @@
 </c:choose>
 
 <div class="rev_book">
-    <b class="cont-user-my">회원 전체 워터파크 예약 내역</b>
+    <b class="cont-user-my">회원 전체 리조트 예약 내역</b>
 </div>
 <hr>
 
-<!-- 예약 상태 선택 드롭다운 목록 -->
 <select id="reservationStatus" name="search">
     <option value="all" ${selectedStatus == 'all' ? 'selected' : ''}>전체</option>
     <option value="reservation" ${selectedStatus == 'reservation' ? 'selected' : ''}>예약</option>
     <option value="cancellation" ${selectedStatus == 'cancellation' ? 'selected' : ''}>예약취소</option>
 </select>
+
+<input type="text" id="memberId" name="searchId" placeholder="아이디 검색">
+<button type="button" id="searchIdButton">검색</button>
+
+<table data-status="${resort.state}" data-number="${resort.rebook_id}" border="1" width="100%" height="100%" cellspacing="5">
+    <thead>
+        <tr align="center">
+            
+            <th>예약상태</th>
+			<th>예약번호</th>
+			<th>예약타입</th>
+			<th>체크인</th>
+			<th>체크아웃</th>
+			<th>가격</th>
+			<th>아이디</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="resort" items="${resortlist}">
+            <tr align="center">
+                <td>${resort.state eq 'Y' ? '예약' : '예약취소'}</td>
+				<td><a href="re_sangseA.do?rebook_id=${resort.rebook_id}">${resort.rebook_id}</a></td> 
+				<td>${resort.re_type}</td>
+				<td>${resort.check_in_date}</td>
+				<td>${resort.check_out_date}</td>
+				<td>${resort.price}</td>
+				<td>${resort.m_id}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
+<!-- 예약 상태 선택에 따른 필터링 -->
 <script type="text/javascript">
-    // 예약 상태 선택 드롭다운 엘리먼트 가져오기
     var reservationStatusSelect = document.getElementById('reservationStatus');
-    var currentPageInput = document.getElementById('currentPage');
-
-    // 페이지 로드 시 URL에서 예약 상태 읽어와 설정
-    var currentURL = new URL(window.location.href);
-    var selectedStatus = currentURL.searchParams.get("search");
-    if (selectedStatus !== null) {
-        reservationStatusSelect.value = selectedStatus;
-    }
-
-    // 예약 상태 변경 이벤트 처리
-    reservationStatusSelect.addEventListener('change', function () {
-        // 선택한 예약 상태 가져오기
-        var selectedStatus = reservationStatusSelect.value;
-
-        // 모든 예약 항목을 가져오기
-        var reservationItems = document.querySelectorAll('.reservation-item');
-
-        // 각 예약 항목에 대해 필터링 수행
-        reservationItems.forEach(function (item) {
-            var status = item.getAttribute('data-status');
-
-            // 선택한 예약 상태에 따라 필터링
-            if ((selectedStatus === 'all') || (selectedStatus === 'reservation' && status === 'Y') || (selectedStatus === 'cancellation' && status === 'N')) {
-                item.style.display = 'table'; // 테이블 로우를 표시합니다.
-            } else {
-                item.style.display = 'none'; // 테이블 로우를 숨깁니다.
-            }
-        });
-
-        // 현재 페이지 값 설정
-        var currentPage = currentPageInput.value;
-
-        // 페이지 URL 업데이트
-        var newURL = currentURL.href.split('?')[0] + '?page=' + currentPage + '&search=' + selectedStatus;
-        window.history.replaceState(null, null, newURL);
-    });
 
     // 페이지 로드 시 예약 상태 필터 적용
-    window.addEventListener('load', function () {
-        // 선택한 예약 상태 가져오기
+    filterByStatus();
+
+    // 예약 상태 변경 이벤트 처리
+    reservationStatusSelect.addEventListener('change', filterByStatus);
+
+    function filterByStatus() {
         var selectedStatus = reservationStatusSelect.value;
-        var currentPage = currentPageInput.value;
+        var tableRows = document.querySelectorAll('table tbody tr');
 
-        var reservationItems = document.querySelectorAll('.reservation-item');
-        reservationItems.forEach(function (item) {
-            var status = item.getAttribute('data-status');
+        tableRows.forEach(function (row) {
+            var statusCell = row.querySelector('td:first-child');
+            var status = statusCell.textContent.trim();
 
-            if ((selectedStatus === 'all') || (selectedStatus === 'reservation' && status === 'Y') || (selectedStatus === 'cancellation' && status === 'N')) {
-                item.style.display = 'table'; // 테이블 로우를 표시합니다.
+            if (selectedStatus === 'all' || (selectedStatus === 'reservation' && status === '예약') || (selectedStatus === 'cancellation' && status === '예약취소')) {
+                row.style.display = 'table-row';
             } else {
-                item.style.display = 'none'; // 테이블 로우를 숨깁니다.
+                row.style.display = 'none';
             }
         });
-    });
+    }
+</script>
+
+<!-- 검색 기능 -->
+<script type="text/javascript">
+    // 아이디 검색 버튼 클릭 시 검색 결과 표시
+    var searchIdButton = document.getElementById('searchIdButton');
+    searchIdButton.addEventListener('click', searchById);
+
+    function searchById() {
+        var memberId = document.getElementById('memberId').value.toLowerCase(); // 입력된 아이디를 소문자로 변환
+
+        var tableRows = document.querySelectorAll('table tbody tr'); // 테이블의 모든 행을 선택
+
+        tableRows.forEach(function (row) {
+            var memberIdCell = row.querySelector('td:last-child'); // 아이디가 있는 열 선택 (마지막 열)
+            var memberIdText = memberIdCell.textContent.toLowerCase(); // 열 내용을 소문자로 변환
+
+            if (memberIdText.includes(memberId)) {
+                row.style.display = 'table-row'; // 일치하는 아이디를 포함한 행 표시
+            } else {
+                row.style.display = 'none'; // 일치하지 않는 아이디를 포함한 행 숨김
+            }
+        });
+    }
+</script>
+
+<!-- 예약 상태 선택에 따른 필터링 -->
+<script type="text/javascript">
+    var reservationStatusSelect = document.getElementById('reservationStatus');
+    var memberIdInput = document.getElementById('memberId');
+
+    // 페이지 로드 시 예약 상태 필터 적용
+    filterByStatusAndId();
+
+    // 예약 상태 변경 이벤트 처리
+    reservationStatusSelect.addEventListener('change', filterByStatusAndId);
+
+    // 검색 버튼 클릭 이벤트 처리
+    var searchIdButton = document.getElementById('searchIdButton');
+    searchIdButton.addEventListener('click', filterByStatusAndId);
+
+    function filterByStatusAndId() {
+        var selectedStatus = reservationStatusSelect.value.toLowerCase();
+        var memberId = memberIdInput.value.toLowerCase();
+
+        var tableRows = document.querySelectorAll('table tbody tr');
+
+        tableRows.forEach(function (row) {
+            var statusCell = row.querySelector('td:first-child');
+            var status = statusCell.textContent.trim().toLowerCase();
+            var memberIdCell = row.querySelector('td:last-child');
+            var memberIdText = memberIdCell.textContent.trim().toLowerCase();
+
+            if ((selectedStatus === 'all' || (selectedStatus === 'reservation' && status === '예약') || (selectedStatus === 'cancellation' && status === '예약취소')) &&
+                (memberId === '' || memberIdText.includes(memberId))) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
 </script>
 
 
-<c:forEach var="resort" begin="${(currentPage - 1) * itemsPerPage}" end="${currentPage * itemsPerPage - 1}" items="${resortlist}">
-<table class="reservation-item" data-status="${resort.state}" border="1" width="50%" height="200" cellspacing="5" style="display: table;">
-
-				<thead>
-					<tr align="center">
-						<th>예약상태</th>
-						<th>예약번호</th>
-						<th>예약타입</th>
-						<th>체크인</th>
-						<th>체크아웃</th>
-						<th>가격</th>
-				</thead>
-				
-				<tbody>
-					<tr align="center">
-						<td>${resort.state eq 'Y' ? '예약' : '예약취소'}</td>
-						<td><a href="re_sangseA.do?rebook_id=${resort.rebook_id}">${resort.rebook_id}</a></td> 
-						<td>${resort.re_type}</td>
-						<td>${resort.check_in_date}</td>
-						<td>${resort.check_out_date}</td>
-						<td>${resort.price}</td>
-
-				</tbody>
-			</table>
-
-	</c:forEach>
-
-<%-- 페이지 목록 출력 --%>
-<div class="pagination">
-    <c:forEach var="page" begin="${startPage}" end="${endPage}">
-        <c:url value="" var="pageURL">
-            <c:param name="page" value="${page}" />
-        </c:url>
-        <c:choose>
-            <c:when test="${page == currentPage}">
-                <span class="current-page">${page}</span>
-            </c:when>
-            <c:otherwise>
-                <a href="${pageURL}">${page}</a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-</div>
 </body>
 </html>

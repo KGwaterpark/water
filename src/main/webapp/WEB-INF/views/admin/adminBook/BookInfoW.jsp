@@ -184,7 +184,7 @@
             } else {
                 row.style.display = 'none';
             }
-        });
+        }); 
     }
 </script>
 
