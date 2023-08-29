@@ -47,6 +47,17 @@
             background-color: #333;
             color: #fff;
         }
+         #Tbal{
+	width:1200px;
+	font-size: 30px;
+	height:50px;
+}
+#Tbal th{
+background: #91F8D0;
+}
+#Tbal tbody :hover{
+background: #888;
+}
     </style>
 </head>
 <body>
@@ -71,7 +82,7 @@
 <input type="text" id="memberId" name="searchId" placeholder="아이디 검색">
 <button type="button" id="searchIdButton">검색</button>
 
-<table data-status="${mypackage.state}" data-number="${mypackage.pabook_id}" border="1" width="100%" height="100%" cellspacing="5">
+<table data-status="${mypackage.state}" data-number="${mypackage.pabook_id}"id="Tbal">
     <thead>
         <tr align="center">
             <th>예약상태</th>
