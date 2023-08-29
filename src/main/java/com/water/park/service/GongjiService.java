@@ -21,6 +21,8 @@ public interface GongjiService {
 
 	ArrayList<GongjiVO> getList(int page, int page2) throws Exception;
 
+	//공지 검색(페이징)
+	
 	int getFilterTotal(String gongjiFilter, String gongjiSearch2);
 
 	ArrayList<GongjiVO> getFilterList(String gongjiFilter, String gongjiSearch2, int page, int page2);

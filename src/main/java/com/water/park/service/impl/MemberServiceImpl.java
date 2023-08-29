@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.water.park.service.MemberService;
 import com.water.park.service.dao.MemberDAO;
 import com.water.park.vo.MemberVO;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
@@ -34,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<MemberVO> getmyinfo() {
 		return memberdao.getmyinfo();
 	}
-	
+
 	// 토큰 발급
 	@Override
 	public String getToken() throws Exception {
@@ -129,9 +130,9 @@ public class MemberServiceImpl implements MemberService {
 			nametel.add(birthday);
 			int telch = memberdao.telCheck(formattedTel);
 			if (telch > 0) {
-				String m_id= getMId(name,formattedTel,birthday);
+				String m_id = getMId(name, formattedTel, birthday);
 				nametel.add(m_id);
-			} 
+			}
 			return nametel;
 
 		} else {
@@ -161,12 +162,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	   public int idCheck(String m_id) {
-	      if(m_id.contains("NAVER")&&m_id.length()<3) {
-	         return 1;
-	      }
-	      return memberdao.idCheck(m_id);
-	   }
+	public int idCheck(String m_id) {
+		if (m_id.contains("NAVER") && m_id.length() < 3) {
+			return 1;
+		}
+		return memberdao.idCheck(m_id);
+	}
 
 	@Override
 	public void insertMember(MemberVO memberVO) {
@@ -177,15 +178,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO getNaverInfo(String token) throws Exception {
 		MemberVO mvo = new MemberVO();
-		String header = "Bearer "+token;
-		
+		String header = "Bearer " + token;
+
 		String apiUrl = "https://openapi.naver.com/v1/nid/me";
 		URL url = new URL(apiUrl);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection(); 
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		// 요청 메소드 설정 (GET 방식)
-				conn.setRequestMethod("GET");
-				conn.setRequestProperty("Authorization", header);
-				
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Authorization", header);
+
 		// 응답 상태 코드 확인
 		int responseCode2 = conn.getResponseCode();
 		if (responseCode2 == HttpURLConnection.HTTP_OK) {
@@ -193,53 +194,71 @@ public class MemberServiceImpl implements MemberService {
 			BufferedReader in2 = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String inputLine2;
 			StringBuffer certificationsInfo = new StringBuffer();
-			
+
 			while ((inputLine2 = in2.readLine()) != null) {
 				certificationsInfo.append(inputLine2);
 			}
 			in2.close();
-			
+
 			// 인증 정보 출력
 			JSONObject jsonResponse2 = new JSONObject(certificationsInfo.toString());
 			JSONObject responseObj2 = jsonResponse2.getJSONObject("response");
 			String id = responseObj2.getString("id");
 			String name = responseObj2.getString("name");
 			String phone = responseObj2.getString("mobile");
-			String email= responseObj2.getString("email");
+			String email = responseObj2.getString("email");
 			mvo.setM_name(name);
-			mvo.setM_id("NAVER"+id);
+			mvo.setM_id("NAVER" + id);
 			mvo.setM_email(email);
 			mvo.setM_tel(phone);
 			mvo.setM_pw("NaverSns");
 			int telch = memberdao.telCheck(phone);
-			if(mvo!=null&&telch<=0) { //신규 회원일경우
+			if (mvo != null && telch <= 0) { // 신규 회원일경우
 				memberdao.insertMember(mvo);
-			}return mvo;
+			}
+			return mvo;
 		} else {
 			System.out.println("인증 정보 조회 실패: " + responseCode2);
 			return null;
 		}
 	}
+
 	@Override
-	public String getMId(String name, String tel ,String birthday) throws Exception {
-		String m_id = memberdao.getMId(name,tel,birthday);
+	public String getMId(String name, String tel, String birthday) throws Exception {
+		String m_id = memberdao.getMId(name, tel, birthday);
 		return m_id;
 	}
-	
-	
+
 	@Override
 	public void deleteMypageinfo(String m_id) {
 		memberdao.deleteMember(m_id);
 	}
-	   @Override
-	   public MemberVO memberGet(String m_id) {
 
-	      return memberdao.memberGet(m_id);
-	   }
+	@Override
+	public MemberVO memberGet(String m_id) {
 
-	      public void updateMember(MemberVO memberVO) {
-	           memberdao.updateMember(memberVO);
-	       }
+		return memberdao.memberGet(m_id);
+	}
+
+	public void updateMember(MemberVO memberVO) {
+		memberdao.updateMember(memberVO);
+	}
+
+	@Override
+	public String getMId1(String name, String tel) {
+		String m_id = memberdao.getMId(name, tel);
+		return m_id;
+	}
 	
+	//회원조회(페이징)
+	@Override
+	public int getTotalCount2() {
+		return memberdao.getTotalCount2();
+	}
 	
+	@Override
+	@Transactional
+	public ArrayList<MemberVO> getList2(int page3, int page4) throws Exception {
+		return memberdao.getList2(page3, page4);
+	}
 }

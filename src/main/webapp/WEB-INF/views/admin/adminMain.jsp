@@ -45,10 +45,12 @@
       <li class="submenu">
           <a href="#" onclick="toggleSubMenu('submenu2')">예약관리</a>
           <ul id="submenu2">
-            <li><a href="#" onclick="loadPage('AdBookInfo.do')">워터파크예약내역</a></li>
-            <li><a href="#" onclick="loadPage('AdBookInfo1.do')">리조트예약내역</a></li>
-            <li><a href="#" onclick="loadPage('')">패키지예약내역</a></li>
-            <li><a href="#" onclick="loadPage('paymentAll.do')">결제조회</a></li>
+
+            <li><a href="#" onclick="loadPage('AdBookInfoW.do')">워터파크예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoR.do')">리조트예약내역</a></li>
+            <li><a href="#" onclick="loadPage('AdBookInfoP.do')">패키지예약내역</a></li>
+           <li><a href="#" onclick="loadPage('paymentAll.do')">결제조회</a></li>
+
           </ul>
         </li>
         
@@ -65,7 +67,7 @@
           <a href="#" onclick="toggleSubMenu('submenu4')">회원관리</a>
           <ul id="submenu4">
             <li><a href="#" onclick="loadPage('memberAll.do')">회원조회 및 수정</a></li>
-            
+             <li><a href="#" onclick="loadPage('memberImg.do')">회원연령조회</a></li>
 
           </ul>
         </li>

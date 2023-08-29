@@ -26,42 +26,39 @@
 
 <section>
   <div class="info">
-    <form id="bookForm" action="updateinfoW.do" method="post">
-				
+    <form id="bookForm" action="updateinfoP.do" method="post">
+ 
 		<div class="info">
 			<div>
-				예약상태 : ${ocean_bookVO.state eq 'Y' ? '예약' : '예약취소'}
+				예약상태 : ${package_bookVO.state eq 'Y' ? '예약' : '예약취소'}
 			</div>
 			<div>
-				예약번호 : ${ocean_bookVO.ocbook_id}
+				예약번호 : ${package_bookVO.pabook_id}
 			</div>
 			<div>
-				예약타입 : ${ocean_bookVO.type}
-			</div>
-			<div>
-				예약일 : ${ocean_bookVO.oc_date}
-			</div>
-			<div>
-				어른 인원수 : ${ocean_bookVO.adult_cnt}
-			</div>
-			<div>
-				아이 인원수 :  ${ocean_bookVO.child_cnt}
-			</div>
-			<div>
-				총 인원수 :  ${ocean_bookVO.tot_cnt}
+				예약타입 : ${package_bookVO.p_type}
 			</div>
 			
+			<div>
+				이용일 : ${package_bookVO.use_date}
+			</div>
+			<div>
+				인원수 :  ${package_bookVO.book_cnt}
+			</div>
 			
-			<input type="hidden" name="state" value="${ocean_bookVO.state}">
-			<input type="hidden" name="ocbook_id" value="${ocean_bookVO.ocbook_id}">
-			<input type="hidden" name="m_id" value="${ocean_bookVO.m_id}">
-			<input type="hidden" name="type" value="${ocean_bookVO.type}">
-			<input type="hidden" name="oc_date" value="${ocean_bookVO.oc_date}">
-			<input type="hidden" name="adult_cnt" value="${ocean_bookVO.adult_cnt}">
-			<input type="hidden" name="child_cnt" value="${ocean_bookVO.child_cnt}">
-			<input type="hidden" name="tot_cnt" value="${ocean_bookVO.tot_cnt}">
+			<div>
+				금액 : ${package_bookVO.price}
+			</div>
+			
+			<input type="hidden" name="state" value="${bookVO.state}">
+			<input type="hidden" name="pabook_id" value="${package_bookVO.pabook_id}">
+			<input type="hidden" name="m_id" value="${package_bookVO.m_id}">
+			<input type="hidden" name="p_type" value="${package_bookVO.p_type}">
+			<input type="hidden" name="use_date" value="${package_bookVO.use_date}">
+			<input type="hidden" name="book_cnt" value="${package_bookVO.book_cnt}">
+			<input type="hidden" name="price" value="${package_bookVO.price}">
+			
 			<input type="hidden" name="newState" id="newState" value="Y">
-
 
 			<div>
     			<button onclick="cancelReservation();" class="btn-tazone">예약취소</button><br>
@@ -72,11 +69,11 @@
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
 function cancelReservation() {
 	  document.getElementById("newState").value = "N";
 	  document.getElementById("bookForm").submit();
 	}
+
   </script>
 </body>
 </html>

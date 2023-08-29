@@ -39,7 +39,7 @@
    align-content: center;
    justify-content: center;
    margin: auto;
-    animation: slide-up 12s linear infinite;
+    animation: slide-up 15s linear infinite;
     margin-top: 0;
     margin-bottom: 0;
     border-collapse: collapse;
@@ -73,7 +73,7 @@ font-weight: bold;
     transform: translateY(-135px); /* 2번 줄의 높이에 맞게 조절하세요 */
   }
    75%,100% {
-    transform: translateY(-180px); /* 3번 줄의 높이에 맞게 조절하세요 */
+    transform: translateY(-175px); /* 3번 줄의 높이에 맞게 조절하세요 */
   }
 } 
 </style>
@@ -87,18 +87,19 @@ font-weight: bold;
       <table class="maintable4" >
             <tr><td width="200"> <c:forEach var="gongji" items="${getAllGongji2}"></td></tr>
                 <tr>
-                    <form method="post" >
-                        <td class="admintd"><a href="MgongjiGet.do?g_title=${gongji.g_title}">${gongji.g_date}</a></td>
-                        <td class="admintd"><a href="MgongjiGet.do?g_title=${gongji.g_title}">${gongji.g_title}</a></td>
-                        <td class="admintd"><a href="MgongjiGet.do?g_title=${gongji.g_title}">
+                   
+                        <td class="admintd"><a href="MgongjiGet.do?g_id=${gongji.g_id}">${gongji.g_date}</a></td>
+                        <td class="admintd"><a href="MgongjiGet.do?g_id=${gongji.g_id}">${gongji.g_title}</a></td>
+                        <td class="admintd"><a href="MgongjiGet.do?g_id=${gongji.g_id}">
                             ${fn:substring(gongji.g_content, 0, 20)}${fn:length(gongji.g_content) > 20 ? '.......' : ''}
                         </a></td>
-                    </form>
-                    <br>
+                   
+                   
                 </tr>
                 <input type="hidden" value="${gongji.g_id}" name="g_id">
             </c:forEach>
         </tbody>
+        
     </table>
      </div>
      <hr class="go_hr">

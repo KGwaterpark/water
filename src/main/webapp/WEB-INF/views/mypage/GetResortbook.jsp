@@ -26,11 +26,11 @@
 
 <section>
   <div class="info">
-    <form id="bookForm" action="updateresortinfo.do" method="post">
+    <form id="bookForm" action="myupdateinfoR.do" method="post">
  
 		<div class="info">
 			<div>
-				예약상태 : 예약완료
+				예약상태 : ${bookVO.state eq 'Y' ? '예약' : '예약취소'}
 			</div>
 			<div>
 				예약번호 : ${bookVO.rebook_id}
@@ -55,7 +55,8 @@
 			<input type="hidden" name="re_type" value="${bookVO.re_type}">
 			<input type="hidden" name="price" value="${bookVO.price}">
 			<input type="hidden" name="check_in_date" value="${bookVO.check_in_date}">
-			<input type="hidden" name="check_out_date" value="${BookVO.check_out_date}">
+			<input type="hidden" name="check_out_date" value="${bookVO.check_out_date}">
+			<input type="hidden" name="newState" id="newState" value="Y">
 			
 			<div>
     			<button onclick="formSubmitForReview();" class="btn-tazone">리뷰작성</button>
@@ -73,9 +74,8 @@
 
     function cancelReservation() {
       // 예약 상태 값을 "예약취소"로 설정
-      $("input[name='state']").val("예약취소");
-      // 폼 제출
-      $("#bookForm").submit();
+    	document.getElementById("newState").value = "N";
+  	  	document.getElementById("bookForm").submit();
     }
 
     function formSubmitForReview() {

@@ -23,4 +23,18 @@ ArrayList<Ocean_bookVO> getAllOcean_book()     throws Exception;
 	void updateResortinfo(BookVO resort_bookVO);
 	Ocean_bookVO getBookInfo(int ocbook_id);
 	BookVO getResortInfo(int rebook_id);
+	Package_bookVO getPackageInfo(int pabook_id);
+	
+	
+	//어드민 예약취소
+	void updateinfoW(Ocean_bookVO ocean_bookVO);
+	void updateinfoR(BookVO bookVO);
+	void updateinfoP(Package_bookVO package_bookVO);
+	
+	//마이페이지 예약취소
+	void myupdateinfoW(Ocean_bookVO ocean_bookVO);
+	void myupdateinfoR(BookVO bookVO);
+	void myupdateinfoP(Package_bookVO package_bookVO);
+	
+	
 }

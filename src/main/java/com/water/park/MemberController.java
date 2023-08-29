@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.water.park.service.MemberService;
 import com.water.park.vo.MemberVO;
+import com.water.park.vo.PageVO;
 
 /**
  * Handles requests for the application home page.
@@ -123,13 +124,12 @@ public class MemberController {
 
 	// 이미회원가입되어있..네요?
 	@RequestMapping("/alReady.do")
-	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel,@RequestParam("birthday") String birthday, Model model)
+	public String alReadyPage(@RequestParam("name") String name, @RequestParam("tel") String tel, Model model)
 			throws Exception {
 		// 아이디찾기
-		String m_id = memberService.getMId(name, tel,birthday);
+		String m_id = memberService.getMId1(name, tel);
 		model.addAttribute("m_id", m_id);
 		model.addAttribute("m_name", name);
-		model.addAttribute("m_birthday", birthday);
 		return "/member/alReady";
 	}
 
@@ -167,12 +167,6 @@ public class MemberController {
 		return "redirect: main.do";
 	}
 
-	@RequestMapping(value = "/memberAll.do") // 회원조회
-	public String Memberall(Model model) throws Exception {
-		ArrayList<MemberVO> alist = memberService.getAllMember();
-		model.addAttribute("alist", alist);
-		return "/admin/adminMember/memberAll";
-	}
 
 	@RequestMapping("/updateMember.do")
 	public String updateMember(MemberVO memberVO, Model model) throws ClassNotFoundException {
@@ -193,6 +187,40 @@ public class MemberController {
 
 		return "/admin/adminMember/memberInfo"; // views에 있는 jsp로 // 한사람 보여주는 작업
 
+	}
+
+
+		@RequestMapping("/memberImg.do")
+		public String memberImg() {
+			return "/admin/adminMember/memberImg";
+		}
+	
+
+	
+	//-------------------------------------------------------------------------
+	@RequestMapping(value = "/memberAll.do") // 회원조회 (페이징)
+	public String Memberall(HttpServletRequest request, PageVO paging, Model model) throws Exception {
+		int totalcount2 = memberService.getTotalCount2();
+		int page3 = request.getParameter("page3") == null ? 1 : Integer.parseInt(request.getParameter("page3"));
+
+		if (totalcount2 == 0)
+			totalcount2 = 1;
+
+		paging.setPageNo(page3); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+		paging.setPageSize(6); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(totalcount2);
+
+		page3 = (page3 - 1) * 6 + 1; // select해오는 기준을 구한다.
+		int page4 = page3 + 5;
+		
+		
+		ArrayList<MemberVO> getAllMember = memberService.getList2(page3,page4);
+		model.addAttribute("getAllMember", getAllMember);
+		model.addAttribute("paging", paging);
+
+		model.addAttribute("totalcount2", totalcount2);
+		
+		return "/admin/adminMember/memberAll";
 	}
 
 }

@@ -32,14 +32,56 @@ public class Ocean_bookController {
 		
 		ArrayList <Ocean_bookVO> oceanlist = ocean_bookService.getAllOceanInfo();
 		ArrayList <BookVO> resortlist = ocean_bookService.getAllResortInfo();
+		ArrayList <Package_bookVO> packagelist = ocean_bookService.getAllPackageInfo();
+		
+		model.addAttribute("oceanlist",oceanlist);
+		model.addAttribute("resortlist",resortlist);
+		model.addAttribute("packagelist",packagelist);
+
+		return "mypage/BookInfo"; 
+		
+	}
+	
+	@RequestMapping(value = "/BookcancelInfo.do")
+	public String CencelAllInfo(Model model) throws Exception{
+		
+		ArrayList <Ocean_bookVO> oceanlist = ocean_bookService.getAllOceanInfo();
+		ArrayList <BookVO> resortlist = ocean_bookService.getAllResortInfo();
+		ArrayList <Package_bookVO> packagelist = ocean_bookService.getAllPackageInfo();
 
 		
 		model.addAttribute("oceanlist",oceanlist);
 		model.addAttribute("resortlist",resortlist);
+		model.addAttribute("packagelist",packagelist);
 
 
-		return "mypage/BookInfo"; 
+		return "mypage/BookcancelInfo"; 
 		
+	}
+	
+	@RequestMapping(value="/oc_sangseA.do")
+	public String bookGetinfoA(@RequestParam("ocbook_id")int ocbook_id,Model model) {
+		Ocean_bookVO ovo=ocean_bookService.getBookInfo(ocbook_id);
+		model.addAttribute("ocean_bookVO", ovo);
+		System.out.println(ocbook_id);
+		return "admin/adminBook/GetOceanbook";
+		
+	}
+	
+	@RequestMapping(value="/re_sangseA.do")
+	public String resortGetinfoA(@RequestParam("rebook_id")int rebook_id,Model model) {
+		BookVO bvo2=ocean_bookService.getResortInfo(rebook_id);
+		model.addAttribute("bookVO", bvo2);
+		System.out.println(	rebook_id);
+		return "admin/adminBook/GetResortbook";
+	}
+	
+	@RequestMapping(value="/pa_sangseA.do")
+	public String packageGetinfoA(@RequestParam("pabook_id")int pabook_id,Model model) {
+		Package_bookVO pvo2=ocean_bookService.getPackageInfo(pabook_id);
+		model.addAttribute("package_bookVO", pvo2);
+		System.out.println(	pabook_id);
+		return "admin/adminBook/GetPackagebook";
 	}
 	
 	@RequestMapping(value="/oc_sangse.do")
@@ -57,6 +99,50 @@ public class Ocean_bookController {
 		System.out.println(	rebook_id);
 		return "mypage/GetResortbook";
 	}
+	@RequestMapping(value="/pa_sangse.do")
+	public String packageGetinfo(@RequestParam("pabook_id")int pabook_id,Model model) {
+		Package_bookVO pvo2=ocean_bookService.getPackageInfo(pabook_id);
+		model.addAttribute("package_bookVO", pvo2);
+		System.out.println(	pabook_id);
+		return "mypage/GetPackagebook";
+	}
+	
+	// 어드민 예약취소
+	@RequestMapping(value="/updateinfoW.do")
+	public String updateinfoW(@ModelAttribute("ocean_bookVO") Ocean_bookVO ocean_bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			ocean_bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.updateinfoW(ocean_bookVO);
+				}
+				return "redirect:AdBookInfoW.do";
+				}
+	
+	@RequestMapping(value="/updateinfoR.do")
+	public String updateinfoR(@ModelAttribute("bookVO") BookVO bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.updateinfoR(bookVO);
+				}
+				return "redirect:AdBookInfoR.do";
+				}
+	
+	@RequestMapping(value="/updateinfoP.do")
+	public String updateinfoP(@ModelAttribute("Package_bookVO") Package_bookVO package_bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			package_bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.updateinfoP(package_bookVO);
+				}
+				return "redirect:AdBookInfoP.do";
+				}
 	
 	
 
@@ -86,27 +172,78 @@ public class Ocean_bookController {
 		return "review/revInsertFormR";
 	
 	}
-	// 어드민 그거다
-    @RequestMapping(value = "/AdBookInfo.do")
+	
+ // 어드민 그거다
+    @RequestMapping(value = "/AdBookInfoW.do")
    public String AdOceanAllInfo(Model model) throws Exception{
       
       ArrayList <Ocean_bookVO> oceanlist = ocean_bookService.getAllOceanInfo();
                      
       model.addAttribute("oceanlist",oceanlist);
 
-      return "admin/adminBook/BookInfo"; 
+      return "admin/adminBook/BookInfoW"; 
       
    }
     // 어드민 그거1이다~
-    @RequestMapping(value = "/AdBookInfo1.do")
-    public String AdOceanAllInfo1(Model model) throws Exception{
+    @RequestMapping(value = "/AdBookInfoR.do")
+    public String AdResortAllInfo(Model model) throws Exception{
        
        ArrayList <BookVO> resortlist = ocean_bookService.getAllResortInfo();
        
        model.addAttribute("resortlist",resortlist);
        
-       return "admin/adminBook/BookInfo1"; 
+       return "admin/adminBook/BookInfoR"; 
        
     }
-   
+    
+    @RequestMapping(value = "/AdBookInfoP.do")
+    public String AdOPackageAllInfo(Model model) throws Exception{
+       
+       ArrayList <Package_bookVO> packagelist = ocean_bookService.getAllPackageInfo();
+       
+       model.addAttribute("packagelist",packagelist);
+       
+       return "admin/adminBook/BookInfoP"; 
+       
+    }
+    
+ // 마이페이지 예약취소
+ 	@RequestMapping(value="/myupdateinfoW.do")
+ 	public String myupdateinfoW(@ModelAttribute("ocean_bookVO") Ocean_bookVO ocean_bookVO,
+             @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+ 			// 새로운 상태 설정
+ 			ocean_bookVO.setState(newState);
+ 				if ("N".equals(newState)) {
+ 						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+ 					ocean_bookService.myupdateinfoW(ocean_bookVO);
+ 				}
+ 				return "redirect:BookInfo.do";
+ 				}
+ 	
+ 	@RequestMapping(value="/myupdateinfoR.do")
+	public String myupdateinfoR(@ModelAttribute("bookVO") BookVO bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.myupdateinfoR(bookVO);
+				}
+				return "redirect:BookInfo.do";
+				}
+ 	
+ 	@RequestMapping(value="/myupdateinfoP.do")
+	public String myupdateinfoP(@ModelAttribute("Package_bookVO") Package_bookVO package_bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			package_bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.myupdateinfoP(package_bookVO);
+				}
+				return "redirect:BookInfo.do";
+				}
+ 	
+ 	
+ 	
 }
