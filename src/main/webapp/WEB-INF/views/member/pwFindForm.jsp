@@ -15,7 +15,7 @@
 
 
 <div class="pwFind-form">
-    <form action="pwFindForm_ok.do" method="post" class="form-horizontal" name="pfrm">
+    <form action="pwFindForm.do" method="post" class="form-horizontal" name="pfrm">
 	
       	<div class="row">
         	<div align="center">

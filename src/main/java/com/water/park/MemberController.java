@@ -191,8 +191,11 @@ public class MemberController {
 		public String memberImg() {
 			return "/admin/adminMember/memberImg";
 		}
-	
-
+		
+		@RequestMapping("/MPayment.do")
+		public String MPayment() {
+			return "/admin/adminMember/MPayment";
+		}
 	
 	//-------------------------------------------------------------------------
 	@RequestMapping(value = "/memberAll.do") // 회원조회 (페이징)

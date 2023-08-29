@@ -68,11 +68,11 @@ li {
 		<tbody class="table-hover">
 
 			<c:forEach var="mem" items="${getAllMember}" varStatus="loop">
-				<tr class="admintr">
+				<tr class="admintr" >
 				 
-        <td align="center" class="admintd">${paging.startIndex + loop.index + 1}</td>
+        <td align="center" class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${paging.startIndex + loop.index + 1}</td>
 
-					<td class="admintd"><c:set var="naverid"
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'"><c:set var="naverid"
 							value="${fn:split(mem.m_id, ',')}" /> <c:forEach var="str"
 							items="${naverid}">
 							<c:choose>
@@ -86,13 +86,12 @@ li {
 							</c:choose>
 							<br />
 						</c:forEach></td>
-					<td class="admintd"><a href="memberGet.do?m_id=${mem.m_id}">${mem.m_name}</a></td>
-					<td class="admintd"><a href="memberGet.do?m_id=${mem.m_id}">${mem.m_tel}</a></td>
-					<td class="admintd"><a href="memberGet.do?m_id=${mem.m_id}">${mem.m_email}</a></td>
-					<td class="admintd"><a href="memberGet.do?m_id=${mem.m_id}">${mem.m_birth}
-							&nbsp;<span id="memp">(${mem.m_age}살)</span>
-					</a></td>
-					<td class="admintd"><a href="memberGet.do?m_id=${mem.m_id}">${mem.m_gender}</a></td>
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_name}</td>
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_tel}</td>
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_email}</td>
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_birth}
+							&nbsp;<span id="memp">(${mem.m_age}살)</span> </td>
+					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_gender}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
