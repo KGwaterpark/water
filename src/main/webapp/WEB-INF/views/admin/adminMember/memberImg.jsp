@@ -14,6 +14,6 @@ width: 1400px;
 </head>
 <body>
     <img class="Rplot02" src="${pageContext.request.contextPath }/resources/img/rspace/member6.png">
- 
+  
 </body>
 </html>
