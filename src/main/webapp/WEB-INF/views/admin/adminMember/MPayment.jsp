@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.Rplot02{
+.Rplot03{
 height: 800px;
 width: 1400px;
 }
 </style>
 </head>
 <body>
-    <img class="Rplot02" src="${pageContext.request.contextPath }/resources/img/rspace/member6.png">
-   
+    <img class="Rplot03" src="${pageContext.request.contextPath }/resources/img/rspace/card.png">
+ 
 </body>
 </html>
