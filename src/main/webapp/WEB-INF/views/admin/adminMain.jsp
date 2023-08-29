@@ -42,12 +42,15 @@
         </li>
        
        
-		<li class="submenu">
+      <li class="submenu">
           <a href="#" onclick="toggleSubMenu('submenu2')">예약관리</a>
           <ul id="submenu2">
+
             <li><a href="#" onclick="loadPage('AdBookInfoW.do')">워터파크예약내역</a></li>
             <li><a href="#" onclick="loadPage('AdBookInfoR.do')">리조트예약내역</a></li>
             <li><a href="#" onclick="loadPage('AdBookInfoP.do')">패키지예약내역</a></li>
+           <li><a href="#" onclick="loadPage('paymentAll.do')">결제조회</a></li>
+
           </ul>
         </li>
         
@@ -91,8 +94,8 @@
       if (submenu.style.display === 'block') {
         submenu.style.display = 'none';
       } else {
-    	  
-    	  
+         
+         
         submenu.style.display = 'block';
       }
     }

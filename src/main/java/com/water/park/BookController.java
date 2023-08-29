@@ -20,6 +20,7 @@ import com.water.park.service.MemberService;
 import com.water.park.vo.BookVO;
 import com.water.park.vo.Ocean_bookVO;
 import com.water.park.vo.Package_bookVO;
+import com.water.park.vo.PageVO;
 
 /**
  * Handles requests for the application home page.
@@ -179,17 +180,56 @@ public class BookController {
  	public  String paymentAll( Model model,
  			 @RequestParam(name = "state", required = false) String state,
              @RequestParam(name = "search", required = false) String search,
-             @RequestParam(name = "query", required = false) String query) throws Exception {
+             @RequestParam(name = "query", required = false) String query,
+             @RequestParam(name = "page", defaultValue = "1" ) String pagestr
+             ) throws Exception {
  		
  		state = (state == null) ? "all" : state;
  	    search = (search == null) ? "" : search;
  	    query = (query == null) ? "" : query;
  		String token = memberService.getToken();
- 		List<BookVO> paymentAll = bookService.paymentAll(token,state,search,query);
- 		model.addAttribute("paymentAll", paymentAll);
+ 		int page = Integer.parseInt(pagestr);
+ 		PageVO paging = new PageVO();
+ 		int itemsPerPage = 10; // 페이지당 항목 수
+ 		int startItem = (page - 1) * itemsPerPage + 1; // 시작 항목 번호 계산
+		int endItem = page * itemsPerPage; // 끝 항목 번호 계산
+		List<BookVO> paymentAll = bookService.paymentAll(token,state,search,query,startItem,endItem);
+		
+		int totPage = paymentAll.size();
+ 		paging.setPageNo(page); // get방식의 parameter값으로 반은 page변수,5 현재 페이지 번호
+		paging.setPageSize(itemsPerPage); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(paymentAll.size());
+		
+		if (endItem > paymentAll.size()) {
+			endItem = paymentAll.size();
+		}
+		
+		ArrayList<BookVO> paymentAll2 = new ArrayList<>();
+		BookVO book = new BookVO();
+		book.setTotpage(totPage);
+		for(int j= startItem-1; j<endItem;j++) {
+			book=paymentAll.get(j);
+			paymentAll2.add(book);
+		}
+		
+		model.addAttribute("paging", paging);
+ 		model.addAttribute("paymentAll", paymentAll2);
  		return "admin/adminBook/payall";
  	}
  	
+ 	// 결제 취소
+ 	@RequestMapping("/payCancle.do")
+ 	public  String payCancle( Model model,
+ 			 @RequestParam("merchant_uid") String merchant_uid,
+ 			 @RequestParam("reason") String reason, 
+ 			 @RequestParam("type") String type, 
+ 			 @RequestParam(name = "amount", required = false) String amount) throws Exception {
+ 		
+ 		amount = (amount == null) ? "" : amount;
+ 		String token = memberService.getToken();
+ 		bookService.payCancle(token,merchant_uid,reason,type,amount);
+ 		return "redirect:paymentAll.do";
+ 	}
  	
  	
  	
