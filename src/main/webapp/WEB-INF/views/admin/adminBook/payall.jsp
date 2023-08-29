@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 #memp {
@@ -78,54 +78,31 @@
  .yellow-text {
     background: #FFF978;
 }
+li {
+   list-style: none;
+   float: left;
+   padding: 6px;
+}
+
+.pagination {
+   font-size: 40px;
+}
+
+.pagination li a {
+   text-decoration: none;
+   color: gray;
+}
+
+.pagination li.active a {
+   color: black;
+   font-weight: bold;
 </style>
 
-<script>
-/* function backC(state) {
-	console.log(state);
-const paymentStatus = document.getElementById("paymentStatus"); */
-
-/* if (state === "결제완료") {
-    paymentStatus.classList.add("blue-text");
-}else if  (state === "미결제") {
-    paymentStatus.classList.add("yellow-text");
-}else if  (state === "결제취소") {
-    paymentStatus.classList.add("orange-text");
-}else if  (state === "결제실패") {
-    paymentStatus.classList.add("red-text");
-} */
-
-// $(document).ready(function() {
-    
-//     var paymentStatus = document.getElementById("status");  
-//     var textColor;
-//     switch (paymentStatus) {
-//         case "결제완료":
-//             textColor = "green";
-//             break;
-//         case "미결제":
-//             textColor = "blue";
-//             break;
-//         case "결제취소":
-//             textColor = "red";
-//             break;
-//         case "결제실패":
-//             textColor = "orange";
-//             break;
-//         default:
-//             textColor = "red"; // 
-//     }
-
-    
-//     $(".status").text(paymentStatus);
-//     $(".status").css("color", textColor);
-// });
-</script>
 <body>
   <div class="paymentinfo">
-   <form action="paymentAll.do">
+   <form action="paymentAll.do" id="paginationForm">
    결제 상태 : <br>
-	<input type="checkbox" name="state" value="all" id="allCheckbox" checked="checked"> 전체
+	<input type="checkbox" name="state" value="all" id="allCheckbox"> 전체
 	<input type="checkbox" name="state" value="ready"> 미결제
 	<input type="checkbox" name="state" value="paid"> 결제완료
 	<input type="checkbox" name="state" value="cancelled"> 결제취소
@@ -139,6 +116,7 @@ const paymentStatus = document.getElementById("paymentStatus"); */
          <option value="buyer_email">구매자 이메일</option>
          <option value="buyer_tel">구매자 전화번호(뒷번호 4자리)</option>
       </select>
+       <input type="hidden" id="pageNumberInput" name="page" value="1">
       <input class="paytext" type="text" name="query"><br><br>
       <input type="submit" value="검색">
    </form>
@@ -163,37 +141,16 @@ const paymentStatus = document.getElementById("paymentStatus"); */
 <c:forEach var="pay" items="${paymentAll}" varStatus="loop">
           <tr>
                <td>${pay.merchant_uid }</td>
-              <td><span id="p_state">${pay.state}</span><br><span id="p_price">${pay.price }</span><br><span id="p_amount">${pay.cancel_amount}</span></td>
+              <td><span class="status">${pay.state}</span><br><span id="p_price">${pay.price }</span><br><span id="p_amount">${pay.cancel_amount}</span></td>
                <td>${pay.channel }<br>${pay.pg_provider }</td>
                <td>${pay.card_name }<br>승인: (${pay.apply_num })<br>카드번호 : ${pay.card_num }</td>
                <td>${pay.re_type }<br>${pay.buyer_name }<br>${pay.buyer_email }<br>${pay.buyer_tel }</td>
                <td>${pay.pay_date }</td>
-               <td> <span class="status" id="status" >${pay.state}</span><br>
+               <td> <span class="status" >${pay.state}</span><br>
              
                <c:if test="${pay.state == '결제완료'}"> <input type="button" value="취소하기" onclick="openModal('${pay.merchant_uid}','${pay.price }')"></c:if>
                ${pay.cancelled_at } ${pay.cancel_reason }${pay.fail_reason }</td>
             </tr>
-<!--             <script> -->
-<!-- //             var paymentStatus = document.querySelectorAll(".status"); -->
-<!-- //             paymentStatus.forEach(function(statusElement) { -->
-<%-- //                 var paymentState = "${pay.state}"; // JSP 변수를 JavaScript 변수로 가져옴 --%>
-
-<!-- //                 if (paymentState === '결제완료') { -->
-<!-- //                     statusElement.classList.add("blue-text"); -->
-<!-- //                     break; -->
-<!-- //                 } else if (paymentState === '결제취소') { -->
-<!-- //                     break; -->
-<!-- //                     statusElement.classList.add("orange-text"); -->
-<!-- //                     break; -->
-<!-- //                 } else if (paymentState === '결제실패') { -->
-<!-- //                     statusElement.classList.add("red-text"); -->
-<!-- //                     break; -->
-<!-- //                 } else if (paymentState === '미결제') { -->
-<!-- //                     statusElement.classList.add("yellow-text"); -->
-<!-- //                     break; -->
-<!-- //                 } -->
-<!-- //             }); -->
-<!--         </script> -->
          </c:forEach>
 
 
@@ -218,6 +175,42 @@ const paymentStatus = document.getElementById("paymentStatus"); */
         </form>
     </div>
 </div>
+   <div id="pagination-container">
+        <!-- 페이지 번호를 여기에 동적으로 추가할 것입니다. -->
+    </div>
+     <script type="text/javascript">
+          function PageMove(page) {
+        	  // 페이지 번호 변경
+        	    document.getElementById("pageNumberInput").value = page;
+        	    // 폼 제출
+        	    document.getElementById("paginationForm").submit();
+          }
+   </script>
+<table>
+		<tr></tr>
+		<tr>
+			<td width=290px></td>
+			<td style="font-size: 40px;">
+				<ul class="pagination">
+					<li><a href="javascript:PageMove(${paging.firstPageNo})">≪</a></li>
+					<li><a href="javascript:PageMove(${paging.prevPageNo})">＜</a></li>
+					<c:forEach var="i" begin="${paging.startPageNo}"
+						end="${paging.endPageNo}" step="1">
+						<c:choose>
+							<c:when test="${i eq paging.pageNo}">
+								<li class="active"><a href="javascript:PageMove(${i})">${i}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="javascript:PageMove(${i})">${i}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<li><a href="javascript:PageMove(${paging.nextPageNo})">＞</a></li>
+					<li><a href="javascript:PageMove(${paging.finalPageNo})">≫</a></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
 </body>
 <script>
  
@@ -231,14 +224,14 @@ const paymentStatus = document.getElementById("paymentStatus"); */
      
      
      document.getElementById("fullRadio").addEventListener("click", function () {
- 	    var reasonText = document.getElementById("reasonText");
+ 	    var reasonText = document.getElementById("amountText");
  	    reasonText.setAttribute("disabled", "disabled"); // 전액 취소 선택 시 텍스트 상자 비활성화
  	});
 
- 	document.getElementById("partialRadio").addEventListener("click", function () {
- 	    var reasonText = document.getElementById("reasonText");
- 	    reasonText.removeAttribute("disabled"); // 부분 취소 선택 시 텍스트 상자 활성화
- 	});
+     document.getElementById("partialRadio").addEventListener("click", function () {
+    	    var reasonText = document.getElementById("amountText");
+    	    reasonText.removeAttribute("disabled"); // 부분 취소 선택 시 텍스트 상자 활성화
+    	});
  }
 
  // 모달 닫기
@@ -250,34 +243,97 @@ const paymentStatus = document.getElementById("paymentStatus"); */
  document.querySelector(".close").addEventListener("click", closeModal);
  
 ///////////////////////////////////////
-// "전체" 체크박스 요소 가져오기
-var allCheckbox = document.getElementById("allCheckbox");
+  // "전체" 체크박스 요소 가져오기
+  var allCheckbox = document.getElementById("allCheckbox");
 
-// 다른 옵션 체크박스 요소 가져오기
-var otherCheckboxes = document.querySelectorAll('input[name="state"]:not(#allCheckbox)');
+  // 모든 다른 옵션 체크박스 요소 가져오기
+  var otherCheckboxes = document.querySelectorAll('input[name="state"]:not(#allCheckbox)');
 
-// "전체" 체크박스의 이벤트 리스너 추가
-allCheckbox.addEventListener("change", function () {
+//"전체" 체크박스 요소 가져오기
+  var allCheckbox = document.getElementById("allCheckbox");
+
+  // 모든 옵션 체크박스 요소 가져오기
+  var stateCheckboxes = document.querySelectorAll('input[name="state"]');
+
+  // "전체" 체크박스의 이벤트 리스너 추가
+  allCheckbox.addEventListener("change", function () {
     // "전체" 체크박스가 선택되었을 때
     if (allCheckbox.checked) {
-        // 다른 옵션 체크박스들을 해제
-        otherCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = false;
-        });
+      // 모든 옵션 체크박스들을 선택
+      stateCheckboxes.forEach(function (checkbox) {
+        checkbox.checked = true;
+      });
+    } else {
+      // "전체" 체크박스가 해제되었을 때, 모든 옵션 체크박스들을 해제
+      stateCheckboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
     }
-});
+  });
 
-// 다른 옵션 체크박스들의 이벤트 리스너 추가
-otherCheckboxes.forEach(function (checkbox) {
+  // 옵션 체크박스들의 이벤트 리스너 추가
+  stateCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener("change", function () {
-        // 다른 옵션 체크박스 중 하나가 선택되었을 때
-        if (checkbox.checked) {
-            // "전체" 체크박스를 해제
-            allCheckbox.checked = false;
-        }
+      // 선택된 모든 옵션 체크박스들을 확인
+      var selectedCheckboxes = Array.from(stateCheckboxes).filter(function (cb) {
+        return cb.checked;
+      });
+
+      // 모든 옵션 체크박스들이 선택되어 있으면 "전체" 체크박스를 선택
+      if (selectedCheckboxes.length === stateCheckboxes.length) {
+        allCheckbox.checked = true;
+      } else {
+        // 아니면 "전체" 체크박스를 해제
+        allCheckbox.checked = false;
+      }
     });
-});
+  });
+
+  window.onload = readURLParameters;
+
+  function readURLParameters() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var selectedStates = urlParams.getAll("state");
+    var selectedSearch = urlParams.get("search");
+    var selectedQuery = urlParams.get("query");
+
+    // 선택된 "state" 값들을 반복하여 각 체크박스를 선택 또는 해제합니다.
+    stateCheckboxes.forEach(function (checkbox) {
+      checkbox.checked = selectedStates.includes(checkbox.value);
+    });
+    if (selectedStates.length === 0) {
+        // 선택된 "state"가 없는 경우, "전체" 체크박스를 선택
+        allCheckbox.checked = true;
+      }
+    
+    if (selectedSearch) {
+      document.querySelector('.paysel').value = selectedSearch;
+    }
+    if (selectedQuery) {
+      document.querySelector('.paytext').value = selectedQuery;
+    }
+  }
+  
+  /* ======결제상태에따른 배경색 변화========== */
+
+  $(document).ready(function() {
+      
+       var statusBackgroundColors = {
+             "미결제":  "#FFA01E",
+             "결제완료": "#46D2D2",
+             "결제취소": "#E16A9D",
+               "결제실패": "#FFF978"
+      };
 
 
+      $(".status").each(function() {
+          var paymentStatus = $(this).text(); 
+          var backgroundColor = statusBackgroundColors[paymentStatus] || "cyan";
+          $(this).css("background-color", backgroundColor);
+      });
+  });
+  /* ================================================= */
+  
+ 
 </script>
 </html>

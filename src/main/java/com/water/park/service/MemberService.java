@@ -14,8 +14,8 @@ public interface MemberService {
 
 	public ArrayList<String> getName_getTel(String token, String imp_uid) throws Exception;
 
-	public MemberVO memberLogin(String id, String pw) throws Exception
-	;
+	public MemberVO memberLogin(String id, String pw) throws Exception;
+	public void updatePw(String id, String pw, String pw2);
 	public int idCheck(String m_id);
 	
 	public void insertMember(MemberVO memberVO);

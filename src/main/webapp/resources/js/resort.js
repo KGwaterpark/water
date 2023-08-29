@@ -159,7 +159,12 @@ $(function () {
     minDate: 0,
     onSelect: function (selectedDate) {
     indate = selectedDate;
-    outdate=new Date(selectedDate).getDate()+1;
+    const out = new Date(selectedDate);
+    out.setDate(out.getDate() + 1);
+    var year1 = out.getFullYear();
+   var month1 = String(out.getMonth() + 1).padStart(2, '0');
+   var day1 = String(out.getDate()).padStart(2, '0');
+   outdate= year1 + '-' + month1 + '-' + day1;
     const dateArray = selectedDate.split('-');
 
       // 년, 월, 일 정보 추출

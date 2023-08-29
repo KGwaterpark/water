@@ -3,12 +3,16 @@ package com.water.park.service.impl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
+import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.water.park.service.BookService;
 import com.water.park.service.dao.BookDAO;
@@ -126,13 +131,12 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public ArrayList<BookVO> paymentAll(String token, String status, String search, String query) throws Exception {
+	public ArrayList<BookVO> paymentAll(String token, String status, String search, String query,int sItem, int eItem) throws Exception {
 		ArrayList<BookVO> paymentAll = new ArrayList<>();
 		String[] states = status.split(",");
 		String baseUrl = "https://api.iamport.kr/payments/status/all?limit=1000";
 		URL url2 = new URL(baseUrl);
 		HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-
 		conn2.setRequestMethod("GET");
 		conn2.setRequestProperty("Authorization", token);
 
@@ -142,16 +146,16 @@ public class BookServiceImpl implements BookService {
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
 			String inputLine;
 			StringBuilder response = new StringBuilder();
-
+			
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
 			}
 			in.close();
-
+			
 			// 인증 정보 출력
 			JSONObject jsonResponse = new JSONObject(response.toString());
 			JSONArray paymentArray = jsonResponse.getJSONObject("response").getJSONArray("list");
-
+			 BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Hojin/txt/insert.txt"));
 			for (int i = 0; i < paymentArray.length(); i++) {
 				JSONObject paymentObj = paymentArray.getJSONObject(i);
 				String merchant_uid = paymentObj.getString("merchant_uid");
@@ -233,12 +237,20 @@ public class BookServiceImpl implements BookService {
 				} else if (state.equals("cancelled")) {
 					state = "결제취소";
 				}
+				if(card_name.isEmpty()) {
+					card_name="간편결제";
+				}
+//				String sql ="insert into Pay values ("+merchant_uid+",'"+card_name+"','"+buyer_email+"("+buyer_name+")',"+price+" );";
+//                writer.write(sql);
+//                writer.newLine(); // 개행 문자 추가
+
 				BookVO book = new BookVO(merchant_uid, price, pg_provider, apply_num, cancel_amount, buyer_email,
 						buyer_name, buyer_tel, channel, card_name, card_number, pay_date, re_type, state, cancel_reason,
 						cancelled_at, fail_reason);
 				paymentAll.add(book);
-			}
-			return paymentAll;
+			} return paymentAll;
+//			 writer.close();
+			
 
 		} else {
 			System.out.println("인증 정보 조회 실패: " + responseCode2);
@@ -261,19 +273,17 @@ public class BookServiceImpl implements BookService {
 		JsonObject json = new JsonObject();
 		
 		json.addProperty("merchant_uid",merchant_uid);
-		json.addProperty("reason",reason);
+		json.addProperty("reason", reason);
 		if(type.equals("part")) {
 			json.addProperty("amount",Integer.parseInt(amount));
 		}
-		  
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-		System.out.println(json.toString());
+		System.out.println(json);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
 		bw.write(json.toString());
 		bw.flush();
 		bw.close();
 		int responseCode = conn.getResponseCode();
 		BufferedReader br;
-		
 		if (responseCode == HttpURLConnection.HTTP_OK) { // 성공적인 응답을 받았을 때
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 		} else { // 오류 응답을 받았을 때
