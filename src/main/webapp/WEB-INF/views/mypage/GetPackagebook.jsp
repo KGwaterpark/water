@@ -26,11 +26,11 @@
 
 <section>
   <div class="info">
-    <form id="bookForm" action="updateoceaninfo.do" method="post">
+    <form id="bookForm" action="myupdateinfoP.do" method="post">
  
 		<div class="info">
 			<div>
-				예약상태 : 결제완료
+				예약상태 : ${package_bookVO.state eq 'Y' ? '예약' : '예약취소'}
 			</div>
 			<div>
 				예약번호 : ${package_bookVO.pabook_id}
@@ -48,10 +48,15 @@
 				인원수 :  ${package_bookVO.book_cnt}
 			</div>
 			
+			<input type="hidden" name="state" value="${package_bookVO.state}">
 			<input type="hidden" name="pabook_id" value="${package_bookVO.pabook_id}">
 			<input type="hidden" name="m_id" value="${package_bookVO.m_id}">
 			<input type="hidden" name="p_type" value="${package_bookVO.p_type}">
-
+			<input type="hidden" name="use_date" value="${package_bookVO.use_date}">
+			<input type="hidden" name="book_cnt" value="${package_bookVO.book_cnt}">
+			<input type="hidden" name="price" value="${package_bookVO.price}">
+			
+			<input type="hidden" name="newState" id="newState" value="Y">
 	
 
 			<div>
@@ -70,9 +75,8 @@
 
     function cancelReservation() {
       // 예약 상태 값을 "예약취소"로 설정
-      $("input[name='state']").val("예약취소");
-      // 폼 제출
-      $("#bookForm").submit();
+    	document.getElementById("newState").value = "N";
+  	  document.getElementById("bookForm").submit();
     }
 
     function formSubmitForReview() {

@@ -26,11 +26,11 @@
 
 <section>
   <div class="info">
-    <form id="bookForm" action="updateoceaninfo.do" method="post">
+    <form id="bookForm" action="myupdateinfoW.do" method="post">
  
 		<div class="info">
 			<div>
-				예약상태 : 결제완료
+				예약상태 : ${ocean_bookVO.state eq 'Y' ? '예약' : '예약취소'}
 			</div>
 			<div>
 				예약번호 : ${ocean_bookVO.ocbook_id}
@@ -48,10 +48,16 @@
 				인원수 :  ${ocean_bookVO.tot_cnt}
 			</div>
 
+			<input type="hidden" name="state" value="${ocean_bookVO.state}">
 			<input type="hidden" name="ocbook_id" value="${ocean_bookVO.ocbook_id}">
 			<input type="hidden" name="m_id" value="${ocean_bookVO.m_id}">
 			<input type="hidden" name="type" value="${ocean_bookVO.type}">
-			<input type="hidden" name="state" value="예약취소">
+			<input type="hidden" name="oc_date" value="${ocean_bookVO.oc_date}">
+			<input type="hidden" name="adult_cnt" value="${ocean_bookVO.adult_cnt}">
+			<input type="hidden" name="child_cnt" value="${ocean_bookVO.child_cnt}">
+			<input type="hidden" name="tot_cnt" value="${ocean_bookVO.tot_cnt}">
+			<input type="hidden" name="newState" id="newState" value="Y">
+
 			
 			
 			<div>
@@ -71,9 +77,8 @@
 
     function cancelReservation() {
       // 예약 상태 값을 "예약취소"로 설정
-      $("input[name='state']").val("예약취소");
-      // 폼 제출
-      $("#bookForm").submit();
+    	document.getElementById("newState").value = "N";
+  	  	document.getElementById("bookForm").submit();
     }
 
     function formSubmitForReview() {

@@ -32,11 +32,11 @@ public class Ocean_bookController {
 		
 		ArrayList <Ocean_bookVO> oceanlist = ocean_bookService.getAllOceanInfo();
 		ArrayList <BookVO> resortlist = ocean_bookService.getAllResortInfo();
-
+		ArrayList <Package_bookVO> packagelist = ocean_bookService.getAllPackageInfo();
 		
 		model.addAttribute("oceanlist",oceanlist);
 		model.addAttribute("resortlist",resortlist);
-
+		model.addAttribute("packagelist",packagelist);
 
 		return "mypage/BookInfo"; 
 		
@@ -99,7 +99,15 @@ public class Ocean_bookController {
 		System.out.println(	rebook_id);
 		return "mypage/GetResortbook";
 	}
+	@RequestMapping(value="/pa_sangse.do")
+	public String packageGetinfo(@RequestParam("pabook_id")int pabook_id,Model model) {
+		Package_bookVO pvo2=ocean_bookService.getPackageInfo(pabook_id);
+		model.addAttribute("package_bookVO", pvo2);
+		System.out.println(	pabook_id);
+		return "mypage/GetPackagebook";
+	}
 	
+	// 어드민 예약취소
 	@RequestMapping(value="/updateinfoW.do")
 	public String updateinfoW(@ModelAttribute("ocean_bookVO") Ocean_bookVO ocean_bookVO,
             @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
@@ -198,5 +206,44 @@ public class Ocean_bookController {
        return "admin/adminBook/BookInfoP"; 
        
     }
-   
+    
+ // 마이페이지 예약취소
+ 	@RequestMapping(value="/myupdateinfoW.do")
+ 	public String myupdateinfoW(@ModelAttribute("ocean_bookVO") Ocean_bookVO ocean_bookVO,
+             @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+ 			// 새로운 상태 설정
+ 			ocean_bookVO.setState(newState);
+ 				if ("N".equals(newState)) {
+ 						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+ 					ocean_bookService.myupdateinfoW(ocean_bookVO);
+ 				}
+ 				return "redirect:BookInfo.do";
+ 				}
+ 	
+ 	@RequestMapping(value="/myupdateinfoR.do")
+	public String myupdateinfoR(@ModelAttribute("bookVO") BookVO bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.myupdateinfoR(bookVO);
+				}
+				return "redirect:BookInfo.do";
+				}
+ 	
+ 	@RequestMapping(value="/myupdateinfoP.do")
+	public String myupdateinfoP(@ModelAttribute("Package_bookVO") Package_bookVO package_bookVO,
+            @RequestParam("newState") String newState) throws ClassNotFoundException, SQLException {
+			// 새로운 상태 설정
+			package_bookVO.setState(newState);
+				if ("N".equals(newState)) {
+						// 데이터베이스에서 예약 상태를 "N"으로 업데이트
+					ocean_bookService.myupdateinfoP(package_bookVO);
+				}
+				return "redirect:BookInfo.do";
+				}
+ 	
+ 	
+ 	
 }

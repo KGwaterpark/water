@@ -42,7 +42,7 @@ FROM PA_BOOK where pabook_id=#{pabook_id}
     	WHERE rebook_id=#{rebook_id}
 	</update>
 	
-	<!--예약취소 -->
+	<!--어드민 예약취소 -->
 
 <update id="updateinfoW">
 UPDATE OCEAN_BOOK
@@ -58,6 +58,27 @@ WHERE rebook_id = #{rebook_id}
 </update>
 
 <update id="updateinfoP">
+UPDATE PA_BOOK
+SET state = #{state}
+WHERE pabook_id = #{pabook_id}
+</update>
+
+<!--마이페이지예약취소 -->
+
+<update id="myupdateinfoW">
+UPDATE OCEAN_BOOK
+SET state = #{state}
+WHERE ocbook_id=#{ocbook_id}
+</update>
+
+
+<update id="myupdateinfoR">
+UPDATE RE_BOOK
+SET state = #{state}
+WHERE rebook_id = #{rebook_id}
+</update>
+
+<update id="myupdateinfoP">
 UPDATE PA_BOOK
 SET state = #{state}
 WHERE pabook_id = #{pabook_id}
