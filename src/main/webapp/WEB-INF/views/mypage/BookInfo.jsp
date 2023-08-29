@@ -66,8 +66,8 @@
 	</table>
        
      </button>
-   
-		</c:if><br><br><br>
+   <br><br>
+		</c:if>
 	</c:forEach>
 
 
@@ -86,7 +86,8 @@
 			<tr align ="center"><td colspan = "6">상세정보를 보려면 클릭 하세요</td></tr>
 		</table>	 
 		</button> 
-	</c:if><br><br><br>
+		<br><br>
+	</c:if>
 	</c:forEach>
 	
 	<hr><br>
@@ -104,7 +105,8 @@
 			<tr align ="center"><td colspan = "6">상세정보를 보려면 클릭 하세요</td></tr>
 		</table>	 
 		</button> 
-	</c:if><br><br><br>
+		<br><br>
+	</c:if>
 	</c:forEach>
 	
 

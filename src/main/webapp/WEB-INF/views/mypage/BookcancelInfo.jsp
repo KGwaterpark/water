@@ -65,8 +65,8 @@
 	</table>
        
      </button>
-   
-		</c:if><br><br><br>
+   <br><br>
+		</c:if>
 	</c:forEach>
 
 
@@ -84,7 +84,8 @@
 			</tr>
 		</table>	 
 		</button> 
-	</c:if><br><br><br>
+		<br><br>
+	</c:if>
 	</c:forEach>
 	
 	<hr><br>
@@ -101,7 +102,8 @@
 			</tr>
 		</table>	 
 		</button> 
-	</c:if><br><br><br>
+		<br><br>
+	</c:if>
 	</c:forEach>
 	
 

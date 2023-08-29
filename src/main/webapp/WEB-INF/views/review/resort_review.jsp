@@ -15,11 +15,7 @@ function convertToStars(score) {
       starString += '&#9733; '; // Filled star character
     }
 
-    // Half star (if the decimal part is greater than or equal to 0.5)
-    if (remainder >= 0.1) {
-      starString += ' &#9733; '; // Half-filled star character (★½)
-    } 
-
+  
     // Empty stars
     for (let i = 0; i < 5 - Math.ceil(score); i++) {
       starString += '☆ '; // Empty star character (☆)
