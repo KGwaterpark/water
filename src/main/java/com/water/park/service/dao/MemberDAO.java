@@ -32,5 +32,13 @@ public interface MemberDAO {
 	
 	ArrayList<MemberVO> getList2(@Param("page3") int page3, @Param("page4") int page4);
 
+	// 회원검색 (페이징)
+	int getFilterTotal(@Param("memberFilter") String memberFilter, @Param("memberSearch") String memberSearch);
+
+	ArrayList<MemberVO> getFilterList(@Param("memberFilter") String memberFilter,
+	        @Param("memberSearch2") String memberSearch2, 
+	        @Param("page3") int page3, 
+	        @Param("page4") int page4);
+
 	
 }

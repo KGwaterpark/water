@@ -9,10 +9,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
+  
+  <style >
+  
+  .table-fill2{
+width: 100%;
+
+}
+</style>
 </head>
 <body>
 	<form action="updateGongji.do?g_id=${gongjiVO.g_id}" method="POST">
-	<table border="2" class="table-fill">
+	<table border="2" class="table-fill2">
 <thead class="adminth"><tr><th>공지번호</th><th>제목</th><th>작성일자</th></tr></thead>
 <tbody>
 

@@ -7,10 +7,17 @@
 <title>Insert title here</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin.css" />
 </head>
+  <style >
+  
+  .table-fill2{
+width: 100%;
+
+}
+</style>
 <body>
     <h1>새로운 공지사항 작성</h1>
     <form action="write.do" method="post">
-    <table border="2" class="table-fill">
+    <table border="2" class="table-fill2">
 
        <thead class="adminth">
             <tr class="admintr">

@@ -34,8 +34,7 @@
         <li class="submenu">
           <a href="#" onclick="toggleSubMenu('submenu1')">등록관리</a>
           <ul id="submenu1">
-            <li><a href="#" onclick="loadPage('login.do')">리조트관리</a></li>
-            <li><a href="#" onclick="loadPage('')">패키지관리</a></li>
+  
             <li><a href="#" onclick="loadPage('gongjiWrite.do')">공지사항등록</a></li>
             <li><a href="#" onclick="loadPage('AgetAllGongji.do')">공지사항목록</a></li>
           </ul>

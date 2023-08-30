@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>예매내역</title>
     <style type="text/css">
+    * {
+  text-decoration: none;
+    color: inherit; /* 링크의 색상 제거 */
+}
         .rev_book {
             font-size: 50px;
             text-align: center;
@@ -48,7 +52,7 @@
             color: #fff;
         }
          #Tbal{
-	width:1200px;
+	width:100%;
 	font-size: 30px;
 	height:50px;
 }
@@ -64,6 +68,7 @@ background: #888;
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- 필요한 라이브러리와 스타일시트를 추가 -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -129,13 +134,25 @@ background: #888;
     <tbody>
         <c:forEach var="resort" items="${resortlist}">
             <tr align="center">
-                <td>${resort.state eq 'Y' ? '예약' : '예약취소'}</td>
-				<td><a href="re_sangseA.do?rebook_id=${resort.rebook_id}">${resort.rebook_id}</a></td> 
-				<td>${resort.re_type}</td>
-				<td>${resort.check_in_date}</td>
-				<td>${resort.check_out_date}</td>
-				<td>${resort.price}</td>
-				<td>${resort.m_id}</td>
+                <td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.state eq 'Y' ? '예약' : '예약취소'}</td>
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.rebook_id}</a></td> 
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.re_type}</td>
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.check_in_date}</td>
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.check_out_date}</td>
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'">${resort.price}</td>
+				<td style="cursor:pointer;" onClick="location.href='re_sangseA.do?rebook_id=${resort.rebook_id}'"><c:set var="naverid" value="${fn:split(resort.m_id, ',')}" />
+           <c:forEach var="str" items="${naverid}">
+							<c:choose>
+								<c:when test="${fn:contains(str, 'NAVER')}">
+									<c:set var="id" value="${fn:substring(str, 0, 7)}" />
+									<a href="memberGet.do?m_id=${str}"><c:out value="${id}" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="memberGet.do?m_id=${str}"><c:out value="${str}" /></a>
+								</c:otherwise>
+							</c:choose>
+							<br />
+						</c:forEach></td>
             </tr>
         </c:forEach>
     </tbody>
