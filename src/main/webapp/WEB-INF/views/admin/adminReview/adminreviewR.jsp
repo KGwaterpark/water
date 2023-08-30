@@ -42,12 +42,14 @@ function convertToStars(score) {
         border: 1px solid #ccc; 
         padding: 10px; 
         margin-bottom: 20px; 
+
            font-size:30px;
     border: 5px solid transparent; /* 선의 두께를 5px로 설정 */
   border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png")round;
   border-image-slice: 30;
   overflow: hidden;
   background: #F0FFF0;
+
 
     }
 
