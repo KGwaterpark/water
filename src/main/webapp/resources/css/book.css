@@ -84,15 +84,28 @@ h2{
   flex-basis: 0;
 }
 .resort1{
-	width:20%;
-	font-size: 25px;
+	width:19%;
+	font-size: 23px;
 }
 .resort2{
-	width:clac(40%-10px);
+	width:clac(40%-20px);
 	font-size: 25px;
 }
-.resort1,
+
 .resort2 {
+  float: left;
+  border-width: thin;
+  border-style: solid;
+  border-color: #F3F3F2;
+  height:520px;
+  cursor: pointer;
+  flex: 1;
+  flex-basis: 0;
+  margin:10px;
+  padding:10px;
+}
+
+.resort1 {
   float: left;
   border-width: thin;
   border-style: solid;
@@ -110,7 +123,7 @@ h2{
   border-style: solid;
   border-color: #F3F3F2;
   height:520px;
-  width:30%;
+  width:25%;
   cursor: pointer;
   flex: 1;
   flex-basis: 0;
@@ -150,13 +163,13 @@ h2{
 	width: 25%;
 }
 .waterpark2{
-	width:12%;
+	width:15%;
 }
 .waterpark3{
-	width:42%;
+	width:32%;
 }
 .waterpark1{
-	width:10%;
+	width:13%;
 }
 
  .content-package ul {
