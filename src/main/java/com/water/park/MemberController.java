@@ -136,9 +136,9 @@ public class MemberController {
 	// pw 재설정
 	@RequestMapping("/pwFindForm.do")
 	public String pwFindFormPage(Model model,@RequestParam("id")String id,@RequestParam("pw")String pw,@RequestParam("pw2")String pw2 ) {
-		if(pw.equals(pw2)) {
-			memberService.updatePw(id,pw,pw2);
-		}
+		/*
+		 * if(pw.equals(pw2)) { memberService.updatePw(id,pw,pw2); }
+		 */
 		return "redirect:login.do";
 	}
 

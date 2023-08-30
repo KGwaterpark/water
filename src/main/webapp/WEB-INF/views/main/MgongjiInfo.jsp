@@ -14,6 +14,10 @@
 	color: blue;
 	font-size: 100px;
 }
+.table-fill2{
+width: 1380px;
+margin: auto;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -26,7 +30,7 @@
 <body>
 
 	<form action="updateGongji.do?g_id=${gongjiVO.g_id}" method="POST">
-		<table border="2" class="table-fill">
+		<table border="2" class="table-fill2">
 			<thead class="adminth">
 				<tr>
 					<th width=600>작성일자</th>
