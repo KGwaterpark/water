@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>예매내역</title>
 <style type="text/css">
-    /* gg */
+    
     .rev_book{
     	font-size: 50px;
     	font-align: center;
