@@ -24,5 +24,5 @@ public interface BookService {
 	Ocean_bookVO waterpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
 
 	Ocean_bookVO allpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
-	void payCancle(String token,String merchant_uid,String reason, String type, String amount) throws Exception;
+	String payCancle(String token,String merchant_uid,String reason, String type, String amount) throws Exception;
 }
