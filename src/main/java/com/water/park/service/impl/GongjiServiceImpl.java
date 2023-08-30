@@ -58,23 +58,14 @@ public class GongjiServiceImpl implements GongjiService {
 		return gongjidao.getList(page, page2);
 	}
 
-	//공지 검색
+	// 공지 검색
 	@Override
-	public int getFilterTotal(String gongjiFilter, String gongjiSearch2) {
-		return gongjidao.getFilterTotal(gongjiFilter, gongjiSearch2);
+	public int getFilterTotal(String gongjiFilter, String gongjiSearch) {
+	    return gongjidao.getFilterTotal(gongjiFilter, gongjiSearch);
 	}
 
 	@Override
 	public ArrayList<GongjiVO> getFilterList(String gongjiFilter, String gongjiSearch2, int page, int page2) {
-		ArrayList<GongjiVO> gvo = new ArrayList<GongjiVO>();
-		if(gongjiFilter.equals("g_content")) {
-			// 내용검색 매퍼
-			gvo=gongjidao.getFilterList_c(gongjiSearch2, page, page2);
-		}else {
-			// 디폴트 . 타이플 검색 매퍼
-			gvo=gongjidao.getFilterList_t(gongjiSearch2, page, page2);
-		}
-		return gvo;
+	    return gongjidao.getFilterList(gongjiFilter, gongjiSearch2, page, page2);
 	}
-
 }

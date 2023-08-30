@@ -284,4 +284,15 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<MemberVO> getList2(int page3, int page4) throws Exception {
 		return memberdao.getList2(page3, page4);
 	}
+	
+	// 회원 조회 (페이징)
+	@Override
+	public int getFilterTotal(String memberFilter, String memberSearch) {
+	    return memberdao.getFilterTotal(memberFilter, memberSearch);
+	}
+
+	@Override
+	public ArrayList<MemberVO> getFilterList(String memberFilter, String memberSearch2, int page3, int page4) {
+	    return memberdao.getFilterList(memberFilter, memberSearch2, page3, page4);
+	}
 }
