@@ -30,7 +30,16 @@ public class BookVO {
 	private String cancel_reason; // 취소사유
 	private String cancelled_at; // 취소시각  
 	private String fail_reason;	// 실패사유
-	
+	private int totpage;
+
+
+	public int getTotpage() {
+		return totpage;
+	}
+
+	public void setTotpage(int totpage) {
+		this.totpage = totpage;
+	}
 
 	public BookVO(String merchant_uid, int price, String pg_provider,int apply_num,int cancel_amount, String buyer_email, String buyer_name, String buyer_tel,String channel, String card_name,
 			String card_num, String pay_date, String re_type, String state, 

@@ -11,7 +11,7 @@ import com.water.park.vo.Package_bookVO;
 
 public interface BookService {
 	ArrayList<BookVO> getAllBook()     throws Exception;
-	ArrayList<BookVO> paymentAll(String token,String state,String search,String query)     throws Exception;
+	ArrayList<BookVO> paymentAll(String token, String status, String search, String query,int sItem, int eItem)     throws Exception;
 	ArrayList<BookVO> Booked_date(String indate, String outdate) throws Exception;
 	BookVO rebook(HttpServletRequest rq,String indate, String outdate,String reType, int price) throws Exception;
 
@@ -24,4 +24,5 @@ public interface BookService {
 	Ocean_bookVO waterpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
 
 	Ocean_bookVO allpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
+	void payCancle(String token,String merchant_uid,String reason, String type, String amount) throws Exception;
 }

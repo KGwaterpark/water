@@ -2,49 +2,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script>
-function convertToStars(score) {
-    let fullStars = Math.floor(score); // Calculate the number of full stars
-    let remainder = score - fullStars; // Calculate the decimal part
 
-    let starString = '';
-
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-      starString += '&#9733; '; // Filled star character
-    }
-
-    // Half star (if the decimal part is greater than or equal to 0.5)
-    if (remainder >= 0.5) {
-      starString += ' &#9733; '; // Half-filled star character (★½)
-    } else if (remainder > 0) {
-      // Less than half star, fill with empty star
-      starString += '&#189; '; // Empty star character (½)
-    }
-
-    // Empty stars
-    for (let i = 0; i < 5 - Math.ceil(score); i++) {
-      starString += '☆ '; // Empty star character (☆)
-    }
-
-    return starString;
-  }
-</script>
 
 <!DOCTYPE html>
 <html>
-
+<script>
+function convertToStars(score) {
+    let percentage = (score / 4) * 100; // 점수를 백분율로 변환
+    let filledStars = Math.floor((percentage / 100) * 4); // 총 5개 별 중에서 몇 개의 별이 채워질지 계산
+    let remainingPercentage = (percentage / 100) * 4 - filledStars; // 남은 백분율로 얼마나 채워질지 계산
+    
+    let starsHTML = '';
+    
+    // 채워진 별 추가
+    for (let i = 0; i < filledStars; i++) {
+        starsHTML += '<i class="fa fa-star"></i> ';
+    }
+    
+    // 0.1 단위로 반 별 추가 (만약 남은 백분율이 0.1 이상이면)
+    if (remainingPercentage >= 0.1) {
+        starsHTML += '<i class="fa fa-star-half"></i> ';
+    }
+    // 0.1 단위로 빈 별 추가해서 총 5개로 완성
+    for (let i = filledStars + (remainingPercentage >= 0.1 ? 1 : 0); i < 5; i++) {
+        starsHTML += '<i class="fa fa-star-o"></i> ';
+    }
+    
+    return starsHTML;
+}
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style type="text/css">
     
     .info {
         border: 1px solid #ccc; 
         padding: 10px; 
         margin-bottom: 20px; 
-        font-size: 18px;
-        background: #B0F7FF;
+
+           font-size:30px;
+    border: 5px solid transparent; /* 선의 두께를 5px로 설정 */
+  border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png")round;
+  border-image-slice: 30;
+  overflow: hidden;
+  background: #F0FFF0;
+
+
     }
 
     .review {
@@ -94,9 +100,13 @@ font-weight: bold;
   
   }
   
-  .score1{
-    color: gold;
-  }
+    .fa-star  {
+        color: gold; /* 별 아이콘의 색상을 gold로 설정 */
+    }
+    .fa-star-half  {
+        color: gold; /* 별 아이콘의 색상을 gold로 설정 */
+    }
+
   
 </style>
 
@@ -121,9 +131,7 @@ font-weight: bold;
         <div class="info">
             <div>
                 ${water.m_id}
-                <script>
-                    document.write(convertToStars(${water.rev_score}));
-                </script>
+           
                 ${water.rev_date}
             </div>
 
@@ -145,14 +153,19 @@ font-weight: bold;
         </c:otherwise>
     </c:choose>
     
-        <div class="score">
-            <p>총평점</p>
-            <span class="score1">
-            <script>
-                document.write(convertToStars(${averageScore}));
-            </script>
-            </span>
-        </div>
+<div class="score">
+    <span>평점</span>
+    <span class="score1">
+        <script>
+            let averageScore = ${averageScore}; // JSP 변수를 가져옴
+            let starsHTML = convertToStars(averageScore);
+            
+            document.write(starsHTML);
+
+            document.write(" " + averageScore.toFixed(1) + "점"); // 소수 둘째 자리에서 반올림한 점수를 출력
+        </script>
+    </span>
+</div>
 
  
 </section>

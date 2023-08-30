@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.water.park.vo.GongjiVO;
 import com.water.park.vo.MemberVO;
 
 public interface MemberDAO {
@@ -25,6 +26,11 @@ public interface MemberDAO {
 	MemberVO memberGet(String m_id);
 	
 	String getMId(@Param("name") String name, @Param("tel") String tel);
+
+	//회원조회 (페이징)
+	int getTotalCount2();
+	
+	ArrayList<MemberVO> getList2(@Param("page3") int page3, @Param("page4") int page4);
 
 	
 }
