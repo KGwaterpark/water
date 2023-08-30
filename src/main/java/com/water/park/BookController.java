@@ -218,7 +218,9 @@ public class BookController {
  	}
  	
  	// 결제 취소
- 	@RequestMapping("/payCancle.do")
+ 	
+ 	@RequestMapping(value = "/payCancle.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+ 	@ResponseBody
  	public  String payCancle( Model model,
  			 @RequestParam("merchant_uid") String merchant_uid,
  			 @RequestParam("reason") String reason, 
@@ -227,8 +229,9 @@ public class BookController {
  		
  		amount = (amount == null) ? "" : amount;
  		String token = memberService.getToken();
- 		bookService.payCancle(token,merchant_uid,reason,type,amount);
- 		return "redirect:paymentAll.do";
+ 		String msg = bookService.payCancle(token,merchant_uid,reason,type,amount);
+ 		System.out.println(msg);
+ 		return msg;
  	}
  	
  	

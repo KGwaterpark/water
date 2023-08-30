@@ -259,9 +259,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public void payCancle(String token, String merchant_uid, String reason, String type, String amount) throws Exception {
+	public String payCancle(String token, String merchant_uid, String reason, String type, String amount) throws Exception {
 		String baseUrl = "https://api.iamport.kr/payments/cancel";
-		String msg = "";
 		URL url2 = new URL(baseUrl);
 		HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
 		
@@ -298,6 +297,15 @@ public class BookServiceImpl implements BookService {
 		br.close();
 		String responseBody = response.toString();
 		System.out.println("결제 취소 응답: " + StringEscapeUtils.unescapeJava(responseBody));
+	    JSONObject jsonResponse = new JSONObject(responseBody);
+	    String msg = "";
+	    if (jsonResponse.isNull("message") && jsonResponse.getInt("code") == 0) {
+	        msg = "성공적으로 환불/취소 되었습니다.";
+	    } else if (!jsonResponse.isNull("message")) {
+	        msg = jsonResponse.getString("message");
+	    }
+		
+		return msg;
 	}
 
 }

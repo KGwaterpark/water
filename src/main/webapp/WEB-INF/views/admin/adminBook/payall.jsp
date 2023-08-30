@@ -64,7 +64,7 @@
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 300px;
 }
  .blue-text {
     background: #46D2D2;
@@ -96,6 +96,10 @@ li {
 .pagination li.active a {
    color: black;
    font-weight: bold;
+   }
+ #amountText{
+ 	width:100px;
+ }
 </style>
 
 <body>
@@ -162,7 +166,7 @@ li {
     <div class="modal-content">
         <span class="close">&times;</span>
         <h1>결제 취소</h1><hr>
-        <form action="payCancle.do">
+        <form action="payCancle.do" id="cancleForm">
         환불 사유 <br><textarea rows="10" cols="40" name="reason" placeholder="관리자페이지취소.">관리자페이지취소.</textarea><br><br>
         결제 취소 및 환불처리 <br>
         <input type="radio" name="type" value="all" id="fullRadio" checked="checked"> 전액 취소
@@ -170,7 +174,7 @@ li {
         <input type="text" name="amount" id="amountText" value="" disabled>
 		<input type="hidden" name="merchant_uid" id="merchant_uid" value="">
 		<br><br><hr>
-		<input type=button value="아니요. 그냥 두겠습니다.">
+		<input type=button value="아니요. 그냥 두겠습니다." onclick="closeModal()">
 		<input type="submit" value="네. 취소해주세요.">
         </form>
     </div>
@@ -237,6 +241,7 @@ li {
  // 모달 닫기
  function closeModal() {
      document.getElementById("cancleMd").style.display = "none";
+     location.reload(); 
  }
 
  // 모달 닫기 버튼에 클릭 이벤트 추가
@@ -333,7 +338,32 @@ li {
       });
   });
   /* ================================================= */
-  
+    $(document).ready(function () {
+            // 폼이 제출되었을 때
+            $('#cancleForm').submit(function (e) {
+                e.preventDefault(); // 기본 제출 동작 막기
+
+
+                // 폼 데이터를 직렬화
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST', 
+                    url: "payCancle.do",
+                    data: formData,
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    dataType: 'text',
+                    success: function (response) {
+                        alert(response);
+                        closeModal()
+                    },
+                    error: function () {
+                        // AJAX 요청이 실패한 경우 오류 메시지를 표시
+                        alert('요청 실패');
+                    }
+                });
+            });
+        });
  
 </script>
 </html>
