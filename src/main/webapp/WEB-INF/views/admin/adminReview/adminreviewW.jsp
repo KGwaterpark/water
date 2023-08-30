@@ -42,6 +42,7 @@ function convertToStars(score) {
         border: 1px solid #ccc; 
         padding: 10px; 
         margin-bottom: 20px; 
+
      
             font-size:30px;
     border: 5px solid transparent; /* 선의 두께를 5px로 설정 */
@@ -50,6 +51,7 @@ function convertToStars(score) {
   overflow: hidden;
   background: #F0FFF0;
         
+
     }
 
     .review {

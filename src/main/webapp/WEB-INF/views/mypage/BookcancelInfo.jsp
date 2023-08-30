@@ -20,17 +20,20 @@
     }
     
     
-    .bababa{
+     .bababa{
     font-size:30px;
-	 border: 5px solid transparent; /* 선의 두께를 5px로 설정 */
+	 border: 5px solid transparent; 
   border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png")round;
   border-image-slice: 30;
   overflow: hidden;
+  background:#B0F7FF;
 
 }
 
+
+
 	.bababa span{
-	color:green;
+	color:#323C73;
 	font-weight: bold;}
 </style>
 </head>
