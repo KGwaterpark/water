@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>예매내역</title>
     <style type="text/css">
+      * {
+  text-decoration: none;
+    color: inherit; /* 링크의 색상 제거 */
+}
         .rev_book {
             font-size: 50px;
             text-align: center;
@@ -48,7 +52,7 @@
             color: #fff;
         }
         #Tbal{
-	width:1200px;
+	width:100%;
 	font-size: 30px;
 	height:50px;
 }
@@ -65,6 +69,7 @@ background: #888;
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- 필요한 라이브러리와 스타일시트를 추가 -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -94,19 +99,32 @@ background: #888;
             <th>아이인원</th>
             <th>총인원</th>
             <th>아이디</th>
-        </tr>
-    </thead>
+        </tr> 
+    </thead> 
     <tbody>
         <c:forEach var="ocean" items="${oceanlist}">
             <tr align="center">
-                <td>${ocean.state eq 'Y' ? '예약' : '예약취소'}</td>
-                <td><a href="oc_sangseA.do?ocbook_id=${ocean.ocbook_id}">${ocean.ocbook_id}</a></td>
-                <td>${ocean.type}</td>
-                <td>${ocean.oc_date}</td>
-                <td>${ocean.adult_cnt}</td>
-                <td>${ocean.child_cnt}</td>
-                <td>${ocean.tot_cnt}</td>
-                <td>${ocean.m_id}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.state eq 'Y' ? '예약' : '예약취소'}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.ocbook_id}</a></td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.type}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.oc_date}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.adult_cnt}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.child_cnt}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'">${ocean.tot_cnt}</td>
+                <td style="cursor:pointer;" onClick="location.href='oc_sangseA.do?ocbook_id=${ocean.ocbook_id}'"><c:set var="naverid" value="${fn:split(ocean.m_id, ',')}" />
+           <c:forEach var="str" items="${naverid}">
+							<c:choose>
+								<c:when test="${fn:contains(str, 'NAVER')}">
+									<c:set var="id" value="${fn:substring(str, 0, 7)}" />
+									<a href="memberGet.do?m_id=${str}"><c:out value="${id}" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href="memberGet.do?m_id=${str}"><c:out value="${str}" /></a>
+								</c:otherwise>
+							</c:choose>
+							<br />
+						</c:forEach>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

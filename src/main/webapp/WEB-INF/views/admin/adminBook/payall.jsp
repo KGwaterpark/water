@@ -64,7 +64,7 @@
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 100%;
 }
  .blue-text {
     background: #46D2D2;
