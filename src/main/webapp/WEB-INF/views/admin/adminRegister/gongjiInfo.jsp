@@ -13,7 +13,7 @@
   <style >
   
   .table-fill2{
-width: 1380px;
+width: 100%;
 
 }
 </style>
