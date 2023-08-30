@@ -43,6 +43,10 @@ li {
 	color: black;
 	font-weight: bold;
 }
+
+.adminth{
+width:100%;
+}
 </style>
 
 </head>

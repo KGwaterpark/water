@@ -155,7 +155,7 @@ public class BookServiceImpl implements BookService {
 			// 인증 정보 출력
 			JSONObject jsonResponse = new JSONObject(response.toString());
 			JSONArray paymentArray = jsonResponse.getJSONObject("response").getJSONArray("list");
-			 BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Hojin/txt/insert.txt"));
+//			 BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Hojin/txt/insert.txt"));
 			for (int i = 0; i < paymentArray.length(); i++) {
 				JSONObject paymentObj = paymentArray.getJSONObject(i);
 				String merchant_uid = paymentObj.getString("merchant_uid");
