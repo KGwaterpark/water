@@ -41,5 +41,10 @@ public interface MemberService {
 	int getTotalCount2();
 	
 	ArrayList<MemberVO> getList2(int page3, int page4) throws Exception;
+	
+	//회원 검색 (페이징)
+	int getFilterTotal(String memberFilter, String memberSearch);
+
+	ArrayList<MemberVO> getFilterList(String memberFilter, String memberSearch2, int page3, int page4);
 
 }

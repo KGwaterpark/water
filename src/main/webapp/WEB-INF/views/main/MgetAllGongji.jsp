@@ -38,7 +38,7 @@ li {
 	<table class="g-table">
 		<tr></tr>
 		<tr>
-			<td><h1 style="font-size:50px;">공지사항</h1></td>
+			<td><h1 style="font-size: 50px;">공지사항</h1></td>
 		</tr>
 		<tr></tr>
 		<tr class="gt-td">
@@ -82,6 +82,8 @@ li {
 						href="MgongjiGet.do?g_id=${gongji.g_id}">
 							${fn:substring(gongji.g_content, 0, 20)}${fn:length(gongji.g_content) > 20 ? '...' : ''}
 					</a></td>
+					<input type="hidden" value="${gongji.g_id}" name="g_id">
+					
 				</tr>
 				<input type="hidden" value="${gongji.g_id}" name="g_id">
 
@@ -96,7 +98,7 @@ li {
 		}
 	</script>
 	<table>
-	<tr></tr>
+		<tr></tr>
 		<td width=500></td>
 		<td>
 			<ul class="pagination">

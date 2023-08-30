@@ -74,7 +74,7 @@
 	</select>
 
 	 <!-- 공지 검색한내용  -->
-	<select id="getFilterList" resultType="GongjiVO">
+<!-- 	<select id="getFilterList" resultType="GongjiVO">
 		SELECT *
 		FROM (SELECT t.*, ROWNUM AS rnum FROM ( SELECT * FROM gongji
 		<where>
@@ -83,6 +83,20 @@
 			<if test="gongjiFilter == 'g_content'"> AND UPPER(g_content) LIKE #{gongjiSearch}
 			</if>
 		</where>
+		ORDER BY g_id ASC)t WHERE <![CDATA[ROWNUM <= #{page2}]]>)
+		WHERE <![CDATA[rnum >= #{page}]]>
+	</select>  -->
+	<select id="getFilterList_t" resultType="GongjiVO">
+		SELECT *
+		FROM (SELECT t.*, ROWNUM AS rnum FROM ( SELECT * FROM gongji
+		 AND UPPER(g_title) LIKE #{gongjiSearch2}
+		ORDER BY g_id ASC)t WHERE <![CDATA[ROWNUM <= #{page2}]]>)
+		WHERE <![CDATA[rnum >= #{page}]]>
+	</select> 
+	<select id="getFilterList_c" resultType="GongjiVO">
+		SELECT *
+		FROM (SELECT t.*, ROWNUM AS rnum FROM ( SELECT * FROM gongji
+		 AND UPPER(g_content) LIKE #{gongjiSearch2}
 		ORDER BY g_id ASC)t WHERE <![CDATA[ROWNUM <= #{page2}]]>)
 		WHERE <![CDATA[rnum >= #{page}]]>
 	</select> 

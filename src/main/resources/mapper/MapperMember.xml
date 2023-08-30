@@ -93,5 +93,38 @@
 		WHERE <![CDATA[ROWNUM <= #{page4}]]>)
 		WHERE <![CDATA[rnum >= #{page3}]]>
 	</select>
+	
+		<!-- 멤버 검색 총 갯수 -->
+	<select id="getFilterTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM member
+		<where>
+			<if test="memberFilter == 'm_id'">
+				AND UPPER(m_id) like #{memberSearch}
+			</if>
+			<if test="memberFilter == 'm_name'">
+				AND UPPER(m_name) like #{memberSearch}
+			</if>
+		</where>
+	</select>
+
+	<!-- 멤버 검색한내용 -->
+	<select id="getFilterList" resultType="MemberVO">
+		SELECT *
+		FROM (SELECT t.*, ROWNUM AS rnum FROM ( SELECT
+		M_id,M_pw,M_tel,M_name,M_email,M_birth,M_gender,
+		FLOOR(MONTHS_BETWEEN(SYSDATE, m_birth) / 12) AS m_age
+		FROM member
+		<where>
+			<if test="memberFilter == 'm_id'">
+				AND UPPER(m_id) LIKE #{memberSearch2}
+			</if>
+			<if test="memberFilter == 'm_name'">
+				AND UPPER(m_name) LIKE #{memberSearch2}
+			</if>
+		</where>
+		ORDER BY m_id ASC)t WHERE <![CDATA[ROWNUM <= #{page4}]]>)
+		WHERE <![CDATA[rnum >= #{page3}]]>
+	</select>
 
 </mapper>

@@ -10,6 +10,8 @@
 <title>공지사항 리스트</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/gongji.css" />
 </head>
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/img/favicon.ico">
@@ -35,11 +37,32 @@ li {
 	font-weight: bold;
 }
 </style>
-<body>
+<body class="mgongji-body">
 
-
-	<h1>공지사항 리스트</h1>
-
+	<table class="g-table">
+		<tr></tr>
+		<tr>
+			<td><h1 style="font-size:50px;">공지사항 리스트</h1></td>
+		</tr>
+		<tr></tr>
+		<tr class="gt-td">
+			<td width="945" class="gt-td"></td>
+			<td class="gt-td">
+				<div class="g-Filter">
+					<!-- 공지검색 -->
+					<form
+						action="${pageContext.request.contextPath}/gongjiPageFilter2.do"
+						method="get">
+						<select name="gongjiFilter">
+							<option value="g_title">제목</option>
+							<option value="g_content">내용</option>
+						</select> <input type="text" name="gongjiSearch" placeholder="검색어를 입력해주세요.">
+						<input type="submit" value="검색">
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
 
 	<table class="table-fill">
 		<thead class="adminth">

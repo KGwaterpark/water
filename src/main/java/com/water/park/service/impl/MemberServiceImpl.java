@@ -5,7 +5,12 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import javax.servlet.jsp.HttpJspPage;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -207,11 +212,29 @@ public class MemberServiceImpl implements MemberService {
 			String name = responseObj2.getString("name");
 			String phone = responseObj2.getString("mobile");
 			String email = responseObj2.getString("email");
+			String birthyear = responseObj2.getString("birthyear");
+			String birthday = responseObj2.getString("birthday");
+			String gender = responseObj2.getString("gender");
+
+			if (gender.equals("M")) {
+				gender = "남자";
+			} else {
+				gender = "여자";
+			}
+			LocalDate birthDate = LocalDate.parse(birthyear + "-" + birthday, DateTimeFormatter.ISO_LOCAL_DATE);
+			LocalDate currentDate = LocalDate.now();
+
+			Period period = Period.between(birthDate, currentDate);
+			int age = period.getYears();
+
 			mvo.setM_name(name);
-			mvo.setM_id("NAVER" + id);
+			mvo.setM_birth(birthyear+"-"+birthday);
+			mvo.setM_gender(gender);
 			mvo.setM_email(email);
-			mvo.setM_tel(phone);
+			mvo.setM_id("NAVER"+id);
 			mvo.setM_pw("NaverSns");
+			mvo.setM_tel(phone);
+			mvo.setM_tel(phone);
 			int telch = memberdao.telCheck(phone);
 			if (mvo != null && telch <= 0) { // 신규 회원일경우
 				memberdao.insertMember(mvo);
@@ -249,16 +272,27 @@ public class MemberServiceImpl implements MemberService {
 		String m_id = memberdao.getMId(name, tel);
 		return m_id;
 	}
-	
-	//회원조회(페이징)
+
+	// 회원조회(페이징)
 	@Override
 	public int getTotalCount2() {
 		return memberdao.getTotalCount2();
 	}
-	
+
 	@Override
 	@Transactional
 	public ArrayList<MemberVO> getList2(int page3, int page4) throws Exception {
 		return memberdao.getList2(page3, page4);
+	}
+	
+	// 회원 조회 (페이징)
+	@Override
+	public int getFilterTotal(String memberFilter, String memberSearch) {
+	    return memberdao.getFilterTotal(memberFilter, memberSearch);
+	}
+
+	@Override
+	public ArrayList<MemberVO> getFilterList(String memberFilter, String memberSearch2, int page3, int page4) {
+	    return memberdao.getFilterList(memberFilter, memberSearch2, page3, page4);
 	}
 }
