@@ -22,15 +22,16 @@
     
     .bababa{
     font-size:30px;
-	 border: 5px solid transparent; /* 선의 두께를 5px로 설정 */
+	 border: 5px solid transparent; 
   border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png")round;
   border-image-slice: 30;
   overflow: hidden;
+  background:#B0F7FF;
 
 }
 
 	.bababa span{
-	color:green;
+	color:#323C73;
 	font-weight: bold;}
 </style>
 </head>
@@ -57,7 +58,7 @@
 		<button class="bababa" id = "sangsese" onclick="location.href='oc_sangse.do?ocbook_id= ${ocean.ocbook_id}'">
      <table>
 	<tr>
-		<td >예약</td><td> : </td><td><span> ${ocean.state eq 'Y' ? '예약' : '예약취소'} </span></td>
+		<td >예약상태</td><td> : </td><td><span> ${ocean.state eq 'Y' ? '예약' : '예약취소'} </span></td>
 		<td >예약번호</td><td> : </td><td><span> ${ocean.ocbook_id} </span></td>
 		<td >예약일</td><td> : </td><td><span> ${ocean.oc_date }</span></td>
 		<td >인원수</td><td> : </td><td><span> ${ocean.adult_cnt}명</span></td>

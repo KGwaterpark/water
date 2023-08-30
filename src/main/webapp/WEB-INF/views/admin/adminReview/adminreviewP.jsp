@@ -44,6 +44,7 @@ function convertToStars(score) {
         padding: 10px; 
         margin-bottom: 20px; 
         font-size: 18px;
+        background: #B0F7FF;
     }
 
     .review {

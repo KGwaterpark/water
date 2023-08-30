@@ -86,6 +86,16 @@ function convertToStars(score) {
   .review-content a {
     margin-bottom: 100px; 
   }
+   #bababa{
+    font-size:30px;
+	 border: 5px solid transparent; 
+  border-image: url("${pageContext.request.contextPath }/resources/img/wavebox.png")round;
+  border-image-slice: 30;
+  overflow: hidden;
+  background:#B0F7FF;
+
+}
+
 </style>
 
 </head>
@@ -104,7 +114,7 @@ function convertToStars(score) {
 
       <c:forEach var="rev" items="${revlist}">
          <c:if test="${rev.m_id eq m_id}">
-          <div class="info">
+          <div class="info"id="bababa">
             <div>
                   		${rev.type}
                   <script>

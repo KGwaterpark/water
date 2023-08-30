@@ -140,7 +140,7 @@ box-shadow:1px 2px 10px rgba(0,0,0, .1);
         <li class="sidropdown"><a href="#" >결제 내역<span>&rsaquo;</span></a>
           	<ul> 
           		 <li><a href="#" onclick="loadPage('<%=infodo%>')">예매내역</a></li>
-           		 <li><a href="#" onclick="loadPage('<%=cancelinfodo%>')">취소</a></li>
+           		 <li><a href="#" onclick="loadPage('<%=cancelinfodo%>')">취소내역</a></li>
         	</ul>
         </li>	
         <li class="sidropdown"><a href="#">작성글<span>&rsaquo;</span></a>
