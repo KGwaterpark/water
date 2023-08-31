@@ -13,7 +13,7 @@ public class Package_bookVO {
 	private int price;
 	
 	
-	
+	//워터파크 패키지
 	public Package_bookVO(int pabook_id, String m_id, String p_type, int book_cnt, String use_date, int price) {
 		super();
 		this.pabook_id = pabook_id;
@@ -24,7 +24,7 @@ public class Package_bookVO {
 		this.price = price;
 	}
 
-
+	//프리미엄 패키지, 리조트 패키지
 	public Package_bookVO(int pabook_id, String m_id, String p_type, int rebook_id, String book_date, int book_cnt,
 			String use_date, String state, int price) {
 		super();

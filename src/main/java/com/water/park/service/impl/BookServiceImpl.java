@@ -64,14 +64,12 @@ public class BookServiceImpl implements BookService {
 			resort_bookVO.setRe_type2("s_stand");
 		}else if(resort_bookVO.getRe_type2().equals("스위트 프리미엄")) {
 			resort_bookVO.setRe_type2("s_prem");
+		}else {
+			resort_bookVO.setRe_type2("팬트하우스");
 		}
 		bookdao.insertresort_book(resort_bookVO);
 	}
 
-	@Override
-	public void insertbook(Package_bookVO package_bookVO) {
-		bookdao.insertpackage_book(package_bookVO);
-	}
 	
 	// 워터파크 예약 정보를 세션에 저장
 	@Override
@@ -90,33 +88,89 @@ public class BookServiceImpl implements BookService {
 
 
 
-	// 워터파트 패키지 예약 정보를 세션에 저장
+	
+
+	//pabook DB에 워터파크 패키지 저장
 	@Override
-	public Ocean_bookVO waterpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price) {
+	public Package_bookVO waterpackbook2(HttpServletRequest rq, int adultsCount, String indate, int ocpack_price , String outdate) {
 		HttpSession session = rq.getSession();
 		MemberVO mvo=(MemberVO) session.getAttribute("loginsession");
 		long currentTime =new Date().getTime();
-		int ocbook_id= (int)currentTime;
-		Ocean_bookVO ovo= new Ocean_bookVO(ocbook_id,mvo.getM_id(),"실내락커",indate2,adultsCount,0,ocean_price);
-		// TODO Auto-generated method stub
-		session.setAttribute("ocean_vo", ovo);
-		return ovo;
+		int pabook_id= (int)currentTime;
+		Package_bookVO pvo = new Package_bookVO(pabook_id, mvo.getM_id(),"실내락커",pabook_id,"sysdate",adultsCount,indate,"Y",ocpack_price);
+		BookVO bvo = new BookVO("팬트하우스",pabook_id,mvo.getM_id(),indate,outdate,ocpack_price,"sysdate","Y");
+		session.setAttribute("pabook_vo", pvo);
+		session.setAttribute("book_vo", bvo);
+		return pvo;
+	}
+	  @Override 
+	  public Package_bookVO resortpackbook(HttpServletRequest rq, String re_type, int adultsCount, String indate,String outdate, int repack_price) {
+		HttpSession session = rq.getSession(); 
+		MemberVO mvo=(MemberVO) session.getAttribute("loginsession"); 
+		long currentTime =new Date().getTime();
+		int pabook_id= (int)currentTime; Package_bookVO pvo = new
+		Package_bookVO(pabook_id,mvo.getM_id(),re_type,pabook_id,"sysdate",adultsCount,indate,"Y",repack_price); 
+		BookVO bvo = new BookVO(re_type,pabook_id,mvo.getM_id(),indate,outdate,repack_price,"sysdate","Y");
+		session.setAttribute("pabook_vo", pvo);
+		session.setAttribute("book_vo", bvo);
+		return pvo;
+	}
+	  @Override 
+	  public Package_bookVO allpackbook2(HttpServletRequest rq, int adultsCount, String indate, int allpack_price,String outdate) { 
+		  HttpSession session = rq.getSession(); 
+		  MemberVO mvo=(MemberVO) session.getAttribute("loginsession"); 
+		  long currentTime =new Date().getTime();
+		  int pabook_id= (int)currentTime; 
+		  Package_bookVO pvo = new Package_bookVO(pabook_id,mvo.getM_id(),"팬트하우스",pabook_id,"sysdate",adultsCount,indate,"Y",allpack_price);
+		  BookVO bvo = new BookVO("팬트하우스",pabook_id,mvo.getM_id(),indate,outdate,allpack_price,"sysdate","Y");
+		  session.setAttribute("pabook_vo", pvo);
+		  session.setAttribute("book_vo", bvo);
+		  return pvo; 
+		  }
+
+	  
+	  @Override
+	  public void insertresortpackbook(Package_bookVO package_bookVO, BookVO resort_bookVO) {
+	      bookdao.insertresortpack_book(package_bookVO);
+	      bookdao.insertresort_book(resort_bookVO);
+	  }
+
+
+
+	@Override
+	public void insertallpackbook(Package_bookVO package_bookVO) {
+		bookdao.insertallpack_book(package_bookVO);
+		
+	}
+
+	@Override
+	public void insertwaterpackbook(Package_bookVO package_bookVO) {
+		bookdao.insertallpack_book(package_bookVO);
+		
+	}
+
+
+
+	@Override
+	public void insertbook(Package_bookVO package_bookVO,BookVO bookvo) {
+		if(package_bookVO.getP_type().equals("실내락커")) {
+			bookdao.insertwaterpack_book(package_bookVO);
+		}else if(package_bookVO.getP_type().equals("팬트하우스")) {
+			bookdao.insertallpack_book(package_bookVO);
+			System.out.println("ㅇㅇ22ㅇ");
+		}else {
+			bookdao.insertresort_book(bookvo);
+			bookdao.insertresortpack_book(package_bookVO);
+		}
+		
 	}
 
 
 
 
-	// 올패키지 예약정보를 세션에 저장
-	@Override
-	public Ocean_bookVO allpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price) {
-		HttpSession session = rq.getSession();
-		MemberVO mvo=(MemberVO) session.getAttribute("loginsession");
-		long currentTime =new Date().getTime();
-		int ocbook_id= (int)currentTime;
-		Ocean_bookVO ovo= new Ocean_bookVO(ocbook_id,mvo.getM_id(),"팬트하우스",indate2,adultsCount,0,ocean_price);
-		session.setAttribute("ocean_vo", ovo);
-		return ovo;
-	}
-	
-	
+
+
+	 
 }
+	
+

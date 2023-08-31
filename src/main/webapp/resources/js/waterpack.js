@@ -13,11 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			alert("날짜를 선택해 주세요");
 	}else{
 		url = 'waterpackpay.do?'+'indate2='+ indate2 +'&adultsCount=' + adultsCount
-				+'&ocean_price='+ ocean_price;
+				+'&ocean_price='+ ocean_price+'&outdate='+outdate;
 		indate2===null;
-		//console.log(totprice);
-		//console.log(indate2);
-		//console.log(adultsCount);
 		location.href=url;
 	}
 }
@@ -78,6 +75,14 @@ ocean_price=totalPrice;
       updateSelectedDates1(selectedDate);
      indate2=selectedDate;
       $("#selectedDatesInfo").text(selectedDate);
+      const out = new Date(selectedDate);
+    out.setDate(out.getDate() + 1);
+    var year1 = out.getFullYear();
+   var month1 = String(out.getMonth() + 1).padStart(2, '0');
+   var day1 = String(out.getDate()).padStart(2, '0');
+   outdate= year1 + '-' + month1 + '-' + day1;
+   
+    
     }
   });
 

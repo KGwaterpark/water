@@ -43,27 +43,43 @@ public class BookController {
 		 	
 		return "book/oc_payment";
 	}
+   
 	@RequestMapping("/waterpackpay.do")
 	public String waterpackpay(HttpServletRequest rq,
-			 @RequestParam("indate2") String indate2,
 			 @RequestParam("adultsCount") int adultsCount ,
-			 @RequestParam("ocean_price") int ocean_price) {
+			 @RequestParam("indate2") String indate2,
+			 @RequestParam("ocean_price") int ocean_price, 
+			 @RequestParam("outdate") String outdate){ 
 			
-		bookService.waterpackbook(rq,indate2,adultsCount,ocean_price);
 		
-		return "book/oc_payment";
+		bookService.waterpackbook2(rq,adultsCount,indate2,ocean_price, outdate);
+		
+		return "book/ocpack_payment";
 }	 
 		@RequestMapping("/allpackpay.do")
 		public String allpackpay(HttpServletRequest rq,
-				@RequestParam("indate2") String indate2,
+				@RequestParam("indate2") String indate,
 				 @RequestParam("adultsCount") int adultsCount ,
-				 @RequestParam("ocean_price") int ocean_price) {
+				 @RequestParam("ocean_price") int allpack_price,
+				 @RequestParam("outdate") String outdate){
 			
-			bookService.allpackbook(rq,indate2,adultsCount,ocean_price);
+			bookService.allpackbook2(rq, adultsCount,indate,allpack_price,outdate);
 			
-			return "book/oc_payment";
+			return "book/allpack_payment";
 			
 		}
+		   @RequestMapping("/repackpay.do")
+		    public String repackpay(HttpServletRequest rq, 
+		    		@RequestParam("indate") String indate,   
+		    		@RequestParam("outdate") String outdate,
+		    		@RequestParam("reType") String reType,    
+		    		@RequestParam("price") int price, 
+		    		@RequestParam("adultsCount") int adultsCount){
+		    	bookService.resortpackbook(rq,reType,adultsCount,indate,outdate,price);
+		    	return "book/repack_payment";
+		    }
+		
+	
    //예매 .jsp
     @RequestMapping("/book.do")
     public String BookPage() {
@@ -123,6 +139,7 @@ public class BookController {
     	}
     	return d;
     }
+    
     @RequestMapping("/pay.do")
     public String pay(HttpServletRequest rq, @RequestParam("indate") String indate,   @RequestParam("outdate") String outdate,
         @RequestParam("reType") String reType,    @RequestParam("price") int price ) throws Exception{
@@ -141,24 +158,25 @@ public class BookController {
  	public String insertocean_book(HttpServletRequest request) {
  		HttpSession session = request.getSession();
  		Ocean_bookVO ovo = null;
- 		BookVO rmvo = null;
- 		Package_bookVO pmvo = null;
+ 		BookVO bvo = null;
+ 		Package_bookVO pvo = null;
 
  		if (session.getAttribute("ocean_vo") != null) {
  			ovo = (Ocean_bookVO) session.getAttribute("ocean_vo");
  			bookService.insertbook(ovo);
  			return "book/ocpayfin";
- 		} else if (session.getAttribute("book_vo") != null) {
- 			rmvo = (BookVO) session.getAttribute("book_vo");
- 			System.out.println(rmvo.getCheck_out_date());
- 			System.out.println(rmvo.getCheck_in_date());
- 			bookService.insertbook(rmvo);
- 			return "book/payfin";
- 		} else if (session.getAttribute("pmvo") != null) {
- 			pmvo = (Package_bookVO) session.getAttribute("pmvo");
- 			bookService.insertbook(pmvo);
+ 		} else if (session.getAttribute("pabook_vo") != null) {
+ 			bvo = (BookVO) session.getAttribute("book_vo");
+ 			pvo = (Package_bookVO) session.getAttribute("pabook_vo");
+ 			bookService.insertbook(pvo,bvo);
  			return "book/papayfin";
- 		}else {
+ 		}else if (session.getAttribute("book_vo") != null) {
+ 			bvo = (BookVO) session.getAttribute("book_vo");
+ 			System.out.println(bvo.getCheck_out_date());
+ 			System.out.println(bvo.getCheck_in_date());
+ 			bookService.insertbook(bvo);
+ 			return "book/payfin";
+ 		} else {
  			return "main";
  		}
 

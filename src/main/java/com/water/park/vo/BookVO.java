@@ -127,6 +127,11 @@ public class BookVO {
 		this.RESERVATION_COUNT = rESERVATION_COUNT;
 	}
 
+	public BookVO(int pabook_id, String m_id2, String string, String indate, String outdate, String string2,
+			String string3, int allpack_price) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getRe_type() {
 		return re_type;
 	}

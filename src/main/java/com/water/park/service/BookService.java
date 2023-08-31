@@ -16,11 +16,19 @@ public interface BookService {
 
 	public void insertbook(Ocean_bookVO ocean_bookVO);
 	public void insertbook(BookVO resort_bookVO);
-	public void insertbook(Package_bookVO package_bookVO);
-	
+	public void insertbook(Package_bookVO package_bookVO,BookVO resort_bookVO);
+	public void insertallpackbook(Package_bookVO package_bookVO);
+	public void insertwaterpackbook(Package_bookVO package_bookVO);
+	public void insertresortpackbook( Package_bookVO package_bookVO , BookVO resort_bookVO);
 	Ocean_bookVO oceanbook(HttpServletRequest rq,  String selectedLocker,String indate2, int adultsCount,int teenagersCounts,int ocean_price) throws Exception;
 
-	Ocean_bookVO waterpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
 
-	Ocean_bookVO allpackbook(HttpServletRequest rq, String indate2, int adultsCount, int ocean_price);
+	Package_bookVO waterpackbook2(HttpServletRequest rq, int adultsCount, String indate, int ocean_price, String outdate);
+	
+	Package_bookVO resortpackbook(HttpServletRequest rq, String re_type, int adultsCount, String indate,String outdate, int repack_price );
+	
+	Package_bookVO allpackbook2(HttpServletRequest rq, int adultsCount, String indate, int allpack_price, String outdate);
+	
+	
+	
 }
