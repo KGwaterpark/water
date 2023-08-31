@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예매내역</title>
+<title>취소내역</title>
 <style type="text/css">
     
     .rev_book{
@@ -42,10 +42,10 @@
 <header><%@ include file="../header.jsp" %></header> --%>
 <section>
 <div class="rev_book"> 
-			<b class="cont-user-my">${sessionScope.loginsession.m_name}님 예약 내역</b>
+			<b class="cont-user-my">${sessionScope.loginsession.m_name}님 취소 내역</b>
 	</div>
 	<hr>
-	<h3>워터파크 예약 내역</h3>
+	<h3>워터파크 취소 내역</h3>
  <%-- loginsession에서 MemberLogin 객체를 가져옴 --%>
 <c:set var="memberLogin" value="${loginsession}" />
 
@@ -63,7 +63,7 @@
 		<td >예약</td><td> : </td><td><span> ${ocean.state eq 'Y' ? '예약' : '예약취소'} </span></td>
 		<td >예약번호</td><td> : </td><td><span> ${ocean.ocbook_id} </span></td>
 		<td >예약일</td><td> : </td><td><span> ${ocean.oc_date }</span></td>
-		<td >인원수</td><td> : </td><td><span> ${ocean.adult_cnt}명</span></td>
+		<td >인원수</td><td> : </td><td><span> ${ocean.tot_cnt}명</span></td>
 	</tr>
 	</table>
        
@@ -74,7 +74,7 @@
 
 
 	 <hr><br>
-	<h3>리조트예약 내역</h3>
+	<h3>리조트 취소 내역</h3>
 	<c:forEach var="resort" items="${resortlist}">
 
 		<c:if test="${resort.m_id eq m_id && resort.state eq 'N'}">
@@ -92,7 +92,7 @@
 	</c:forEach>
 	
 	<hr><br>
-	<h3>패키지예약 내역</h3>
+	<h3>패키지 취소 내역</h3>
 	<c:forEach var="mypackage" items="${packagelist}">
 
 		<c:if test="${mypackage.m_id eq m_id && mypackage.state eq 'N'}">

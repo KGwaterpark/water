@@ -39,7 +39,7 @@
 				예약타입 : ${ocean_bookVO.type}
 			</div>
 			<div>
-				금액 : ${ocean_bookVO.tot_cnt}
+				금액 : ${ocean_bookVO.price}
 			</div>
 			<div>
 				이용일 : ${ocean_bookVO.oc_date}
@@ -56,6 +56,7 @@
 			<input type="hidden" name="adult_cnt" value="${ocean_bookVO.adult_cnt}">
 			<input type="hidden" name="child_cnt" value="${ocean_bookVO.child_cnt}">
 			<input type="hidden" name="tot_cnt" value="${ocean_bookVO.tot_cnt}">
+			<input type="hidden" name="tot_cnt" value="${ocean_bookVO.price}">
 			<input type="hidden" name="newState" id="newState" value="Y">
 
 			
