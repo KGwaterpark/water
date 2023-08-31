@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
    	  alert("인원을 선택해주세요");
    	} else {
       // 보내야 할 정보 입력
-      url = 'pay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + totalPrice;
+      url = 'repackpay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + totalPrice;
 
       console.log(url);
       location.href = url;
