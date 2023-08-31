@@ -102,7 +102,7 @@
 				<td >예약</td><td> : </td><td><span> ${mypackage.state eq 'Y' ? '예약' : '예약취소'} </span></td>
 				<td >예약번호</td><td> : </td><td><span> ${mypackage.pabook_id} </span></td>
 				<td >예약일</td><td> : </td><td><span> ${mypackage.use_date }</span></td>
-			</tr>
+			</tr> 
 			<tr align ="center"><td colspan = "6">상세정보를 보려면 클릭 하세요</td></tr>
 		</table>	 
 		</button> 

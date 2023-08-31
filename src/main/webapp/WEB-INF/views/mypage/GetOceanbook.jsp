@@ -84,7 +84,7 @@
 
     function formSubmitForReview() {
     	$("#bookForm").attr("action", "rev_getinfoW.do");
-
+ 
         // 쿼리 파라미터로 값을 전달하기 위해 hidden input 필드 값을 설정
         $("#bookForm").append('<input type="hidden" name="type" value="' + '${ocean_bookVO.type}' + '">');
         $("#bookForm").append('<input type="hidden" name="m_id" value="' + '${ocean_bookVO.m_id}' + '">');

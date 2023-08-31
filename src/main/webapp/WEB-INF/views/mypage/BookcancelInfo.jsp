@@ -107,7 +107,7 @@
 		</button> 
 		<br><br>
 	</c:if>
-	</c:forEach>
+	</c:forEach> 
 	
 
 	

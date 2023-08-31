@@ -84,7 +84,7 @@ SET state = #{state}
 WHERE pabook_id = #{pabook_id}
 </update>
 	
-   
+    
    
 
    <select id="getOceanInfo" resultType="Ocean_bookVO">
