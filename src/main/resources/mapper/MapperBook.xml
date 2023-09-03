@@ -35,19 +35,6 @@ WHERE rank = 1
 	VALUES (#{pabook_id},#{m_id},#{p_type},sysdate,#{book_cnt},#{use_date},'Y',#{price})
 </insert>
 
-<insert id="insertwaterpack_book">
-	INSERT INTO pa_book
-	VALUES (#{pabook_id},#{m_id},#{p_type},null,sysdate,#{book_cnt},#{use_date},#{state},#{price})
-</insert>
 
-<insert id="insertresortpack_book">
-	INSERT INTO pa_book
-	VALUES (#{pabook_id},#{m_id},#{p_type},#{rebook_id},sysdate,#{book_cnt},#{use_date},#{state},#{price})
-</insert>
-
-<insert id="insertallpack_book">
-	INSERT INTO pa_book
-	VALUES (#{pabook_id},#{m_id},#{p_type},null,sysdate,#{book_cnt},#{use_date},#{state},#{price})
-</insert>
 
 </mapper>

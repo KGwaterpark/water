@@ -61,7 +61,7 @@
 		<td >예약상태</td><td> : </td><td><span> ${ocean.state eq 'Y' ? '예약' : '예약취소'} </span></td>
 		<td >예약번호</td><td> : </td><td><span> ${ocean.ocbook_id} </span></td>
 		<td >예약일</td><td> : </td><td><span> ${ocean.oc_date }</span></td>
-		<td >인원수</td><td> : </td><td><span> ${ocean.tot_cnt}명</span></td>
+		<td >인원수</td><td> : </td><td><span> ${ocean.adult_cnt+ocean.child_cnt}명</span></td>
 	</tr>
 	<tr align ="center"><td colspan = "9">상세정보를 보려면 클릭 하세요</td></tr>
 	</table>

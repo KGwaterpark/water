@@ -3,7 +3,7 @@
 <mapper namespace="com.water.park.service.dao.Ocean_bookDAO">
 
 	<select id="getAllOceanInfo" resultType="Ocean_bookVO" >
-    SELECT ocbook_id,m_id,type,state,oc_date,adult_cnt,tot_cnt,child_cnt,ocbook_date,price
+    SELECT ocbook_id,m_id,type,state,oc_date,adult_cnt,tot_cnt,child_cnt,ocbook_date
     FROM OCEAN_BOOK
    </select>
    
@@ -25,7 +25,7 @@ FROM PA_BOOK where pabook_id=#{pabook_id}
    
    
    <select id="getBookInfo" resultType="Ocean_bookVO">
-   	SELECT  ocbook_id,m_id,type,state,oc_date,ocbook_date,adult_cnt,tot_cnt,child_cnt,price
+   	SELECT  ocbook_id,m_id,type,state,oc_date,ocbook_date,adult_cnt,tot_cnt,child_cnt
     FROM OCEAN_BOOK where  ocbook_id= #{ocbook_id}
    </select>
    

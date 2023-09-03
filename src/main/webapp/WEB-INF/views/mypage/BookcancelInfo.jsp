@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>취소내역</title>
+<title>예매내역</title>
 <style type="text/css">
     
     .rev_book{
@@ -63,7 +63,7 @@
 		<td >예약</td><td> : </td><td><span> ${ocean.state eq 'Y' ? '예약' : '예약취소'} </span></td>
 		<td >예약번호</td><td> : </td><td><span> ${ocean.ocbook_id} </span></td>
 		<td >예약일</td><td> : </td><td><span> ${ocean.oc_date }</span></td>
-		<td >인원수</td><td> : </td><td><span> ${ocean.tot_cnt}명</span></td>
+		<td >인원수</td><td> : </td><td><span> ${ocean.adult_cnt+ocean.child_cnt}명</span></td>
 	</tr>
 	</table>
        

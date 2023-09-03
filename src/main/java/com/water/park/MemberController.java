@@ -201,7 +201,8 @@ public class MemberController {
 	}
 
 	// -------------------------------------------------------------------------
-	@RequestMapping(value = "/memberAll.do") // 회원조회 (페이징)
+	// 회원조회 (페이징)
+	@RequestMapping(value = "/memberAll.do") 
 	public String Memberall(HttpServletRequest request, PageVO paging, Model model) throws Exception {
 		int totalcount2 = memberService.getTotalCount2();
 		int page3 = request.getParameter("page3") == null ? 1 : Integer.parseInt(request.getParameter("page3"));
@@ -209,18 +210,18 @@ public class MemberController {
 		if (totalcount2 == 0)
 			totalcount2 = 1;
 
-		paging.setPageNo(page3); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
-		paging.setPageSize(6); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setPageNo(page3); 	
+		paging.setPageSize(6); 		
 		paging.setTotalCount(totalcount2);
 
-		page3 = (page3 - 1) * 6 + 1; // select해오는 기준을 구한다.
+		page3 = (page3 - 1) * 6 + 1; 
 		int page4 = page3 + 5;
 
 		ArrayList<MemberVO> getAllMember = memberService.getList2(page3, page4);
 		model.addAttribute("getAllMember", getAllMember);
+		model.addAttribute("totalcount2", totalcount2);
 		model.addAttribute("paging", paging);
 
-		model.addAttribute("totalcount2", totalcount2);
 
 		return "/admin/adminMember/memberAll";
 	}
@@ -239,11 +240,11 @@ public class MemberController {
 		if (totalcount2 == 0)
 			totalcount2 = 1;
 
-		paging.setPageNo(page3); // get방식의 parameter값으로 받은 page변수, 현재 페이지 번호
-		paging.setPageSize(6); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setPageNo(page3);
+		paging.setPageSize(6); 
 		paging.setTotalCount(totalcount2);
 
-		page3 = (page3 - 1) * 6 + 1; // select해오는 기준을 구한다.
+		page3 = (page3 - 1) * 6 + 1; 
 		int page4 = page3 + 5;
 
 		ArrayList<MemberVO> getAllMember = memberService.getFilterList(memberFilter, memberSearch2, page3, page4);

@@ -11,16 +11,14 @@ import com.water.park.vo.Ocean_bookVO;
 import com.water.park.vo.Package_bookVO;
 @Mapper
 public interface BookDAO {
-	
+
 	ArrayList<BookVO> getAllBook();
 	ArrayList<BookVO> getBooked( @Param("outdate") String outdate,@Param("indate") String indate) throws SQLException;
 	void insertresort_book(BookVO bookVO);
 	void insertpackage_book(Package_bookVO package_bookVO);
 	void insertw_package_book(Package_bookVO package_bookVO);
 	void insertocean_book(Ocean_bookVO ocean_bookVO);
-	void insertwaterpack_book(Package_bookVO package_bookVO);
-	void insertresortpack_book(Package_bookVO package_bookVO);
-	void insertallpack_book(Package_bookVO package_bookVO);
-	
 
-} 
+
+
+}

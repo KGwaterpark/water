@@ -25,18 +25,16 @@
     	price = ovo.getTot_cnt();
     	ovo.setOcbook_id(book_id);
     	sangName=ovo.getType();
-     }  else if(session.getAttribute("pabook_vo") != null){
-    	 Package_bookVO pvo = (Package_bookVO) session.getAttribute("pabook_vo");
-    	 price = pvo.getPrice();
-    	 pvo.setPabook_id(book_id);
-    	 sangName = pvo.getP_type();
-     }else if(session.getAttribute("book_vo") != null){
+     } else if(session.getAttribute("book_vo") != null){
     	 BookVO rmvo = (BookVO) session.getAttribute("book_vo");
     	 price = rmvo.getPrice();
     	 sangName = rmvo.getRe_type2();
     	 rmvo.setRebook_id(book_id);
+     } else if(session.getAttribute("pmvo") != null){
+    	 Package_bookVO pmvo = (Package_bookVO) session.getAttribute("pmvo");
+    	 price = pmvo.getPrice();
+    	 pmvo.setPabook_id(book_id);
      }
-     
      
      %>
 <!DOCTYPE html>

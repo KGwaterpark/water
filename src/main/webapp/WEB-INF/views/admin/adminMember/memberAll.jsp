@@ -28,58 +28,58 @@ li {
 	padding: 6px;
 }
 
-.adminm-body{
-	display:grid;
-	place-content:center;
+.adminm-body {
+	display: grid;
+	place-content: center;
 }
 
 /* 검색 컨테이너에 대한 스타일 */
 .adminm-Filter {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
- float: center;
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	float: center;
 }
 
 /* 검색 폼에 대한 스타일 */
 .adminm-Filter form {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 /* 검색 입력란에 대한 스타일 */
-.adminm-Filter input[type="text"],
-.adminm-Filter select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 20px;
+.adminm-Filter input[type="text"], .adminm-Filter select {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-right: 10px;
+	font-size: 20px;
 }
 
 /* 검색 버튼에 대한 스타일 */
 .adminm-Filter input[type="submit"] {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
+	background-color: black;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 20px;
 }
 
-.pagination{
-	font-size:40px;
+.pagination {
+	font-size: 40px;
 }
 
-  .pagination li a {
-    text-decoration: none;
-    color: gray;
+.pagination li a {
+	text-decoration: none;
+	color: gray;
 }
-  .pagination li.active a {
-    color: black;
-    font-weight: bold; 
-  }
+
+.pagination li.active a {
+	color: black;
+	font-weight: bold;
+}
 }
 </style>
 
@@ -93,7 +93,7 @@ li {
 	<table class="adminm-table">
 		<tr></tr>
 		<tr>
-			<td><h1>회원명단</h1></td>
+			<td><h1 style="font-size: 50px;">회원명단</h1></td>
 		</tr>
 		<tr></tr>
 		<tr class="mt-td">
@@ -120,7 +120,7 @@ li {
 			<tr>
 				<th>CODE</th>
 				<th>&nbsp;&nbsp; ID<c:set var="totalMembers"
-                  value="${fn:length(getAllMember)}" /> <span id="memp">(${totalcount2}명)</span></th>
+						value="${fn:length(getAllMember)}" /> <span id="memp">(${totalcount2}명)</span></th>
 				<th>이름</th>
 				<th id="tel-td">전화</th>
 				<th>이메일</th>
@@ -131,13 +131,15 @@ li {
 		<tbody class="table-hover">
 
 			<c:forEach var="mem" items="${getAllMember}" varStatus="loop">
-				<tr class="admintr" >
-				 
-        <td align="center" class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${paging.startIndex + loop.index + 1}</td>
+				<tr class="admintr">
 
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'"><c:set var="naverid"
-							value="${fn:split(mem.m_id, ',')}" /> <c:forEach var="str"
-							items="${naverid}">
+					<td align="center" class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${paging.startIndex + loop.index + 1}</td>
+
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'"><c:set
+							var="naverid" value="${fn:split(mem.m_id, ',')}" /> <c:forEach
+							var="str" items="${naverid}">
 							<c:choose>
 								<c:when test="${fn:contains(str, 'NAVER')}">
 									<c:set var="id" value="${fn:substring(str, 0, 7)}" />
@@ -149,12 +151,18 @@ li {
 							</c:choose>
 							<br />
 						</c:forEach></td>
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_name}</td>
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_tel}</td>
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_email}</td>
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_birth}
-							&nbsp;<span id="memp1">(${mem.m_age}살)</span> </td>
-					<td class="admintd" style="cursor:pointer;" onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_gender}</td>
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_name}</td>
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_tel}</td>
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_email}</td>
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_birth}
+						&nbsp;<span id="memp">(${mem.m_age}살)</span>
+					</td>
+					<td class="admintd" style="cursor: pointer;"
+						onClick="location.href='memberGet.do?m_id=${mem.m_id}'">${mem.m_gender}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -169,7 +177,7 @@ li {
 	<table>
 		<tr></tr>
 		<tr>
-			<td width=400></td>
+			<td width=500></td>
 			<td style="font-size: 40px;">
 				<ul class="pagination">
 					<li><a href="javascript:PageMove(${paging.firstPageNo})">≪</a></li>
@@ -191,10 +199,10 @@ li {
 			</td>
 		</tr>
 	</table>
-<!-- 	<div>
+	<div>
 		<input type="button" value="뒤로가기" onclick="history.back()"
 			class="adminmit" id="adbtn">
 
-	</div> -->
+	</div>
 </body>
 </html>

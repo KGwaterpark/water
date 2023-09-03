@@ -42,7 +42,7 @@ li {
 	<table class="g-table">
 		<tr></tr>
 		<tr>
-			<td><h1>공지사항 리스트</h1></td>
+			<td><h1 style="font-size:50px;">공지사항 리스트</h1></td>
 		</tr>
 		<tr></tr>
 		<tr class="gt-td">
@@ -104,7 +104,7 @@ li {
 	<table>
 		<tr></tr>
 		<tr>
-			<td width=400></td>
+			<td width=500></td>
 			<td style="font-size: 40px;">
 				<ul class="pagination">
 					<li><a href="javascript:PageMove(${paging.firstPageNo})">≪</a></li>

@@ -1,6 +1,7 @@
 package com.water.park;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.water.park.service.BookService;
+import com.water.park.service.MemberService;
 import com.water.park.vo.BookVO;
 import com.water.park.vo.Ocean_bookVO;
 import com.water.park.vo.Package_bookVO;
+import com.water.park.vo.PageVO;
 
 /**
  * Handles requests for the application home page.
@@ -29,7 +32,8 @@ public class BookController {
    
    @Resource(name = "bookService") 
       private BookService bookService; 
-   
+   @Resource(name = "memberService")
+	private MemberService memberService;
    
    @RequestMapping("/oceanpay.do")
 	 public String oceanpay(HttpServletRequest rq,
@@ -43,43 +47,27 @@ public class BookController {
 		 	
 		return "book/oc_payment";
 	}
-   
 	@RequestMapping("/waterpackpay.do")
 	public String waterpackpay(HttpServletRequest rq,
-			 @RequestParam("adultsCount") int adultsCount ,
 			 @RequestParam("indate2") String indate2,
-			 @RequestParam("ocean_price") int ocean_price, 
-			 @RequestParam("outdate") String outdate){ 
+			 @RequestParam("adultsCount") int adultsCount ,
+			 @RequestParam("ocean_price") int ocean_price) {
 			
+		bookService.waterpackbook(rq,indate2,adultsCount,ocean_price);
 		
-		bookService.waterpackbook2(rq,adultsCount,indate2,ocean_price, outdate);
-		
-		return "book/ocpack_payment";
+		return "book/oc_payment";
 }	 
 		@RequestMapping("/allpackpay.do")
 		public String allpackpay(HttpServletRequest rq,
-				@RequestParam("indate2") String indate,
+				@RequestParam("indate2") String indate2,
 				 @RequestParam("adultsCount") int adultsCount ,
-				 @RequestParam("ocean_price") int allpack_price,
-				 @RequestParam("outdate") String outdate){
+				 @RequestParam("ocean_price") int ocean_price) {
 			
-			bookService.allpackbook2(rq, adultsCount,indate,allpack_price,outdate);
+			bookService.allpackbook(rq,indate2,adultsCount,ocean_price);
 			
-			return "book/allpack_payment";
+			return "book/oc_payment";
 			
 		}
-		   @RequestMapping("/repackpay.do")
-		    public String repackpay(HttpServletRequest rq, 
-		    		@RequestParam("indate") String indate,   
-		    		@RequestParam("outdate") String outdate,
-		    		@RequestParam("reType") String reType,    
-		    		@RequestParam("price") int price, 
-		    		@RequestParam("adultsCount") int adultsCount){
-		    	bookService.resortpackbook(rq,reType,adultsCount,indate,outdate,price);
-		    	return "book/repack_payment";
-		    }
-		
-	
    //예매 .jsp
     @RequestMapping("/book.do")
     public String BookPage() {
@@ -139,7 +127,6 @@ public class BookController {
     	}
     	return d;
     }
-    
     @RequestMapping("/pay.do")
     public String pay(HttpServletRequest rq, @RequestParam("indate") String indate,   @RequestParam("outdate") String outdate,
         @RequestParam("reType") String reType,    @RequestParam("price") int price ) throws Exception{
@@ -158,25 +145,24 @@ public class BookController {
  	public String insertocean_book(HttpServletRequest request) {
  		HttpSession session = request.getSession();
  		Ocean_bookVO ovo = null;
- 		BookVO bvo = null;
- 		Package_bookVO pvo = null;
+ 		BookVO rmvo = null;
+ 		Package_bookVO pmvo = null;
 
  		if (session.getAttribute("ocean_vo") != null) {
  			ovo = (Ocean_bookVO) session.getAttribute("ocean_vo");
  			bookService.insertbook(ovo);
  			return "book/ocpayfin";
- 		} else if (session.getAttribute("pabook_vo") != null) {
- 			bvo = (BookVO) session.getAttribute("book_vo");
- 			pvo = (Package_bookVO) session.getAttribute("pabook_vo");
- 			bookService.insertbook(pvo,bvo);
- 			return "book/papayfin";
- 		}else if (session.getAttribute("book_vo") != null) {
- 			bvo = (BookVO) session.getAttribute("book_vo");
- 			System.out.println(bvo.getCheck_out_date());
- 			System.out.println(bvo.getCheck_in_date());
- 			bookService.insertbook(bvo);
+ 		} else if (session.getAttribute("book_vo") != null) {
+ 			rmvo = (BookVO) session.getAttribute("book_vo");
+ 			System.out.println(rmvo.getCheck_out_date());
+ 			System.out.println(rmvo.getCheck_in_date());
+ 			bookService.insertbook(rmvo);
  			return "book/payfin";
- 		} else {
+ 		} else if (session.getAttribute("pmvo") != null) {
+ 			pmvo = (Package_bookVO) session.getAttribute("pmvo");
+ 			bookService.insertbook(pmvo);
+ 			return "book/papayfin";
+ 		}else {
  			return "main";
  		}
 
@@ -187,6 +173,65 @@ public class BookController {
  	public String Pay() {
  		
  		return "book/pay";
+ 	}
+ 	
+ // 결제 정보 가져오기
+ 	@RequestMapping("/paymentAll.do")
+ 	public  String paymentAll( Model model,
+ 			 @RequestParam(name = "state", required = false) String state,
+             @RequestParam(name = "search", required = false) String search,
+             @RequestParam(name = "query", required = false) String query,
+             @RequestParam(name = "page", defaultValue = "1" ) String pagestr
+             ) throws Exception {
+ 		
+ 		state = (state == null) ? "all" : state;
+ 	    search = (search == null) ? "" : search;
+ 	    query = (query == null) ? "" : query;
+ 		String token = memberService.getToken();
+ 		int page = Integer.parseInt(pagestr);
+ 		PageVO paging = new PageVO();
+ 		int itemsPerPage = 10; // 페이지당 항목 수
+ 		int startItem = (page - 1) * itemsPerPage + 1; // 시작 항목 번호 계산
+		int endItem = page * itemsPerPage; // 끝 항목 번호 계산
+		List<BookVO> paymentAll = bookService.paymentAll(token,state,search,query,startItem,endItem);
+		
+		int totPage = paymentAll.size();
+ 		paging.setPageNo(page); // get방식의 parameter값으로 반은 page변수,5 현재 페이지 번호
+		paging.setPageSize(itemsPerPage); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(paymentAll.size());
+		
+		if (endItem > paymentAll.size()) {
+			endItem = paymentAll.size();
+		}
+		
+		ArrayList<BookVO> paymentAll2 = new ArrayList<>();
+		BookVO book = new BookVO();
+		book.setTotpage(totPage);
+		for(int j= startItem-1; j<endItem;j++) {
+			book=paymentAll.get(j);
+			paymentAll2.add(book);
+		}
+		
+		model.addAttribute("paging", paging);
+ 		model.addAttribute("paymentAll", paymentAll2);
+ 		return "admin/adminBook/payall";
+ 	}
+ 	
+ 	// 결제 취소
+ 	
+ 	@RequestMapping(value = "/payCancle.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+ 	@ResponseBody
+ 	public  String payCancle( Model model,
+ 			 @RequestParam("merchant_uid") String merchant_uid,
+ 			 @RequestParam("reason") String reason, 
+ 			 @RequestParam("type") String type, 
+ 			 @RequestParam(name = "amount", required = false) String amount) throws Exception {
+ 		
+ 		amount = (amount == null) ? "" : amount;
+ 		String token = memberService.getToken();
+ 		String msg = bookService.payCancle(token,merchant_uid,reason,type,amount);
+ 		System.out.println(msg);
+ 		return msg;
  	}
  	
  	

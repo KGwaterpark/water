@@ -118,6 +118,7 @@
 		<where>
 			<if test="memberFilter == 'm_id'">
 				AND UPPER(m_id) LIKE #{memberSearch2}
+			
 			</if>
 			<if test="memberFilter == 'm_name'">
 				AND UPPER(m_name) LIKE #{memberSearch2}

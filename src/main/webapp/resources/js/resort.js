@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const rePackBookBtn = getElement('#repackbtn');
   const selectedResortElement = getElement('.selected-resortdata');
-	rePackBookBtn.addEventListener('click', () => repackbtn());
-	
+   rePackBookBtn.addEventListener('click', () => repackbtn());
+   
   
 
 
@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
   
   // 리조트 선택을 보여주는 함수
   function showSelectedResortData(data, element) {
-  	  selectedResort = data;
-  	  adultsCount = 0;
+       selectedResort = data;
+       adultsCount = 0;
       updateCounter('adultsCount', adultsCount);
-      updatePrice();	
+      updatePrice();   
       updateSelectedResortData();
 
     // 선택한 요소의 배경색을 변경합니다.
@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', function () {
       alert("날짜 정보를  선택해주세요");
     } else if (selectedResort === null) {
       alert("리조트를 선택해주세요");
-   	} else if (adultsCount === 0){
-   	  alert("인원을 선택해주세요");
-   	} else {
+      } else if (adultsCount === 0){
+        alert("인원을 선택해주세요");
+      } else {
       // 보내야 할 정보 입력
       url = 'pay.do?' + 'indate=' + indate + '&outdate=' + outdate + '&reType=' + selectedResort + '&price=' + totalPrice;
 
@@ -133,13 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
 //////가격//////////
 function updatePrice() {
 if ( selectedResort === '패밀리 스탠다드'){
-	totalPrice = adultsCount * 20000 + 200000;
+   totalPrice = adultsCount * 20000 + 200000;
 }else if( selectedResort === '패밀리 프리미엄'){
-	totalPrice = adultsCount * 20000 + 250000;
+   totalPrice = adultsCount * 20000 + 250000;
 }else if( selectedResort === '스위트 스탠다드'){
-	totalPrice = adultsCount * 20000 + 400000;
+   totalPrice = adultsCount * 20000 + 400000;
 }else if( selectedResort === '스위트 프리미엄'){
-	totalPrice = adultsCount * 20000 + 450000;
+   totalPrice = adultsCount * 20000 + 450000;
 }
  
   document.getElementById('totalPrice').textContent = totalPrice + "원";
@@ -185,6 +185,5 @@ $(function () {
   }
   $("#checkInDate1").datepicker("show");
 });
-
 
 

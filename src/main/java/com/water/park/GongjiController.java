@@ -226,7 +226,6 @@ public class GongjiController {
 
 		page = (page - 1) * 6 + 1; // select해오는 기준을 구한다.
 		int page2 = page + 5;
-		
 
 		ArrayList<GongjiVO> getAllGongji2 = gongjiService.getFilterList(gongjiFilter, gongjiSearch2, page, page2);
 
