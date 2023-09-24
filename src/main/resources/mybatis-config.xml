@@ -13,6 +13,7 @@
 		<typeAlias alias="Package_bookVO" type="com.water.park.vo.Package_bookVO"/>
 		<typeAlias alias="ResortVO" type="com.water.park.vo.ResortVO"/>
 		<typeAlias alias="ReviewVO" type="com.water.park.vo.ReviewVO"/>
+		<typeAlias alias="Package_bookVO" type="com.water.park.vo.Package_bookVO"/> 
 	</typeAliases>        
 </configuration>
 
